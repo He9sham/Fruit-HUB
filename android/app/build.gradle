@@ -29,6 +29,18 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
+      flavorDimensions "default"
+    productFlavors {
+      development {
+          dimension "default"
+          applicationIdSuffix ".dev"
+          resValue "string", "app_name", "Fruit HUB Development"
+      }
+      production {
+          dimension "default"
+          resValue "string", "app_name", "Fruit HUB Production"
+      }
+  }
 
     buildTypes {
         release {
