@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "395468957968",
+    "project_id": "fruit-hub-2438c",
+    "storage_bucket": "fruit-hub-2438c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395468957968:android:e5d34cef6a188f78aadd95",
+        "android_client_info": {
+          "package_name": "com.example.commerce_hub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7v8qTwsEVTjbNH0-iFoPEciLQzbzCB1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
