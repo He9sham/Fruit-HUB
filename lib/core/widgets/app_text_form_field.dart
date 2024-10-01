@@ -28,25 +28,26 @@ class AppTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.backgroundColor,
     this.controller,
-    required this.validator, this.keyboardType,
+    required this.validator,
+    this.keyboardType,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: keyboardType,
+      keyboardType: keyboardType ?? TextInputType.text,
       controller: controller,
       decoration: InputDecoration(
         isDense: true,
         contentPadding: contentPadding ??
-            EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
+            EdgeInsets.symmetric(horizontal: 20.w, vertical: 25.h),
         focusedBorder: focusedBorder ??
             OutlineInputBorder(
               borderSide: const BorderSide(
                 color: ColorsManager.mainBlue,
                 width: 1.3,
               ),
-              borderRadius: BorderRadius.circular(16.0),
+              borderRadius: BorderRadius.circular(4.0),
             ),
         enabledBorder: enabledBorder ??
             OutlineInputBorder(
@@ -54,7 +55,7 @@ class AppTextFormField extends StatelessWidget {
                 color: ColorsManager.lighterGray,
                 width: 1.3,
               ),
-              borderRadius: BorderRadius.circular(16.0),
+              borderRadius: BorderRadius.circular(4.0),
             ),
         errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(

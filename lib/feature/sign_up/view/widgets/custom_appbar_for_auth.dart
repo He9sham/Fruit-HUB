@@ -3,9 +3,11 @@ import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBarForAuth extends StatelessWidget {
-  const CustomAppBarForAuth({super.key, required this.title});
+  const CustomAppBarForAuth(
+      {super.key, required this.title, required this.onPressed});
 
   final String title;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class CustomAppBarForAuth extends StatelessWidget {
           ),
           child: IconButton(
             icon: const Icon(Icons.arrow_forward),
-            onPressed: () {},
+            onPressed: onPressed,
           ),
         )
       ],

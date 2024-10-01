@@ -11,6 +11,7 @@ class CommerceHub extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       child: MaterialApp(
+        
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.splashScreen,
         onGenerateRoute: appRouter.generateRoute,
