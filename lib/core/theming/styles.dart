@@ -32,4 +32,21 @@ abstract class Styles {
       fontSize: 13,
       fontFamily: GoogleFonts.cairo().fontFamily,
       color: Colors.green);
+
+  static TextStyle textbuttom16White = TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 16,
+      fontFamily: GoogleFonts.cairo().fontFamily,
+      color: Colors.white);
+
+  static TextStyle textRowNavigate16gray = TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 16,
+      fontFamily: GoogleFonts.cairo().fontFamily,
+      color: const Color(0xffA4ACAD));
+  static TextStyle textRowNavigate16green = TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 16,
+      fontFamily: GoogleFonts.cairo().fontFamily,
+      color: Colors.green);
 }
