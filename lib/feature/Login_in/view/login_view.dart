@@ -66,6 +66,34 @@ class LoginView extends StatelessWidget {
                     context.pop();
                   },
                 ),
+                verticalSpace(37),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Divider(
+                      height: 15,
+                      endIndent: 80,
+                      indent: 80,
+                      thickness: 2,
+                      color: Colors.black.withOpacity(0.3),
+                    ),
+                    const Text(
+                      'او',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Divider(
+                      height: 15,
+                      indent: 80,
+                      endIndent: 80,
+                      thickness: 2,
+                      color: Colors.black.withOpacity(0.3),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
