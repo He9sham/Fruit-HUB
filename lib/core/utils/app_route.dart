@@ -1,6 +1,7 @@
 import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/feature/Onboarding&Splash/view/onboarding_view.dart';
 import 'package:commerce_hub/feature/Onboarding&Splash/view/splash_view.dart';
+import 'package:commerce_hub/feature/sign_up/view/sign_up_view.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -17,6 +18,10 @@ class AppRouter {
       case Routes.onBoardingScreen:
         return MaterialPageRoute(
           builder: (_) => const OnboardingView(),
+        );
+        case Routes.signupScreen:
+        return MaterialPageRoute(
+          builder: (_) => const SignUpView(),
         );
       default:
         return null;

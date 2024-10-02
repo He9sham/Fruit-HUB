@@ -1,5 +1,7 @@
+import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/color.dart';
+import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/feature/Onboarding&Splash/view/widgets/custom_container_text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
@@ -13,9 +15,9 @@ class OnboardingView extends StatelessWidget {
     // final height = sizeOfHeight(0.5, context);
     return OnBoardingSlider(
       finishButtonText: 'ابدأ الان',
-      // onFinish: () {
-      //   GoRouter.of(context).push(AppRouter.sighupview);
-      // },
+      onFinish: () {
+        context.pushNamed(Routes.signupScreen);
+      },
       finishButtonStyle: FinishButtonStyle(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
