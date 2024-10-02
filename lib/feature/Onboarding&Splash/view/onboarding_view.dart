@@ -12,7 +12,6 @@ class OnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final height = sizeOfHeight(0.5, context);
     return OnBoardingSlider(
       finishButtonText: 'ابدأ الان',
       onFinish: () {
@@ -33,7 +32,7 @@ class OnboardingView extends StatelessWidget {
         ),
       ),
       skipFunctionOverride: () {
-        // context.pushNamed(Routes.loginScreen);
+        context.pushNamed(Routes.loginScreen);
       },
       controllerColor: Colors.black,
       totalPage: 2,

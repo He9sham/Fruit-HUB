@@ -49,4 +49,5 @@ abstract class Styles {
       fontSize: 16,
       fontFamily: GoogleFonts.cairo().fontFamily,
       color: Colors.green);
+
 }

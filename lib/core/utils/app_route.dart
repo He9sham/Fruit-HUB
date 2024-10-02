@@ -1,4 +1,5 @@
 import 'package:commerce_hub/core/utils/router.dart';
+import 'package:commerce_hub/feature/Login_in/view/login_view.dart';
 import 'package:commerce_hub/feature/Onboarding&Splash/view/onboarding_view.dart';
 import 'package:commerce_hub/feature/Onboarding&Splash/view/splash_view.dart';
 import 'package:commerce_hub/feature/sign_up/view/sign_up_view.dart';
@@ -22,6 +23,10 @@ class AppRouter {
         case Routes.signupScreen:
         return MaterialPageRoute(
           builder: (_) => const SignUpView(),
+        );
+        case Routes.loginScreen:
+        return MaterialPageRoute(
+          builder: (_) => const LoginView(),
         );
       default:
         return null;
