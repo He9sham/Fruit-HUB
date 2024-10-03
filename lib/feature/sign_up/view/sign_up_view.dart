@@ -1,8 +1,10 @@
 import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
+import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/custom_appbar_for_auth.dart';
+import 'package:commerce_hub/feature/sign_up/view/widgets/row_text_reauth.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/rowtext_check_box.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
@@ -34,25 +36,15 @@ class SignUpView extends StatelessWidget {
                   buttonText: 'إنشاء حساب جديد',
                   onPressed: () {},
                   textStyle: Styles.textbuttom16White,
-                  backgroundColor: Colors.green,
                 ),
                 verticalSpace(26),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'تسجيل الدخول',
-                        style: Styles.textRowNavigate16green,
-                      ),
-                    ),
-                    Text(
-                      'تمتلك حساب بالفعل؟ ',
-                      style: Styles.textRowNavigate16gray,
-                    ),
-                  ],
-                )
+                RowTextReauth(
+                  title: 'تسجيل الدخول',
+                  subtitle: 'تمتلك حساب بالفعل؟',
+                  onPressed: () {
+                    context.pushNamed(Routes.loginScreen);
+                  },
+                ),
               ],
             ),
           ),
