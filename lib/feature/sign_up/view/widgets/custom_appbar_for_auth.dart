@@ -18,7 +18,7 @@ class CustomAppBarForAuth extends StatelessWidget {
           title,
           style: Styles.textappBarAuth,
         ),
-        horizontalSpace(75),
+        horizontalSpace(60),
         Container(
           decoration: BoxDecoration(
             border: Border.all(

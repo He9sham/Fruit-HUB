@@ -1,12 +1,14 @@
 import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
-import 'package:commerce_hub/core/theming/color.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
-import 'package:commerce_hub/core/widgets/app_text_form_field.dart';
+import 'package:commerce_hub/feature/Login_in/view/widgets/custom_container_athour_auth.dart';
+import 'package:commerce_hub/feature/Login_in/view/widgets/divider_row.dart';
+import 'package:commerce_hub/feature/Login_in/view/widgets/login_text_from_field.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/custom_appbar_for_auth.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/row_text_reauth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -26,19 +28,7 @@ class LoginView extends StatelessWidget {
                     context.pop();
                   },
                 ),
-                verticalSpace(25),
-                AppTextFormField(
-                  hintText: 'البريد الإلكتروني',
-                  validator: (data) {},
-                  backgroundColor: ColorsManager.lighterGray,
-                ),
-                verticalSpace(16),
-                AppTextFormField(
-                  hintText: 'كلمة المرور',
-                  validator: (data) {},
-                  backgroundColor: ColorsManager.lighterGray,
-                  suffixIcon: const Icon(Icons.remove_red_eye_outlined),
-                ),
+                const LoginTextFromfield(),
                 verticalSpace(16),
                 Row(
                   children: [
@@ -67,33 +57,20 @@ class LoginView extends StatelessWidget {
                   },
                 ),
                 verticalSpace(37),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Divider(
-                      height: 15,
-                      endIndent: 80,
-                      indent: 80,
-                      thickness: 2,
-                      color: Colors.black.withOpacity(0.3),
-                    ),
-                    const Text(
-                      'او',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Divider(
-                      height: 15,
-                      indent: 80,
-                      endIndent: 80,
-                      thickness: 2,
-                      color: Colors.black.withOpacity(0.3),
-                    ),
-                  ],
-                )
+                const DividerRow(),
+                verticalSpace(37),
+                CustomContainerAthourAuth(
+                  ontap: () {},
+                  title: 'تسجيل دخول بفيس بوك   ',
+                  iconData: FontAwesomeIcons.facebook,
+                  color: Colors.blue,
+                ),
+                verticalSpace(16),
+                CustomContainerAthourAuth(
+                  title: '   تسجيل بواسطة جوجل   ',
+                  iconData: FontAwesomeIcons.google,
+                  ontap: () {},
+                ),
               ],
             ),
           ),
