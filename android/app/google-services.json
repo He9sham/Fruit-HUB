@@ -12,7 +12,12 @@
           "package_name": "com.example.commerce_hub"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "395468957968-5rv78gie6suml4so6gdfqtne7f3pjk4k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB7v8qTwsEVTjbNH0-iFoPEciLQzbzCB1Q"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395468957968-5rv78gie6suml4so6gdfqtne7f3pjk4k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
