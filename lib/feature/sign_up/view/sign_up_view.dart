@@ -3,11 +3,14 @@ import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
+import 'package:commerce_hub/feature/sign_up/logic/signup_cubit_cubit.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/custom_appbar_for_auth.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/row_text_reauth.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/rowtext_check_box.dart';
+import 'package:commerce_hub/feature/sign_up/view/widgets/signup_bloc_listener.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
@@ -34,7 +37,9 @@ class SignUpView extends StatelessWidget {
                 verticalSpace(30),
                 AppTextButton(
                   buttonText: 'إنشاء حساب جديد',
-                  onPressed: () {},
+                  onPressed: () {
+                    validateThenDoSignup(context);
+                  },
                   textStyle: Styles.textbuttom16White,
                 ),
                 verticalSpace(26),
@@ -45,11 +50,18 @@ class SignUpView extends StatelessWidget {
                     context.pushNamed(Routes.loginScreen);
                   },
                 ),
+                const SignUpBlocListener()
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void validateThenDoSignup(BuildContext context) {
+    if (context.read<SignupCubit>().formkey.currentState!.validate()) {
+      context.read<SignupCubit>().signupMethod();
+    }
   }
 }

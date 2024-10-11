@@ -66,4 +66,5 @@ class DefaultFirebaseOptions {
     iosClientId: '395468957968-itptt6jnol2s3t3vr0f0v0b3tmehsldk.apps.googleusercontent.com',
     iosBundleId: 'com.example.commerceHub',
   );
+
 }

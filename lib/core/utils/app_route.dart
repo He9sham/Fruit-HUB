@@ -2,8 +2,11 @@ import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/feature/Login_in/view/login_view.dart';
 import 'package:commerce_hub/feature/Onboarding&Splash/view/onboarding_view.dart';
 import 'package:commerce_hub/feature/Onboarding&Splash/view/splash_view.dart';
+import 'package:commerce_hub/feature/home/view/home_view.dart';
+import 'package:commerce_hub/feature/sign_up/logic/signup_cubit_cubit.dart';
 import 'package:commerce_hub/feature/sign_up/view/sign_up_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
@@ -20,13 +23,20 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const OnboardingView(),
         );
-        case Routes.signupScreen:
+      case Routes.signupScreen:
         return MaterialPageRoute(
-          builder: (_) => const SignUpView(),
+          builder: (_) => BlocProvider(
+            create: (context) => SignupCubit(),
+            child: const SignUpView(),
+          ),
         );
-        case Routes.loginScreen:
+      case Routes.loginScreen:
         return MaterialPageRoute(
           builder: (_) => const LoginView(),
+        );
+        case Routes.homeScreen:
+        return MaterialPageRoute(
+          builder: (_) => const HomeView(),
         );
       default:
         return null;
