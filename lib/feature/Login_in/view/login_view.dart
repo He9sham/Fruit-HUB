@@ -2,12 +2,15 @@ import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
+import 'package:commerce_hub/feature/Login_in/logic/login_cubit.dart';
 import 'package:commerce_hub/feature/Login_in/view/widgets/custom_container_athour_auth.dart';
 import 'package:commerce_hub/feature/Login_in/view/widgets/divider_row.dart';
+import 'package:commerce_hub/feature/Login_in/view/widgets/login_bloc_listener.dart';
 import 'package:commerce_hub/feature/Login_in/view/widgets/login_text_from_field.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/custom_appbar_for_auth.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/row_text_reauth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginView extends StatelessWidget {
@@ -45,7 +48,9 @@ class LoginView extends StatelessWidget {
                 verticalSpace(33),
                 AppTextButton(
                   buttonText: 'تسجيل الدخول',
-                  onPressed: () {},
+                  onPressed: () {
+                    validateThenDoSignup(context);
+                  },
                   textStyle: Styles.textbuttom16White,
                 ),
                 verticalSpace(33),
@@ -71,11 +76,18 @@ class LoginView extends StatelessWidget {
                   iconData: FontAwesomeIcons.google,
                   ontap: () {},
                 ),
+                const LoginBlocListener(),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void validateThenDoSignup(BuildContext context) {
+    if (context.read<LoginCubit>().formkey.currentState!.validate()) {
+      context.read<LoginCubit>().loginMethod();
+    }
   }
 }
