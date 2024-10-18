@@ -74,7 +74,9 @@ class LoginView extends StatelessWidget {
                 CustomContainerAthourAuth(
                   title: '   تسجيل بواسطة جوجل   ',
                   iconData: FontAwesomeIcons.google,
-                  ontap: () {},
+                  ontap: () {
+                    context.read<LoginCubit>().signInWithGoogle(context);
+                  },
                 ),
                 const LoginBlocListener(),
               ],
