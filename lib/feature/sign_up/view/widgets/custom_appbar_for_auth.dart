@@ -4,21 +4,25 @@ import 'package:flutter/material.dart';
 
 class CustomAppBarForAuth extends StatelessWidget {
   const CustomAppBarForAuth(
-      {super.key, required this.title, required this.onPressed});
+      {super.key,
+      required this.title,
+      required this.onPressed,
+      required this.iconspace, required this.textspace});
 
   final String title;
   final void Function() onPressed;
+  final double iconspace , textspace;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        horizontalSpace(130),
+        horizontalSpace(textspace),
         Text(
           title,
           style: Styles.textappBarAuth,
         ),
-        horizontalSpace(60),
+        horizontalSpace(iconspace),
         Container(
           decoration: BoxDecoration(
             border: Border.all(

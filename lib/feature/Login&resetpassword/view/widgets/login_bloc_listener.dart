@@ -2,7 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:commerce_hub/core/helper/awesome_widgets.dart';
 import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/utils/router.dart';
-import 'package:commerce_hub/feature/Login_in/logic/login_cubit.dart';
+import 'package:commerce_hub/feature/Login&resetpassword/logic/cubit/login_cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';

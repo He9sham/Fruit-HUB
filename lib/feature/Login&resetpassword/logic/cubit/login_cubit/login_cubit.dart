@@ -14,22 +14,23 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController passwordController = TextEditingController();
 
   final formkey = GlobalKey<FormState>();
+
   Future<void> loginMethod() async {
     emit(LoginLoading());
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
       emit(LoginSuccess());
-    } on FirebaseAuthException {
-      emit(
-          LoginFailer(errMessage: 'ربما الحساب الالكتروني او كلمة المرور خطأ'));
+    } on FirebaseAuthException catch (err) {
+      emit(LoginFailer(errMessage: err.message.toString()));
     } catch (e) {
       emit(LoginFailer(
           errMessage:
               'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى في وقت لاحق.'));
     }
   }
-    Future signInWithGoogle(BuildContext context) async {
+
+  Future signInWithGoogle(BuildContext context) async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) {

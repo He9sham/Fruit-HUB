@@ -1,12 +1,13 @@
 import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
+import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
-import 'package:commerce_hub/feature/Login_in/logic/login_cubit.dart';
-import 'package:commerce_hub/feature/Login_in/view/widgets/custom_container_athour_auth.dart';
-import 'package:commerce_hub/feature/Login_in/view/widgets/divider_row.dart';
-import 'package:commerce_hub/feature/Login_in/view/widgets/login_bloc_listener.dart';
-import 'package:commerce_hub/feature/Login_in/view/widgets/login_text_from_field.dart';
+import 'package:commerce_hub/feature/Login&resetpassword/logic/cubit/login_cubit/login_cubit.dart';
+import 'package:commerce_hub/feature/Login&resetpassword/view/widgets/custom_container_athour_auth.dart';
+import 'package:commerce_hub/feature/Login&resetpassword/view/widgets/divider_row.dart';
+import 'package:commerce_hub/feature/Login&resetpassword/view/widgets/login_bloc_listener.dart';
+import 'package:commerce_hub/feature/Login&resetpassword/view/widgets/login_text_from_field.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/custom_appbar_for_auth.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/row_text_reauth.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,8 @@ class LoginView extends StatelessWidget {
               children: [
                 verticalSpace(16),
                 CustomAppBarForAuth(
+                  textspace: 120,
+                  iconspace: 60,
                   title: 'تسجيل دخول',
                   onPressed: () {
                     context.pop();
@@ -36,7 +39,9 @@ class LoginView extends StatelessWidget {
                 Row(
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.pushNamed(Routes.resetPasswordScreen);
+                      },
                       child: Text(
                         'نسيت كلمة المرور؟',
                         style: Styles.textRowNavigate16green
