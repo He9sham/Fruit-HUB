@@ -25,6 +25,8 @@ class SignUpView extends StatelessWidget {
               children: [
                 verticalSpace(16),
                 CustomAppBarForAuth(
+                  textspace: 130,
+                  iconspace: 60,
                   title: 'حساب جديد',
                   onPressed: () {
                     context.pop();
