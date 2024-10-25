@@ -1,3 +1,5 @@
+import 'package:commerce_hub/core/helper/spacing.dart';
+import 'package:commerce_hub/feature/home/view/widgets/custom_appbar_home_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -5,13 +7,17 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomeView'),
-      ),
-      body: Column(
-        children: [
-          Container(),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: SafeArea(
+          child: Column(
+            children: [
+              verticalSpace(16),
+              const CustomAppbarHomeview(),
+              verticalSpace(25),
+            ],
+          ),
+        ),
       ),
     );
   }
