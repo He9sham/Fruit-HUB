@@ -68,6 +68,7 @@ class _SignupFormState extends State<SignupForm> {
               }
             },
             backgroundColor: ColorsManager.lighterGray,
+            controller: context.read<SignupCubit>().nameController,
           ),
           verticalSpace(16),
           AppTextFormField(
