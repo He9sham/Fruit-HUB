@@ -1,5 +1,8 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
+import 'package:commerce_hub/feature/home/view/widgets/best_seller_text.dart';
 import 'package:commerce_hub/feature/home/view/widgets/custom_appbar_home_view.dart';
+import 'package:commerce_hub/feature/home/view/widgets/offers_view.dart';
+import 'package:commerce_hub/feature/home/view/widgets/search_for_fruit.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -15,6 +18,11 @@ class HomeView extends StatelessWidget {
               verticalSpace(16),
               const CustomAppbarHomeview(),
               verticalSpace(25),
+              const SearchForFruit(),
+              verticalSpace(12),
+              const OffersView(),
+              verticalSpace(8),
+              const BestSellerText(),
             ],
           ),
         ),

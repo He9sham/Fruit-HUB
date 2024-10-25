@@ -12,6 +12,7 @@ class AppTextFormField extends StatelessWidget {
   final String hintText;
   final bool? isObscureText;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final Color? backgroundColor;
   final TextEditingController? controller;
   final Function(String?) validator;
@@ -30,6 +31,7 @@ class AppTextFormField extends StatelessWidget {
     this.controller,
     required this.validator,
     this.keyboardType,
+    this.prefixIcon,
   });
 
   @override
@@ -74,6 +76,7 @@ class AppTextFormField extends StatelessWidget {
         hintStyle: hintStyle ?? Styles.textonbording13,
         hintText: hintText,
         suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
         fillColor: backgroundColor ?? ColorsManager.moreLightGray,
         filled: true,
       ),
