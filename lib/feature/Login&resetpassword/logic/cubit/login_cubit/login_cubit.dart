@@ -1,12 +1,15 @@
 import 'package:bloc/bloc.dart';
-import 'package:commerce_hub/core/notification_service/local_notification_service.dart';
+import 'package:commerce_hub/core/helper/extensions.dart';
+import 'package:commerce_hub/core/utils/router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:logging/logging.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
+  static final Logger _logger = Logger('LoginCubit');
   LoginCubit() : super(LoginInitial());
 
   TextEditingController nameController = TextEditingController();
@@ -21,8 +24,9 @@ class LoginCubit extends Cubit<LoginState> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
       emit(LoginSuccess());
-    } on FirebaseAuthException catch (err) {
-      emit(LoginFailer(errMessage: err.message.toString()));
+    } on FirebaseAuthException {
+      emit(LoginFailer(
+          errMessage: 'كلمة المرور او البريد الالكتروني غير صحيحة'));
     } catch (e) {
       emit(LoginFailer(
           errMessage:
@@ -48,16 +52,16 @@ class LoginCubit extends Cubit<LoginState> {
 
       // Once signed in, return the UserCredential
       await FirebaseAuth.instance.signInWithCredential(credential);
-
       // ignore: use_build_context_synchronously
-      // Navigator.pushNamed(context, AddKidView.addkidid);
-      NotificationService notificationService = NotificationService();
-      await notificationService.showInstantNotification(
-          5, 'Welcome', 'How are you today?');
-    } on Exception {
-      NotificationService notificationService = NotificationService();
-      await notificationService.showInstantNotification(
-          6, 'Sorry', 'Please tru leater!');
+      context.pushNamed(Routes.homeScreen);
+    } on Exception catch (e) {
+      _logger.severe('An exception occurred while signing in with Google', e);
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
+        ),
+      );
     }
   }
 }
