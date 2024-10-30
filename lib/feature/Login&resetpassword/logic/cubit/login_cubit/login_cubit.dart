@@ -1,15 +1,15 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bloc/bloc.dart';
+import 'package:commerce_hub/core/helper/awesome_widgets.dart';
 import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/utils/router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:logging/logging.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  static final Logger _logger = Logger('LoginCubit');
   LoginCubit() : super(LoginInitial());
 
   TextEditingController nameController = TextEditingController();
@@ -55,13 +55,15 @@ class LoginCubit extends Cubit<LoginState> {
       // ignore: use_build_context_synchronously
       context.pushNamed(Routes.homeScreen);
     } on Exception catch (e) {
-      _logger.severe('An exception occurred while signing in with Google', e);
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(e.toString()),
-        ),
+      awesomeWidgets(
+        context,
+        DialogType.error,
+        'خطأ',
+        e.toString(),
       );
     }
   }
 }
+
+
+// platform Exception(sign_in_failed.google.android.gms.common.api.ApiException:10: , null , null)
