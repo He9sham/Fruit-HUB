@@ -1,5 +1,5 @@
 name: commerce_hub
-description: "A new Flutter project."
+description: "the all in one app for all your needs"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -47,7 +47,7 @@ dependencies:
   timezone: ^0.9.4
 
 dev_dependencies:
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
 

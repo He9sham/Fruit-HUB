@@ -1,5 +1,8 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bloc/bloc.dart';
-import 'package:commerce_hub/core/notification_service/local_notification_service.dart';
+import 'package:commerce_hub/core/helper/awesome_widgets.dart';
+import 'package:commerce_hub/core/helper/extensions.dart';
+import 'package:commerce_hub/core/utils/router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -21,8 +24,9 @@ class LoginCubit extends Cubit<LoginState> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
       emit(LoginSuccess());
-    } on FirebaseAuthException catch (err) {
-      emit(LoginFailer(errMessage: err.message.toString()));
+    } on FirebaseAuthException {
+      emit(LoginFailer(
+          errMessage: 'كلمة المرور او البريد الالكتروني غير صحيحة'));
     } catch (e) {
       emit(LoginFailer(
           errMessage:
@@ -48,16 +52,19 @@ class LoginCubit extends Cubit<LoginState> {
 
       // Once signed in, return the UserCredential
       await FirebaseAuth.instance.signInWithCredential(credential);
-
       // ignore: use_build_context_synchronously
-      // Navigator.pushNamed(context, AddKidView.addkidid);
-      NotificationService notificationService = NotificationService();
-      await notificationService.showInstantNotification(
-          5, 'Welcome', 'How are you today?');
+      context.pushNamed(Routes.homeScreen);
     } on Exception {
-      NotificationService notificationService = NotificationService();
-      await notificationService.showInstantNotification(
-          6, 'Sorry', 'Please tru leater!');
+      awesomeWidgets(
+        // ignore: use_build_context_synchronously
+        context,
+        DialogType.error,
+        'خطأ',
+        'حدث خطأ غير متوقع. يرجى المحاولة مرة اخرى في وقت لاحق',
+      );
     }
   }
 }
+
+
+// platform Exception(sign_in_failed.google.android.gms.common.api.ApiException:10: , null , null)
