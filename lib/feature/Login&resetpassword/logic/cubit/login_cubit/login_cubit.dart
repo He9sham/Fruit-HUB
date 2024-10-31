@@ -54,12 +54,13 @@ class LoginCubit extends Cubit<LoginState> {
       await FirebaseAuth.instance.signInWithCredential(credential);
       // ignore: use_build_context_synchronously
       context.pushNamed(Routes.homeScreen);
-    } on Exception catch (e) {
+    } on Exception {
       awesomeWidgets(
+        // ignore: use_build_context_synchronously
         context,
         DialogType.error,
         'خطأ',
-        e.toString(),
+        'حدث خطأ غير متوقع. يرجى المحاولة مرة اخرى في وقت لاحق',
       );
     }
   }

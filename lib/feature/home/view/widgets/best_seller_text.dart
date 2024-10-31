@@ -1,4 +1,3 @@
-
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +17,7 @@ class BestSellerText extends StatelessWidget {
         TextButton(
           onPressed: () {},
           child: Text(
-            'المزيد',
+            'المزيد  ',
             style: Styles.textonbording13.copyWith(
                 color: const Color(0xff949D9E), fontWeight: FontWeight.w400),
           ),
