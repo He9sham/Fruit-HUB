@@ -1,4 +1,3 @@
-
 import 'package:commerce_hub/core/theming/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +12,7 @@ class AppTextButton extends StatelessWidget {
   final String buttonText;
   final TextStyle textStyle;
   final VoidCallback onPressed;
+  final bool? isloading;
   const AppTextButton({
     super.key,
     this.borderRadius,
@@ -24,6 +24,7 @@ class AppTextButton extends StatelessWidget {
     required this.buttonText,
     required this.textStyle,
     required this.onPressed,
+    this.isloading,
   });
 
   @override
@@ -49,10 +50,16 @@ class AppTextButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: Text(
-        buttonText,
-        style: textStyle,
-      ),
+      child: isloading!
+          ? Text(
+              buttonText,
+              style: textStyle,
+            )
+          : const CircularProgressIndicator(
+              color: Colors.white,
+              strokeAlign: .5,
+              strokeWidth: 2,
+            ),
     );
   }
 }

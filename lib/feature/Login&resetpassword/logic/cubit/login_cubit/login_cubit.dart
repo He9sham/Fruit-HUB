@@ -15,7 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  bool isloading = false;
   final formkey = GlobalKey<FormState>();
 
   Future<void> loginMethod() async {
@@ -32,6 +32,7 @@ class LoginCubit extends Cubit<LoginState> {
           errMessage:
               'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى في وقت لاحق.'));
     }
+    emit(LoginLoading());
   }
 
   Future signInWithGoogle(BuildContext context) async {
