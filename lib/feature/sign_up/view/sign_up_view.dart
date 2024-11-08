@@ -38,6 +38,7 @@ class SignUpView extends StatelessWidget {
                 const RowTextCheckBox(),
                 verticalSpace(30),
                 AppTextButton(
+                  isloading: context.read<SignupCubit>().isloading,
                   buttonText: 'إنشاء حساب جديد',
                   onPressed: () {
                     validateThenDoSignup(context);

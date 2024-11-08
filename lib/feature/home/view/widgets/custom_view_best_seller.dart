@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CustomViewBestSeller extends StatelessWidget {
+class CustomViewBestSeller extends StatefulWidget {
   const CustomViewBestSeller({super.key});
 
+  @override
+  State<CustomViewBestSeller> createState() => _CustomViewBestSellerState();
+}
+
+class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,8 +26,13 @@ class CustomViewBestSeller extends StatelessWidget {
         textDirection: TextDirection.rtl,
         children: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(FontAwesomeIcons.heart),
+            onPressed: () {
+              toggleHeartColor();
+            },
+            icon: Icon(
+              FontAwesomeIcons.heartCircleCheck,
+              color: _isPressed ? Colors.red : Colors.black,
+            ),
           ),
           Positioned(
             top: 10.h,
@@ -68,5 +78,13 @@ class CustomViewBestSeller extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  bool _isPressed = false;
+
+  void toggleHeartColor() {
+    setState(() {
+      _isPressed = !_isPressed;
+    });
   }
 }

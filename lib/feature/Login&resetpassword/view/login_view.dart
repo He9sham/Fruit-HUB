@@ -52,9 +52,11 @@ class LoginView extends StatelessWidget {
                 ),
                 verticalSpace(33),
                 AppTextButton(
+                  isloading: context.read<LoginCubit>().isloading = true,
                   buttonText: 'تسجيل الدخول',
                   onPressed: () {
                     validateThenDoSignup(context);
+                    context.read<LoginCubit>().isloading = false;
                   },
                   textStyle: Styles.textbuttom16White,
                 ),
@@ -63,7 +65,7 @@ class LoginView extends StatelessWidget {
                   title: 'قم بانشاء حساب',
                   subtitle: 'لا تمتلك حساب؟',
                   onPressed: () {
-                    context.pop();
+                    context.pushNamed(Routes.signupScreen);
                   },
                 ),
                 verticalSpace(37),

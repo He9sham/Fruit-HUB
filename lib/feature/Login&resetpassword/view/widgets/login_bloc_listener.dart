@@ -19,7 +19,7 @@ class LoginBlocListener extends StatelessWidget {
       listener: (context, state) {
         if (state is LoginSuccess) {
           context.pushNamed(
-            Routes.homeScreen,
+            Routes.navigationBar,
           );
         } else if (state is LoginFailer) {
           awesomeWidgets(

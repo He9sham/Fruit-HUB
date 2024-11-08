@@ -10,7 +10,7 @@ class SignupCubit extends Cubit<SignupCubitState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  bool? isloading = true;
   final formkey = GlobalKey<FormState>();
   Future<void> signupMethod() async {
     emit(SignupCubitLoading());
