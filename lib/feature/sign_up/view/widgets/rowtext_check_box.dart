@@ -1,13 +1,20 @@
-
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 
-class RowTextCheckBox extends StatelessWidget {
+class RowTextCheckBox extends StatefulWidget {
   const RowTextCheckBox({super.key});
 
   @override
+  State<RowTextCheckBox> createState() => _RowTextCheckBoxState();
+}
+
+bool isChecked = true;
+
+class _RowTextCheckBoxState extends State<RowTextCheckBox> {
+  @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text.rich(
           TextSpan(
@@ -24,9 +31,13 @@ class RowTextCheckBox extends StatelessWidget {
           ),
         ),
         Checkbox(
-          value: true,
+          value: isChecked, // Initialize with a boolean value
           activeColor: Colors.green,
-          onChanged: (value) {},
+          onChanged: (bool? newValue) {
+            setState(() {
+              isChecked = newValue ?? false;
+            });
+          },
         ),
       ],
     );

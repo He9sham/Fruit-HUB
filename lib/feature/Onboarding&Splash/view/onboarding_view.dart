@@ -41,11 +41,11 @@ class OnboardingView extends StatelessWidget {
       background: [
         SvgPicture.asset(
           'assets/image/fruit basket-amico 1.svg',
-          height: sizeOfHeight(0.5, context),
+          height: sizeOfHeight(0.47, context),
         ),
         SvgPicture.asset(
           'assets/image/pineapple-cuate 1.svg',
-          height: sizeOfHeight(0.5, context),
+          height: sizeOfHeight(0.47, context),
         ),
       ],
       speed: 1.8,
