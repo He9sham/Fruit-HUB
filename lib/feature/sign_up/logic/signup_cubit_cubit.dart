@@ -1,4 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:commerce_hub/core/networking/backend_endpoints.dart';
+import 'package:commerce_hub/core/service/firebase_database_service.dart';
+import 'package:commerce_hub/core/service/user_entity.dart';
+import 'package:commerce_hub/core/service/user_models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +19,10 @@ class SignupCubit extends Cubit<SignupCubitState> {
   Future<void> signupMethod() async {
     emit(SignupCubitLoading());
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      var user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
+      var userEntity = UserModel.fromFirebaseUser(user.user!);
+      await addUserData(user: userEntity);
       emit(SignupCubitSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -25,5 +31,10 @@ class SignupCubit extends Cubit<SignupCubitState> {
     } catch (e) {
       emit(SignupCubitFailure(errMessage: 'An error , please try agian later'));
     }
+  }
+
+  Future<void> addUserData({required UserEntity user}) async {
+    await FirebaseDatabaseService()
+        .addData(path: BackendEndpoints.addUserdata, data: user.tomap());
   }
 }

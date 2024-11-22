@@ -7,15 +7,17 @@ class CustomAppBarForAuth extends StatelessWidget {
       {super.key,
       required this.title,
       required this.onPressed,
-      required this.iconspace, required this.textspace});
+      required this.iconspace,
+      required this.textspace});
 
   final String title;
   final void Function() onPressed;
-  final double iconspace , textspace;
+  final double iconspace, textspace;
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         horizontalSpace(textspace),
         Text(
