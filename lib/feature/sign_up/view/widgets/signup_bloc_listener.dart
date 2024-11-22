@@ -28,7 +28,7 @@ class SignUpBlocListener extends StatelessWidget {
           );
         } else if (state is SignupCubitSuccess) {
           context.pushNamed(
-            Routes.homeScreen,
+            Routes.navigationBar,
           );
         } else if (state is SignupCubitLoading) {
           LoadingAnimationWidget.twistingDots(
