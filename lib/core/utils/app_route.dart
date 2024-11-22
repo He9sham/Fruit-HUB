@@ -1,4 +1,3 @@
-import 'package:commerce_hub/core/service/database_service.dart';
 import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/feature/Login&resetpassword/logic/cubit/login_cubit/login_cubit.dart';
 import 'package:commerce_hub/feature/Login&resetpassword/logic/cubit/reset_password/cubit/resetpassword_cubit.dart';
@@ -34,9 +33,7 @@ class AppRouter {
       case Routes.signupScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => SignupCubit(
-              context.read<DatabaseService>()
-            ),
+            create: (context) => SignupCubit(),
             child: const SignUpView(),
           ),
         );

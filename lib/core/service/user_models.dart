@@ -1,4 +1,3 @@
-
 import 'package:commerce_hub/core/service/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -17,7 +16,7 @@ class UserModel extends UserEntity {
     return UserModel(
       name: json['name'],
       email: json['email'],
-      uid: json['uId'],
+      uid: json['uid'],
     );
   }
 
@@ -33,7 +32,7 @@ class UserModel extends UserEntity {
     return {
       'name': name,
       'email': email,
-      'uId': uid,
+      'uid': uid,
     };
   }
 }

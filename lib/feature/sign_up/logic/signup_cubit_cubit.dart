@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:commerce_hub/core/networking/backend_endpoints.dart';
-import 'package:commerce_hub/core/service/database_service.dart';
+import 'package:commerce_hub/core/service/firebase_database_service.dart';
 import 'package:commerce_hub/core/service/user_entity.dart';
 import 'package:commerce_hub/core/service/user_models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 part 'signup_cubit_state.dart';
 
 class SignupCubit extends Cubit<SignupCubitState> {
-  SignupCubit(this.databaseService) : super(SignupCubitInitial());
-  final DatabaseService databaseService;
+  SignupCubit() : super(SignupCubitInitial());
+
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -34,7 +34,7 @@ class SignupCubit extends Cubit<SignupCubitState> {
   }
 
   Future<void> addUserData({required UserEntity user}) async {
-    await databaseService.addData(
-        path: BackendEndpoints.addUserdata, data: user.tomap());
+    await FirebaseDatabaseService()
+        .addData(path: BackendEndpoints.addUserdata, data: user.tomap());
   }
 }
