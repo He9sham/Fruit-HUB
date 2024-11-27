@@ -2,6 +2,10 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bloc/bloc.dart';
 import 'package:commerce_hub/core/helper/awesome_widgets.dart';
 import 'package:commerce_hub/core/helper/extensions.dart';
+import 'package:commerce_hub/core/networking/backend_endpoints.dart';
+import 'package:commerce_hub/core/service/firebase_database_service.dart';
+import 'package:commerce_hub/core/service/user_entity.dart';
+import 'package:commerce_hub/core/service/user_models.dart';
 import 'package:commerce_hub/core/utils/router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +19,17 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  FirebaseDatabaseService firebaseDatabaseService = FirebaseDatabaseService();
   bool isloading = false;
   final formkey = GlobalKey<FormState>();
 
   Future<void> loginMethod() async {
+    UserCredential user;
     emit(LoginLoading());
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      user = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
+      await getUserData(uid: user.user!.uid);
       emit(LoginSuccess());
     } on FirebaseAuthException {
       emit(LoginFailer(
@@ -65,7 +72,10 @@ class LoginCubit extends Cubit<LoginState> {
       );
     }
   }
+
+  Future<UserEntity> getUserData({required String uid}) async {
+    var data = await firebaseDatabaseService.getData(
+        docementid: uid, path: BackendEndpoints.getuserdata);
+    return UserModel.fromJson(data);
+  }
 }
-
-
-// platform Exception(sign_in_failed.google.android.gms.common.api.ApiException:10: , null , null)

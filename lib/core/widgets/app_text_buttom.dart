@@ -12,7 +12,7 @@ class AppTextButton extends StatelessWidget {
   final String buttonText;
   final TextStyle textStyle;
   final VoidCallback onPressed;
-  final bool? isloading;
+  // final bool? isloading;
   const AppTextButton({
     super.key,
     this.borderRadius,
@@ -24,7 +24,7 @@ class AppTextButton extends StatelessWidget {
     required this.buttonText,
     required this.textStyle,
     required this.onPressed,
-    this.isloading,
+    // this.isloading,
   });
 
   @override
@@ -50,16 +50,10 @@ class AppTextButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: isloading!
-          ? Text(
-              buttonText,
-              style: textStyle,
-            )
-          : const CircularProgressIndicator(
-              color: Colors.white,
-              strokeAlign: .5,
-              strokeWidth: 2,
-            ),
+      child: Text(
+        buttonText,
+        style: textStyle,
+      ),
     );
   }
 }

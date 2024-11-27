@@ -18,43 +18,45 @@ class SignUpView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              children: [
-                verticalSpace(16),
-                CustomAppBarForAuth(
-                  textspace: 130,
-                  iconspace: 60,
-                  title: 'حساب جديد',
-                  onPressed: () {
-                    context.pop();
-                  },
-                ),
-                verticalSpace(24),
-                const SignupForm(),
-                verticalSpace(16),
-                const RowTextCheckBox(),
-                verticalSpace(30),
-                AppTextButton(
-                  isloading: context.read<SignupCubit>().isloading,
-                  buttonText: 'إنشاء حساب جديد',
-                  onPressed: () {
-                    validateThenDoSignup(context);
-                  },
-                  textStyle: Styles.textbuttom16White,
-                ),
-                verticalSpace(26),
-                RowTextReauth(
-                  title: 'تسجيل الدخول',
-                  subtitle: 'تمتلك حساب بالفعل؟',
-                  onPressed: () {
-                    context.pushNamed(Routes.loginScreen);
-                  },
-                ),
-                const SignUpBlocListener()
-              ],
+        child: RefreshIndicator(
+          onRefresh: () => refreshData(context),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  verticalSpace(16),
+                  CustomAppBarForAuth(
+                    textspace: 130,
+                    iconspace: 60,
+                    title: 'حساب جديد',
+                    onPressed: () {
+                      context.pop();
+                    },
+                  ),
+                  verticalSpace(24),
+                  const SignupForm(),
+                  verticalSpace(16),
+                  const RowTextCheckBox(),
+                  verticalSpace(30),
+                  AppTextButton(
+                    buttonText: 'إنشاء حساب جديد',
+                    onPressed: () {
+                      validateThenDoSignup(context);
+                    },
+                    textStyle: Styles.textbuttom16White,
+                  ),
+                  verticalSpace(26),
+                  RowTextReauth(
+                    title: 'تسجيل الدخول',
+                    subtitle: 'تمتلك حساب بالفعل؟',
+                    onPressed: () {
+                      context.pushNamed(Routes.loginScreen);
+                    },
+                  ),
+                  const SignUpBlocListener()
+                ],
+              ),
             ),
           ),
         ),
@@ -66,5 +68,10 @@ class SignUpView extends StatelessWidget {
     if (context.read<SignupCubit>().formkey.currentState!.validate()) {
       context.read<SignupCubit>().signupMethod();
     }
+  }
+
+  Future<void> refreshData(BuildContext context) async {
+    // context.read<HomeCubit>().getHomeData();
+    await Future.delayed(const Duration(seconds: 2));
   }
 }
