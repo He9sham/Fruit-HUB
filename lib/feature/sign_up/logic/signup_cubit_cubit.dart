@@ -14,7 +14,7 @@ class SignupCubit extends Cubit<SignupCubitState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool? isloading = true;
+
   final formkey = GlobalKey<FormState>();
   Future<void> signupMethod() async {
     emit(SignupCubitLoading());
@@ -27,6 +27,9 @@ class SignupCubit extends Cubit<SignupCubitState> {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         emit(SignupCubitFailure(errMessage: 'هذا الحساب مسجل بلفعل '));
+      } else if (e.code == 'weak-password') {
+        emit(SignupCubitFailure(
+            errMessage: 'يجب أن تكون كلمة المرور مكونة من 6 أحرف على الأقل'));
       }
     } catch (e) {
       emit(SignupCubitFailure(errMessage: 'An error , please try agian later'));

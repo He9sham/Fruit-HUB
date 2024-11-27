@@ -23,6 +23,7 @@ class LoginCubit extends Cubit<LoginState> {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
+          
       emit(LoginSuccess());
     } on FirebaseAuthException {
       emit(LoginFailer(
