@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:commerce_hub/core/networking/backend_endpoints.dart';
 import 'package:commerce_hub/core/service/firebase_database_service.dart';
 import 'package:commerce_hub/core/service/user_entity.dart';
-import 'package:commerce_hub/core/service/user_models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +21,11 @@ class SignupCubit extends Cubit<SignupCubitState> {
     try {
       user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
-      var userEntity = UserModel.fromFirebaseUser(user.user!);
+      var userEntity = UserEntity(
+        name: nameController.text,
+        email: emailController.text,
+        uid: user.user!.uid,
+      );
       await addUserData(user: userEntity);
       emit(SignupCubitSuccess());
     } on FirebaseAuthException catch (e) {
