@@ -17,9 +17,10 @@ class SignupCubit extends Cubit<SignupCubitState> {
 
   final formkey = GlobalKey<FormState>();
   Future<void> signupMethod() async {
+    UserCredential? user;
     emit(SignupCubitLoading());
     try {
-      var user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
       var userEntity = UserModel.fromFirebaseUser(user.user!);
       await addUserData(user: userEntity);
@@ -30,8 +31,16 @@ class SignupCubit extends Cubit<SignupCubitState> {
       } else if (e.code == 'weak-password') {
         emit(SignupCubitFailure(
             errMessage: 'يجب أن تكون كلمة المرور مكونة من 6 أحرف على الأقل'));
+      } else if (e.code == 'network-request-failed') {
+        emit(SignupCubitFailure(errMessage: 'تاكد من اتصالك بالانترنت'));
+      }
+      if (user != null) {
+        await user.user!.delete();
       }
     } catch (e) {
+      if (user != null) {
+        await user.user!.delete();
+      }
       emit(SignupCubitFailure(errMessage: 'An error , please try agian later'));
     }
   }
@@ -39,5 +48,9 @@ class SignupCubit extends Cubit<SignupCubitState> {
   Future<void> addUserData({required UserEntity user}) async {
     await FirebaseDatabaseService()
         .addData(path: BackendEndpoints.addUserdata, data: user.tomap());
+  }
+
+  Future<void> deleteUser() async {
+    await FirebaseAuth.instance.currentUser!.delete();
   }
 }
