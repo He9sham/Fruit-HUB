@@ -13,7 +13,7 @@ class SignupCubit extends Cubit<SignupCubitState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  FirebaseDatabaseService firebaseDatabaseService = FirebaseDatabaseService();
   final formkey = GlobalKey<FormState>();
   Future<void> signupMethod() async {
     UserCredential? user;
@@ -49,8 +49,11 @@ class SignupCubit extends Cubit<SignupCubitState> {
   }
 
   Future<void> addUserData({required UserEntity user}) async {
-    await FirebaseDatabaseService()
-        .addData(path: BackendEndpoints.addUserdata, data: user.tomap());
+    await firebaseDatabaseService.addData(
+      path: BackendEndpoints.addUserdata,
+      data: user.tomap(),
+      docementid: user.uid,
+    );
   }
 
   Future<void> deleteUser() async {
