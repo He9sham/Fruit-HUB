@@ -15,7 +15,7 @@ part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
- 
+
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -79,9 +79,5 @@ class LoginCubit extends Cubit<LoginState> {
     var data = await firebaseDatabaseService.getData(
         docementid: uid, path: BackendEndpoints.getuserdata);
     return UserModel.fromJson(data);
-  }
-
-  bool isloggedIn() {
-    return FirebaseAuth.instance.currentUser != null;
   }
 }
