@@ -1,6 +1,7 @@
 import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/utils/router.dart';
+import 'package:commerce_hub/feature/Onboarding&Splash/logic/check_loggedin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -16,7 +17,13 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
       // ignore: use_build_context_synchronously
-      context.pushNamed(Routes.onBoardingScreen);
+      if (isloggedIn()) {
+        // ignore: use_build_context_synchronously
+        context.pushNamed(Routes.homeScreen);
+      } else {
+        // ignore: use_build_context_synchronously
+        context.pushNamed(Routes.loginScreen);
+      }
     });
     super.initState();
   }

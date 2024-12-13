@@ -16,12 +16,12 @@ class DividerRow extends StatelessWidget {
               endIndent: 5,
               indent: 200,
               thickness: 2,
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
             ),
           ),
           Positioned(
-            right: 165.w,
-            bottom: 5.h,
+            right: 165.5.w,
+            bottom: 9.h,
             child: const Text(
               'او',
               style: TextStyle(
@@ -36,7 +36,7 @@ class DividerRow extends StatelessWidget {
               endIndent: 200,
               indent: 5,
               thickness: 2,
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
             ),
           ),
         ],
