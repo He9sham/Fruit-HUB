@@ -35,12 +35,12 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
             ),
           ),
           Positioned(
-            top: 10.h,
+            top: 8.h,
             right: 40.w,
             child: Image.asset('assets/image/image 29.png'),
           ),
           Positioned(
-            top: 123.h,
+            top: 116.h,
             right: 111.w,
             child: Container(
               width: 45.w,

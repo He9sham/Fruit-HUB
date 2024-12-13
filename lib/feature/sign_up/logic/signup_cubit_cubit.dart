@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:commerce_hub/core/networking/backend_endpoints.dart';
 import 'package:commerce_hub/core/service/firebase_database_service.dart';
 import 'package:commerce_hub/core/service/user_entity.dart';
+import 'package:commerce_hub/core/service/user_models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +52,7 @@ class SignupCubit extends Cubit<SignupCubitState> {
   Future<void> addUserData({required UserEntity user}) async {
     await firebaseDatabaseService.addData(
       path: BackendEndpoints.addUserdata,
-      data: user.tomap(),
+      data: UserModel.fromEntity(user).toMap(),
       docementid: user.uid,
     );
   }

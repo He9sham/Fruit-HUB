@@ -1,3 +1,4 @@
+import 'package:commerce_hub/core/service/shared_preferences_singleton.dart';
 import 'package:commerce_hub/core/utils/app_route.dart';
 import 'package:commerce_hub/firebase_options.dart';
 import 'package:commerce_hub/fruitHub.dart';
@@ -12,7 +13,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  await Prefs.init();
   runApp(
     CommerceHub(
       appRouter: AppRouter(),

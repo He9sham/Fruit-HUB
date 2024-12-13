@@ -25,11 +25,13 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> loginMethod() async {
     UserCredential user;
+    FirebaseDatabaseService firebaseDatabaseService = FirebaseDatabaseService();
     emit(LoginLoading());
     try {
       user = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
-      await getUserData(uid: user.user!.uid);
+      var userEntity = await getUserData(uid: user.user!.uid);
+      firebaseDatabaseService.saveUserData(user: userEntity);
       emit(LoginSuccess());
     } on FirebaseAuthException {
       emit(LoginFailer(
@@ -77,9 +79,5 @@ class LoginCubit extends Cubit<LoginState> {
     var data = await firebaseDatabaseService.getData(
         docementid: uid, path: BackendEndpoints.getuserdata);
     return UserModel.fromJson(data);
-  }
-
-  bool isloggedIn() {
-    return FirebaseAuth.instance.currentUser != null;
   }
 }

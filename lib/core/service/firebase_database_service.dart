@@ -1,5 +1,11 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:commerce_hub/constants.dart';
 import 'package:commerce_hub/core/service/database_service.dart';
+import 'package:commerce_hub/core/service/shared_preferences_singleton.dart';
+import 'package:commerce_hub/core/service/user_entity.dart';
+import 'package:commerce_hub/core/service/user_models.dart';
 
 class FirebaseDatabaseService implements DatabaseService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -21,5 +27,12 @@ class FirebaseDatabaseService implements DatabaseService {
     var data = await firestore.collection(path).doc(docementid).get();
 
     return data.data() as Map<String, dynamic>;
+  }
+
+  @override
+  Future saveUserData({required UserEntity user}) async {
+    var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
+
+    await Prefs.setString(kUserData, jsonData);
   }
 }
