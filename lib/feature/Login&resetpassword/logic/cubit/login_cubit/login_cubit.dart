@@ -15,7 +15,7 @@ part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
-
+ 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -25,11 +25,13 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> loginMethod() async {
     UserCredential user;
+    FirebaseDatabaseService firebaseDatabaseService = FirebaseDatabaseService();
     emit(LoginLoading());
     try {
       user = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
-      await getUserData(uid: user.user!.uid);
+      var userEntity = await getUserData(uid: user.user!.uid);
+      firebaseDatabaseService.saveUserData(user: userEntity);
       emit(LoginSuccess());
     } on FirebaseAuthException {
       emit(LoginFailer(

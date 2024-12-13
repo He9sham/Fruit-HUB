@@ -1,3 +1,5 @@
+import 'package:commerce_hub/core/service/user_entity.dart';
+
 abstract class DatabaseService {
   Future<void> addData({
     required String path,
@@ -9,4 +11,6 @@ abstract class DatabaseService {
     required String docementid,
     required String path,
   });
+
+  Future saveUserData({required UserEntity user});
 }
