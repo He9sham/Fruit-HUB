@@ -78,4 +78,8 @@ class LoginCubit extends Cubit<LoginState> {
         docementid: uid, path: BackendEndpoints.getuserdata);
     return UserModel.fromJson(data);
   }
+
+  bool isloggedIn() {
+    return FirebaseAuth.instance.currentUser != null;
+  }
 }
