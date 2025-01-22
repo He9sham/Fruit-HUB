@@ -54,7 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:395468957968:android:e5d34cef6a188f78aadd95',
     messagingSenderId: '395468957968',
     projectId: 'fruit-hub-2438c',
-    storageBucket: 'fruit-hub-2438c.appspot.com',
+    storageBucket: 'fruit-hub-2438c.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -62,7 +62,8 @@ class DefaultFirebaseOptions {
     appId: '1:395468957968:ios:b8ffffdfc505953daadd95',
     messagingSenderId: '395468957968',
     projectId: 'fruit-hub-2438c',
-    storageBucket: 'fruit-hub-2438c.appspot.com',
+    storageBucket: 'fruit-hub-2438c.firebasestorage.app',
+    androidClientId: '395468957968-4f5mih6i8b6dhrsapuc246ga9nfp5oml.apps.googleusercontent.com',
     iosClientId: '395468957968-itptt6jnol2s3t3vr0f0v0b3tmehsldk.apps.googleusercontent.com',
     iosBundleId: 'com.example.commerceHub',
   );
