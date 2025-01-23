@@ -59,13 +59,13 @@ class NotificationService {
         id, title, body, await notificationDetails());
   }
 
-  Future<void> showZonedScheduledNotifications(
-      int id, String title, String body, String payload) async {
-    DateTime date = DateTime.now().add(const Duration(days: 1));
-    tz.TZDateTime dateTime = tz.TZDateTime.from(date, tz.local);
-    await localNotificationsPlugin.zonedSchedule(
-        id, title, body, dateTime, await notificationDetails(),
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime);
-  }
+  // Future<void> showZonedScheduledNotifications(
+  //     int id, String title, String body, String payload) async {
+  //   DateTime date = DateTime.now().add(const Duration(days: 1));
+  //   tz.TZDateTime dateTime = tz.TZDateTime.from(date, tz.local);
+  //   await localNotificationsPlugin.zonedSchedule(
+  //       id, title, body, dateTime, await notificationDetails(),
+  //       uiLocalNotificationDateInterpretation:
+  //           UILocalNotificationDateInterpretation.absoluteTime);
+  // }
 }

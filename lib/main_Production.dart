@@ -8,13 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await Prefs.init();
   runApp(
-     CommerceHub(
+    CommerceHub(
       appRouter: AppRouter(),
     ),
   );

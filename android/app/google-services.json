@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "395468957968",
     "project_id": "fruit-hub-2438c",
-    "storage_bucket": "fruit-hub-2438c.appspot.com"
+    "storage_bucket": "fruit-hub-2438c.firebasestorage.app"
   },
   "client": [
     {
@@ -17,7 +17,7 @@
           "client_id": "395468957968-4f5mih6i8b6dhrsapuc246ga9nfp5oml.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.commerce_hub.dev",
+            "package_name": "com.example.commerce_hub",
             "certificate_hash": "e06841a4e986112ba09b2addaf883ebf3ca2b85b"
           }
         },
@@ -39,10 +39,46 @@
               "client_type": 3
             },
             {
-              "client_id": "395468957968-itptt6jnol2s3t3vr0f0v0b3tmehsldk.apps.googleusercontent.com",
+              "client_id": "395468957968-hcf7csauni5p7i92abp501jtr8rch595.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.commerceHub.dev"
+                "bundle_id": "com.example.commerceHubDashboard"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395468957968:android:06a07f6eead10727aadd95",
+        "android_client_info": {
+          "package_name": "com.example.commerce_hub_dashboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395468957968-5rv78gie6suml4so6gdfqtne7f3pjk4k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7v8qTwsEVTjbNH0-iFoPEciLQzbzCB1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395468957968-5rv78gie6suml4so6gdfqtne7f3pjk4k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "395468957968-hcf7csauni5p7i92abp501jtr8rch595.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.commerceHubDashboard"
               }
             }
           ]

@@ -9,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() async {
   await ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
-  // final databaseService = FirebaseDatabaseService();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
