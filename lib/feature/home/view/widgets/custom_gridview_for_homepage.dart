@@ -8,12 +8,14 @@ class CustomGridviewForHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height.h,
+      height: MediaQuery.of(context).size.height,
       child: GridView.builder(
-        itemCount: 8,
+        itemCount: 10,
         physics: const NeverScrollableScrollPhysics(),
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisExtent: 0.3.sh,
+        ),
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),

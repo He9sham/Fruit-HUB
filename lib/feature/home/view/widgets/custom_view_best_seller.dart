@@ -14,8 +14,8 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 241.h,
-      width: 170.w,
+      height: MediaQuery.sizeOf(context).height * 0.3,
+      width: MediaQuery.sizeOf(context).width * 0.5,
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
         borderRadius: BorderRadius.all(
@@ -25,26 +25,33 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
       child: Stack(
         textDirection: TextDirection.rtl,
         children: [
-          IconButton(
-            onPressed: () {
-              toggleHeartColor();
-            },
-            icon: Icon(
-              FontAwesomeIcons.heartCircleCheck,
-              color: _isPressed ? Colors.red : Colors.black,
+          Positioned(
+            top: 8.h,
+            child: IconButton(
+              onPressed: () {
+                toggleHeartColor();
+              },
+              icon: Icon(
+                _isPressed
+                    ? FontAwesomeIcons.solidHeart
+                    : FontAwesomeIcons.heart,
+                color: _isPressed ? Colors.red : Colors.black,
+              ),
             ),
           ),
           Positioned(
             top: 8.h,
             right: 40.w,
-            child: Image.asset('assets/image/image 29.png'),
+            child: Image.asset(
+              'assets/image/image 29.png',
+            ),
           ),
           Positioned(
-            top: 116.h,
-            right: 111.w,
+            top: 175.h,
+            right: 105.w,
             child: Container(
-              width: 45.w,
-              height: 45.h,
+              width: 40.w,
+              height: 40.h,
               decoration: BoxDecoration(
                 color: Colors.green,
                 borderRadius: BorderRadius.circular(60),
@@ -59,16 +66,16 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
             ),
           ),
           Positioned(
-            top: 115.h,
-            right: 15.w,
+            top: 175.h,
+            right: 19.w,
             child: Text(
               'فروله',
               style: Styles.textSize13Black600,
             ),
           ),
           Positioned(
-            top: 140.h,
-            right: 15.w,
+            top: 195.h,
+            right: 19.w,
             child: Text(
               'جنية / الكيلو',
               style: Styles.textSize13Black600.copyWith(
