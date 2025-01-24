@@ -8,8 +8,8 @@ final class ProductsInitial extends ProductsState {}
 final class ProductsLoading extends ProductsState {}
 
 final class ProductsFaulier extends ProductsState {
-  final String message;
-  ProductsFaulier(this.message);
+  final String errmessage;
+  ProductsFaulier(this.errmessage);
 }
 
 final class ProductsSuccess extends ProductsState {

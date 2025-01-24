@@ -1,3 +1,6 @@
+import 'package:commerce_hub/core/cubits/products_cubit/products_cubit.dart';
+import 'package:commerce_hub/core/repos/product_repo.dart';
+import 'package:commerce_hub/core/service/get_it_service.dart';
 import 'package:commerce_hub/core/theming/gradient_color.dart';
 import 'package:commerce_hub/feature/home/view/home_view.dart';
 import 'package:commerce_hub/feature/test.dart';
@@ -6,6 +9,7 @@ import 'package:commerce_hub/feature/testview3.dart';
 import 'package:cuberto_bottom_bar/internal/cuberto_bottom_bar.dart';
 import 'package:cuberto_bottom_bar/internal/tab_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomNavigation extends StatefulWidget {
@@ -18,10 +22,15 @@ class CustomNavigation extends StatefulWidget {
 class _CustomNavigationState extends State<CustomNavigation> {
   int currentIndex = 0;
   final screens = [
-    HomeView(), // Replace with your actual home screen widget
-    Testview(), // Replace with your actual search screen widget
-    Testview2(), // Replace with your actual alarm screen widget
-    Testview3() // Replace with your actual settings screen widget
+    BlocProvider(
+      create: (context) => ProductsCubit(
+        getIt.get<ProductRepo>(),
+      ),
+      child: HomeView(),
+    ),
+    Testview(),
+    Testview2(),
+    Testview3(),
   ];
 
   @override

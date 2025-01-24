@@ -25,9 +25,9 @@ class ProductRepoImpl extends ProductRepo {
       List<ProductInputEntity> products =
           data.map((e) => ProductModel.fromjson(e).toEntity()).toList();
 
-      return Right(products);
+      return right(products);
     } catch (e) {
-      return Left(ServerFailure('failed to get products'));
+      return left(ServerFailure('failed to get products'));
     }
   }
 
@@ -40,9 +40,9 @@ class ProductRepoImpl extends ProductRepo {
       List<ProductInputEntity> products =
           data.map((e) => ProductModel.fromjson(e).toEntity()).toList();
 
-      return Right(products);
+      return right(products);
     } catch (e) {
-      return Left(ServerFailure('failed to get products'));
+      return left(ServerFailure('failed to get products'));
     }
   }
 }

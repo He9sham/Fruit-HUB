@@ -1,10 +1,12 @@
+
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomViewBestSeller extends StatefulWidget {
-  const CustomViewBestSeller({super.key});
+  const CustomViewBestSeller({super.key,});
+
 
   @override
   State<CustomViewBestSeller> createState() => _CustomViewBestSellerState();

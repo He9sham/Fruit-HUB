@@ -1,3 +1,6 @@
+import 'package:commerce_hub/core/cubits/products_cubit/products_cubit.dart';
+import 'package:commerce_hub/core/repos/product_repo.dart';
+import 'package:commerce_hub/core/service/get_it_service.dart';
 import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/feature/Login&resetpassword/logic/cubit/login_cubit/login_cubit.dart';
 import 'package:commerce_hub/feature/Login&resetpassword/logic/cubit/reset_password/cubit/resetpassword_cubit.dart';
