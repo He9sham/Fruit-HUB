@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:commerce_hub/core/entity/product_review_entity.dart';
+import 'package:commerce_hub/core/entity/review_entity.dart';
 
 class ProductInputEntity {
   final String name;
@@ -11,6 +11,7 @@ class ProductInputEntity {
   final bool isFeatured;
   String? imageUrl;
   final int expirationsMonths;
+  final int sellingCount;
   final bool isOrganic;
   final int numberOfCalories;
   final num avgRating = 0;
@@ -21,6 +22,7 @@ class ProductInputEntity {
   ProductInputEntity(
       {required this.reviews,
       required this.name,
+      this.sellingCount = 0,
       required this.code,
       required this.description,
       required this.price,

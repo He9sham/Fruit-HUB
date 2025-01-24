@@ -13,7 +13,7 @@ class CustomAppbarHomeview extends StatelessWidget {
       textDirection: TextDirection.rtl,
       children: [
         Image.asset('assets/image/Mask group.png'),
-        horizontalSpace(11),
+        horizontalSpace(5),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -28,7 +28,7 @@ class CustomAppbarHomeview extends StatelessWidget {
             ),
           ],
         ),
-        horizontalSpace(155),
+        horizontalSpace(140),
         Container(
           width: 50,
           height: 50,

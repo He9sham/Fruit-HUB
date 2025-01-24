@@ -28,7 +28,7 @@ class CustomAppBarForAuth extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
             ),
             color: Colors.white,
             shape: BoxShape.circle,

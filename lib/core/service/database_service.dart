@@ -8,7 +8,8 @@ abstract class DatabaseService {
   });
 
   Future<dynamic> getData({
-     String docementid,
+    String docementid,
+    Map<String, dynamic> query,
     required String path,
   });
 

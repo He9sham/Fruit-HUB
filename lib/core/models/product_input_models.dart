@@ -40,6 +40,7 @@ class ProductModel {
       name: addProductInputEntity.name,
       code: addProductInputEntity.code,
       description: addProductInputEntity.description,
+      sellingCount: addProductInputEntity.sellingCount,
       price: addProductInputEntity.price,
       isOrganic: addProductInputEntity.isOrganic,
       image: addProductInputEntity.image,
@@ -58,6 +59,7 @@ class ProductModel {
       name: json['name'],
       code: json['code'],
       description: json['description'],
+      sellingCount: json['sellingCount'],
       price: json['price'],
       isOrganic: json['isOrganic'],
       image: File(json['imageUrl']),
@@ -69,6 +71,25 @@ class ProductModel {
       reviews: json['reviews']
           .map<ReviewModel>((e) => ReviewModel.fromJson(e))
           .toList(),
+    );
+  }
+
+  ProductInputEntity toEntity()
+  {
+    return ProductInputEntity(
+      name: name,
+      code: code,
+      description: description,
+      sellingCount: sellingCount,
+      price: price,
+      isOrganic: isOrganic,
+      image: image,
+      expirationsMonths: expirationsMonths,
+      numberOfCalories: numberOfCalories,
+      unitAmount: unitAmount,
+      isFeatured: isFeatured,
+      imageUrl: imageUrl,
+      reviews: reviews.map((e) => e.toEntity()).toList()
     );
   }
 

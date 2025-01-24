@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:commerce_hub/constants.dart';
@@ -23,13 +22,29 @@ class FirebaseDatabaseService implements DatabaseService {
   }
 
   @override
-  Future<dynamic> getData({String? docementid, required String path}) async {
+  Future<dynamic> getData(
+      {String? docementid,
+      required String path,
+      Map<String, dynamic>? query}) async {
     if (docementid != null) {
       var data = await firestore.collection(path).doc(docementid).get();
       return data.data();
     } else {
-      var data = await firestore.collection(path).get();
-      return data.docs.map((e) => e.data()).toList();
+      Query<Map<String, dynamic>> data = firestore.collection(path);
+
+      if (query != null) {
+        if (query['orderBy'] != null) {
+          var orderbyfield = query['orderBy'];
+          var descending = query['descending'];
+          data = data.orderBy(orderbyfield, descending: descending);
+        }
+        if (query['limit'] != null) {
+          var limit = query['limit'];
+          data = data.limit(limit);
+        }
+      }
+      var result = await data.get();
+      return result.docs.map((e) => e.data()).toList();
     }
   }
 
