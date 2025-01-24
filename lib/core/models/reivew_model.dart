@@ -1,5 +1,4 @@
-
-import 'package:commerce_hub/core/entity/product_review_entity.dart';
+import 'package:commerce_hub/core/entity/review_entity.dart';
 
 class ReivewModel {}
 
@@ -34,6 +33,16 @@ class ReviewModel {
         date: json['date'],
         reviewDescription: json['reviewDescription']);
   }
+  ReviewEntity toEntity() {
+    return ReviewEntity(
+      name: name,
+      image: image,
+      ratting: ratting,
+      date: date,
+      reviewDescription: reviewDescription,
+    );
+  }
+
   toJson() {
     return {
       'name': name,

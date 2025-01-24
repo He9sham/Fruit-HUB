@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:commerce_hub/core/entity/product_review_entity.dart';
+import 'package:commerce_hub/core/entity/review_entity.dart';
 
 class ProductInputEntity {
   final String name;

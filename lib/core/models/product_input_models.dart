@@ -72,6 +72,24 @@ class ProductModel {
     );
   }
 
+  ProductInputEntity toEntity()
+  {
+    return ProductInputEntity(
+      name: name,
+      code: code,
+      description: description,
+      price: price,
+      isOrganic: isOrganic,
+      image: image,
+      expirationsMonths: expirationsMonths,
+      numberOfCalories: numberOfCalories,
+      unitAmount: unitAmount,
+      isFeatured: isFeatured,
+      imageUrl: imageUrl,
+      reviews: reviews.map((e) => e.toEntity()).toList()
+    );
+  }
+
   toJson() {
     return {
       'name': name,

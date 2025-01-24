@@ -14,18 +14,24 @@ class HomeView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: SafeArea(
-          child: Column(
-            children: [
-              verticalSpace(16),
-              const CustomAppbarHomeview(),
-              verticalSpace(25),
-              const SearchForFruit(),
-              verticalSpace(12),
-              const OffersView(),
-              verticalSpace(8),
-              const BestSellerText(),
-              verticalSpace(8),
-              CustomGridviewForHomePage(),
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    verticalSpace(16),
+                    const CustomAppbarHomeview(),
+                    verticalSpace(25),
+                    const SearchForFruit(),
+                    verticalSpace(12),
+                    const OffersView(),
+                    verticalSpace(8),
+                    const BestSellerText(),
+                    verticalSpace(8),
+                    CustomGridviewForHomePage(),
+                  ],
+                ),
+              )
             ],
           ),
         ),
