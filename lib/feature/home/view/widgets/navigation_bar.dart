@@ -16,7 +16,7 @@ class CustomNavigation extends StatefulWidget {
 }
 
 class _CustomNavigationState extends State<CustomNavigation> {
-  int currentIndex = 1;
+  int currentIndex = 0;
   final screens = [
     HomeView(), // Replace with your actual home screen widget
     Testview(), // Replace with your actual search screen widget
@@ -39,12 +39,12 @@ class _CustomNavigationState extends State<CustomNavigation> {
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
           ),
-          inactiveIconColor: Colors.grey.withOpacity(0.6),
+          inactiveIconColor: Colors.grey.withValues(alpha: 0.6),
           tabStyle: CubertoTabStyle.styleNormal,
           selectedTab: currentIndex,
           tabs: [
             TabData(
-              iconData: FontAwesomeIcons.houseChimneyCrack,
+              iconData: FontAwesomeIcons.house,
               title: "الرئيسية",
               tabColor: Colors.deepPurple,
               tabGradient: getGradient(Colors.deepPurple),
