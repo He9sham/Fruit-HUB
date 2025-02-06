@@ -1,7 +1,4 @@
 import 'package:commerce_hub/core/entity/review_entity.dart';
-
-class ReivewModel {}
-
 class ReviewModel {
   final String name;
   final String image;

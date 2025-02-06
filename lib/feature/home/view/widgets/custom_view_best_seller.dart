@@ -1,12 +1,15 @@
-
+import 'package:commerce_hub/core/entity/product_input_entity.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomViewBestSeller extends StatefulWidget {
-  const CustomViewBestSeller({super.key,});
-
+  const CustomViewBestSeller({
+    super.key,
+    required this.product,
+  });
+  final ProductInputEntity product;
 
   @override
   State<CustomViewBestSeller> createState() => _CustomViewBestSellerState();
@@ -44,8 +47,8 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
           Positioned(
             top: 8.h,
             right: 40.w,
-            child: Image.asset(
-              'assets/image/image 29.png',
+            child: Image.network(
+              widget.product.imageUrl!,
             ),
           ),
           Positioned(
@@ -71,7 +74,7 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
             top: 175.h,
             right: 19.w,
             child: Text(
-              'فروله',
+              widget.product.name,
               style: Styles.textSize13Black600,
             ),
           ),
@@ -79,7 +82,7 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
             top: 195.h,
             right: 19.w,
             child: Text(
-              'جنية / الكيلو',
+              widget.product.price.toString(),
               style: Styles.textSize13Black600.copyWith(
                   color: Colors.yellow.shade800, fontWeight: FontWeight.bold),
             ),

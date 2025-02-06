@@ -74,24 +74,26 @@ class ProductModel {
     );
   }
 
-  ProductInputEntity toEntity() {
+  ProductInputEntity toEntity()
+  {
     return ProductInputEntity(
-        name: name,
-        code: code,
-        description: description,
-        sellingCount: sellingCount,
-        price: price,
-        isOrganic: isOrganic,
-        image: image,
-        expirationsMonths: expirationsMonths,
-        numberOfCalories: numberOfCalories,
-        unitAmount: unitAmount,
-        isFeatured: isFeatured,
-        imageUrl: imageUrl,
-        reviews: reviews.map((e) => e.toEntity()).toList());
+      name: name,
+      code: code,
+      description: description,
+      sellingCount: sellingCount,
+      price: price,
+      isOrganic: isOrganic,
+      image: image,
+      expirationsMonths: expirationsMonths,
+      numberOfCalories: numberOfCalories,
+      unitAmount: unitAmount,
+      isFeatured: isFeatured,
+      imageUrl: imageUrl,
+      reviews: reviews.map((e) => e.toEntity()).toList()
+    );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String , dynamic> toJson() {
     return {
       'name': name,
       'code': code,
