@@ -14,21 +14,51 @@ class ProductRepoImpl extends ProductRepo {
       getBestSellingProducts() async {
     try {
       var data = await databaseService.getData(
-        path: BackendEndpoints.getProduct,
-        query: {
-          'orderBy': 'sellingCount',
-          'limit': 5,
-           'descending': true,
-        },
-      ) as List<Map<String, dynamic>>;
+          path: BackendEndpoints.getProduct,
+          query: {
+            'limit': 10,
+            'orderBy': 'sellingCount',
+            'descending': true
+          }) as List<Map<String, dynamic>>;
 
       List<ProductInputEntity> products =
           data.map((e) => ProductModel.fromjson(e).toEntity()).toList();
-
       return right(products);
     } catch (e) {
-      return left(ServerFailure('failed to get products'));
+      return left(ServerFailure('Failed to get products'));
     }
+
+    //   List<ProductInputEntity> products = [];
+    //   try {
+    //     var data = await databaseService.getData(
+    //       path: BackendEndpoints.getProduct,
+    //       query: {
+    //         'orderBy': 'sellingCount',
+    //         'limit': 10,
+    //         'descending': true,
+    //       },
+    //     ) as List<Map<String, dynamic>>;
+
+    //     if (data.isNotEmpty) {
+    //       products = data
+    //           .map((e) {
+    //             try {
+    //               return ProductModel.fromjson(e).toEntity();
+    //             } catch (error) {
+    //               print('error: $error');
+    //               return null;
+    //             }
+    //           })
+    //           .whereType<ProductInputEntity>()
+    //           .toList();
+
+    //       print('products: ${products.length}');
+    //     }
+
+    //     return right(products);
+    //   } catch (e) {
+    //     return left(ServerFailure('فشل تحميل المنتجات'));
+    //   }
   }
 
   @override

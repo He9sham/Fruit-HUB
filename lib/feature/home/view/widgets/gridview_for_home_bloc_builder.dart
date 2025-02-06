@@ -17,9 +17,7 @@ class GridViewForHomeViewBlocBuilder extends StatelessWidget {
             products: state.products,
           );
         } else if (state is ProductsFaulier) {
-          return Center(
-            child: Text(state.errmessage),
-          );
+          return Text(state.errmessage);
         } else {
           return Skeletonizer(
             child: CustomGridviewForHomePage(
