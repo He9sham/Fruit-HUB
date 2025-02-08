@@ -20,7 +20,9 @@ class CustomGridviewForHomePage extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-            child: const CustomViewBestSeller(),
+            child:  CustomViewBestSeller(
+              productInputEntity: products[index],
+            ),
           );
         },
       ),
