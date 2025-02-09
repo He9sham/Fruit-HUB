@@ -22,7 +22,7 @@ class CustomAppBarForAuth extends StatelessWidget {
         horizontalSpace(textspace),
         Text(
           title,
-          style: Styles.textappBarAuth,
+          style: Styles.textappBar,
         ),
         horizontalSpace(iconspace),
         Container(
