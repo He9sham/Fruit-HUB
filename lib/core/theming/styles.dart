@@ -15,7 +15,7 @@ abstract class Styles {
       fontFamily: GoogleFonts.cairo().fontFamily,
       color: ColorsManager.blackText);
 
-  static TextStyle textappBarAuth = TextStyle(
+  static TextStyle textappBar = TextStyle(
       fontWeight: FontWeight.w700,
       fontSize: 19,
       fontFamily: GoogleFonts.cairo().fontFamily,
@@ -49,5 +49,4 @@ abstract class Styles {
       fontSize: 16,
       fontFamily: GoogleFonts.cairo().fontFamily,
       color: Colors.green);
-
 }

@@ -3,8 +3,8 @@ import 'package:commerce_hub/core/repos/product_repo.dart';
 import 'package:commerce_hub/core/service/get_it_service.dart';
 import 'package:commerce_hub/core/theming/gradient_color.dart';
 import 'package:commerce_hub/feature/home/view/home_view.dart';
+import 'package:commerce_hub/feature/home/view/product_view.dart';
 import 'package:commerce_hub/feature/test.dart';
-import 'package:commerce_hub/feature/testview2.dart';
 import 'package:commerce_hub/feature/testview3.dart';
 import 'package:cuberto_bottom_bar/internal/cuberto_bottom_bar.dart';
 import 'package:cuberto_bottom_bar/internal/tab_data.dart';
@@ -29,7 +29,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
       child: HomeView(),
     ),
     Testview(),
-    Testview2(),
+    ProductView(),
     Testview3(),
   ];
 
