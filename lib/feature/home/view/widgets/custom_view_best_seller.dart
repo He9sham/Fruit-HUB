@@ -50,7 +50,8 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
             child: widget.productInputEntity.imageUrl != null
                 ? Flexible(
                     child: Image.network(
-                      widget.productInputEntity.imageUrl!,
+                      widget.productInputEntity.imageUrl ??
+                          "https://www.google.com/imgres?q=apple%20photos&imgurl=https%3A%2F%2Fwww.applesfromny.com%2Fwp-content%2Fuploads%2F2020%2F05%2F20Ounce_NYAS-Apples2.png&imgrefurl=https%3A%2F%2Fwww.applesfromny.com%2Fvarieties%2F&docid=C0ERe9pIHvHfgM&tbnid=ktcxvF5LaXyVXM&vet=12ahUKEwi63eq06byLAxWm9LsIHYtYLuwQM3oECGoQAA..i&w=2400&h=1889&hcb=2&ved=2ahUKEwi63eq06byLAxWm9LsIHYtYLuwQM3oECGoQAA",
                     ),
                   )
                 : SizedBox(

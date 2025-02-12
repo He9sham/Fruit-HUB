@@ -29,7 +29,13 @@ class _CustomNavigationState extends State<CustomNavigation> {
       child: HomeView(),
     ),
     Testview(),
-    ProductView(),
+    BlocProvider(
+      create: (context) => ProductsCubit
+      (
+        getIt.get<ProductRepo>(),
+      ),
+      child: ProductView(),
+    ),
     Testview3(),
   ];
 
