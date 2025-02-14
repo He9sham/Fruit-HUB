@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:commerce_hub/core/helper/spacing.dart';
+import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
 import 'package:commerce_hub/feature/home/view/widgets/row_text_chosse.dart';
 import 'package:flutter/material.dart';
 
@@ -93,6 +94,15 @@ class RowTextandIcon extends StatelessWidget {
                           ),
                         ],
                       ),
+                    ),
+                  ),
+                  verticalSpace(11),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: AppTextButton(
+                      buttonText: 'تصفيه',
+                      onPressed: () {},
+                      textStyle: Styles.textbuttom16White,
                     ),
                   ),
                 ],
