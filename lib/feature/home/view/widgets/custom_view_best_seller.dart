@@ -45,10 +45,14 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
             ),
           ),
           Positioned(
-            top: 8.h,
-            right: 40.w,
+            top: 15.h,
+            right: 25.w,
             child: widget.productInputEntity.imageUrl != null
-                ? Image.network(widget.productInputEntity.imageUrl!)
+                ? Image.network(
+                    widget.productInputEntity.imageUrl!,
+                    width: 150.w,
+                    height: 130.h,
+                  )
                 : SizedBox(
                     width: 100.w,
                     height: 100.h,
