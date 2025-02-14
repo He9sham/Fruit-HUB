@@ -30,8 +30,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
     ),
     Testview(),
     BlocProvider(
-      create: (context) => ProductsCubit
-      (
+      create: (context) => ProductsCubit(
         getIt.get<ProductRepo>(),
       ),
       child: ProductView(),
@@ -42,7 +41,10 @@ class _CustomNavigationState extends State<CustomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[currentIndex],
+      body: IndexedStack(
+        index: currentIndex,
+        children: screens,
+      ),
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
           indicatorShape: const CircleBorder(),

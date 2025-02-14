@@ -18,6 +18,7 @@ class _ProductViewState extends State<ProductView> {
   @override
   void initState() {
     context.read<ProductsCubit>().getProducts();
+
     super.initState();
   }
 
@@ -42,7 +43,10 @@ class _ProductViewState extends State<ProductView> {
                       verticalSpace(25),
                       const SearchForFruit(),
                       verticalSpace(8),
-                      const RowTextandIcon(),
+                      RowTextandIcon(
+                        productsLength:
+                            context.read<ProductsCubit>().productsLength,
+                      ),
                       verticalSpace(8),
                       GridViewForHomeViewBlocBuilder(),
                     ],

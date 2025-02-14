@@ -8,15 +8,15 @@ import 'package:flutter/material.dart';
 import '../../../../core/theming/styles.dart';
 
 class RowTextandIcon extends StatelessWidget {
-  const RowTextandIcon({super.key});
-
+  const RowTextandIcon({super.key, required this.productsLength});
+  final int productsLength;
   @override
   Widget build(BuildContext context) {
     return Row(
       textDirection: TextDirection.rtl,
       children: [
         Text(
-          'نتائج',
+          '$productsLength نتائج',
           style: Styles.textbuttom16White.copyWith(color: Colors.black),
         ),
         const Spacer(),
