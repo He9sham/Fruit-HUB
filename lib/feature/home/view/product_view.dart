@@ -39,7 +39,11 @@ class _ProductViewState extends State<ProductView> {
                   child: Column(
                     children: [
                       verticalSpace(16),
-                      const CustomAppbar(),
+                      const CustomAppbar(
+                        text: 'المنتجات',
+                        spacepadding: 70,
+                        isshowIcon: true,
+                      ),
                       verticalSpace(25),
                       const SearchForFruit(),
                       verticalSpace(8),

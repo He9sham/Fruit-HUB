@@ -9,7 +9,6 @@ import 'package:commerce_hub/feature/home/view/home_view.dart';
 import 'package:commerce_hub/feature/home/view/widgets/navigation_bar.dart';
 import 'package:commerce_hub/feature/sign_up/logic/signup_cubit_cubit.dart';
 import 'package:commerce_hub/feature/sign_up/view/sign_up_view.dart';
-import 'package:commerce_hub/feature/test.dart';
 import 'package:commerce_hub/feature/testview3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,10 +56,6 @@ class AppRouter {
       case Routes.navigationBar:
         return MaterialPageRoute(
           builder: (_) => CustomNavigation(),
-        );
-      case Routes.textview:
-        return MaterialPageRoute(
-          builder: (_) => Testview(),
         );
       case Routes.textview3:
         return MaterialPageRoute(
