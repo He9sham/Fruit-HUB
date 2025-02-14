@@ -1,4 +1,5 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
+import 'package:commerce_hub/feature/home/view/widgets/cart_header.dart';
 import 'package:commerce_hub/feature/home/view/widgets/custom_appbar.dart'
     show CustomAppbar;
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class CartView extends StatelessWidget {
                       isshowIcon: false,
                     ),
                     verticalSpace(25),
+                    CartHeader(),
                   ],
                 ),
               )
