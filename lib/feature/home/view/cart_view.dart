@@ -25,6 +25,8 @@ class CartView extends StatelessWidget {
                     ),
                     verticalSpace(25),
                     CartHeader(),
+                    verticalSpace(24),
+                    
                   ],
                 ),
               )
