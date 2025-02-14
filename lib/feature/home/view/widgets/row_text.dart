@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:commerce_hub/core/helper/spacing.dart';
+import 'package:commerce_hub/feature/home/view/widgets/row_text_chosse.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theming/styles.dart';
@@ -80,58 +81,26 @@ class RowTextandIcon extends StatelessWidget {
                           ),
                           verticalSpace(15),
                           RowTextChosse(
-                            text: 'الأعلى سعرًا',
+                            text: 'السعر ( الأقل الي الأعلي )',
                           ),
-                        
+                          verticalSpace(10),
                           RowTextChosse(
-                            text: 'الأقل سعرًا',
+                            text: 'السعر ( الأعلي الي الأقل )',
                           ),
-                          
+                          verticalSpace(10),
                           RowTextChosse(
                             text: 'الأبجديه',
                           ),
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             );
           },
         );
       },
-    );
-  }
-}
-
-class RowTextChosse extends StatelessWidget {
-  const RowTextChosse({super.key, required this.text});
-  final String text;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          text,
-          style: Styles.textbuttom16White.copyWith(
-            color: Colors.black,
-            fontSize: 13,
-          ),
-        ),
-        horizontalSpace(15),
-        Container(
-          width: 20,
-          height: 20,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-                color: Colors.black.withValues(
-                  alpha: 0.3,
-                ),
-                width: 2),
-          ),
-        ),
-      ],
     );
   }
 }
