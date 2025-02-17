@@ -27,7 +27,15 @@ class CartView extends StatelessWidget {
                     verticalSpace(25),
                     CartHeader(),
                     verticalSpace(24),
-                    CartItem()
+                    Divider(
+                      color: Colors.grey.shade200,
+                      thickness: 1,
+                    ),
+                    CartItem(),
+                    Divider(
+                      color: Colors.grey.shade200,
+                      thickness: 1,
+                    ),
                   ],
                 ),
               )
