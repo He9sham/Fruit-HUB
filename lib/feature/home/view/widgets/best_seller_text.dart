@@ -1,4 +1,6 @@
+import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
+import 'package:commerce_hub/core/utils/router.dart';
 import 'package:flutter/material.dart';
 
 class BestSellerText extends StatelessWidget {
@@ -15,7 +17,9 @@ class BestSellerText extends StatelessWidget {
         ),
         const Spacer(),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            context.pushNamed(Routes.bestsellerview);
+          },
           child: Text(
             'المزيد  ',
             style: Styles.textonbording13.copyWith(

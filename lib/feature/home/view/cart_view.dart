@@ -20,6 +20,7 @@ class CartView extends StatelessWidget {
                   children: [
                     verticalSpace(30),
                     const CustomAppbar(
+                      isshowback: false,
                       text: 'السلة',
                       spacepadding: 130,
                       isshowIcon: false,

@@ -6,7 +6,6 @@ class Routes {
   static const String homeScreen = '/homeScreen';
   static const String resetPasswordScreen = '/resetPasswordScreen';
   static const String navigationBar = '/navigationBar'; 
-  static const String textview = '/textview'; 
-  static const String textview2 = '/textview2'; 
+  static const String bestsellerview = '/bestsellerview';
   static const String textview3 = '/textview3'; 
 }
