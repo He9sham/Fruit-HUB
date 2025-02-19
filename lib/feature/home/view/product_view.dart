@@ -40,6 +40,7 @@ class _ProductViewState extends State<ProductView> {
                     children: [
                       verticalSpace(16),
                       const CustomAppbar(
+                        isshowback: false,
                         text: 'المنتجات',
                         spacepadding: 70,
                         isshowIcon: true,

@@ -1,3 +1,4 @@
+import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,10 @@ class CustomAppbar extends StatelessWidget {
     required this.isshowIcon,
     required this.spacepadding,
     required this.text,
+    required this.isshowback,
   });
   final bool isshowIcon;
+  final bool isshowback;
   final double spacepadding;
   final String text;
   @override
@@ -38,6 +41,18 @@ class CustomAppbar extends StatelessWidget {
           text,
           style: Styles.textappBar,
         ),
+        const Spacer(),
+        Visibility(
+            visible: isshowback,
+            child: IconButton(
+              onPressed: () {
+                context.pop();
+              },
+              icon: Icon(
+                FontAwesomeIcons.chevronRight,
+                size: 20,
+              ),
+            )),
       ],
     );
   }
