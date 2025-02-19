@@ -1,4 +1,3 @@
-
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -59,11 +58,11 @@ class CartItem extends StatelessWidget {
                   width: 24.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: Color(0xff1B5E37),
+                    color: Color(0xFFF3F5F7),
                   ),
                   child: Center(
                     child: Icon(
-                      FontAwesomeIcons.plus,
+                      FontAwesomeIcons.minus,
                       color: Colors.white,
                       size: 16,
                     ),
@@ -83,11 +82,12 @@ class CartItem extends StatelessWidget {
                   height: 24.h,
                   width: 24.w,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: Color(0xffF3F5F7)),
+                    borderRadius: BorderRadius.circular(100),
+                    color: Color(0xff1B5E37),
+                  ),
                   child: Center(
                     child: Icon(
-                      FontAwesomeIcons.minus,
+                      FontAwesomeIcons.plus,
                       color: Colors.white,
                       size: 16,
                     ),
