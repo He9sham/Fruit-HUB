@@ -41,7 +41,9 @@ class CartView extends StatelessWidget {
                       thickness: 1,
                     ),
                   ),
-                  CartViewList(),
+                  CartViewList(
+                    cartItemEntities: [],
+                  ),
                   SliverToBoxAdapter(
                     child: Divider(
                       color: Colors.grey.shade200,
