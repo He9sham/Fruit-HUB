@@ -65,7 +65,8 @@ class CartView extends StatelessWidget {
                 right: 16,
                 bottom: MediaQuery.sizeOf(context).height * 0.1,
                 child: AppTextButton(
-                  buttonText: 'الدفع  120جنيه',
+                  buttonText:
+                      ' الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه',
                   onPressed: () {},
                   textStyle: Styles.textbuttom16White,
                 ),
