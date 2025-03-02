@@ -16,6 +16,7 @@ class CartEntity {
       totalPrice += cartItem.calculateTotalPrice();
     }
     return totalPrice;
+    
   }
 
   void removeCartItem(CartItemEntity cartItemEntity) {

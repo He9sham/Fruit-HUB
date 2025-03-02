@@ -48,7 +48,7 @@ class CartView extends StatelessWidget {
                   ),
                   CartViewList(
                     cartItemEntities:
-                        context.read<CartCubit>().cartEntity.cartItems,
+                        context.watch<CartCubit>().cartEntity.cartItems,
                   ),
                   SliverToBoxAdapter(
                     child:

@@ -24,7 +24,7 @@ class CustomNavigation extends StatefulWidget {
 
 class _CustomNavigationState extends State<CustomNavigation> {
   int currentIndex = 0;
-  final screens = [
+  final screens =  [
     BlocProvider(
       create: (context) => ProductsCubit(
         getIt.get<ProductRepo>(),

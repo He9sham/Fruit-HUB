@@ -1,0 +1,11 @@
+import 'package:bloc/bloc.dart';
+import 'package:commerce_hub/feature/home/domain/cart_item_entity.dart';
+import 'package:equatable/equatable.dart';
+
+part 'cartitem_state.dart';
+
+class CartitemCubit extends Cubit<CartitemState> {
+  CartitemCubit() : super(CartitemInitial());
+
+
+}

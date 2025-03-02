@@ -12,6 +12,7 @@ class MainViewBlocConsumer extends StatelessWidget {
   final int currentIndex;
   final List<StatelessWidget> screens;
 
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CartCubit, CartState>(
@@ -27,7 +28,7 @@ class MainViewBlocConsumer extends StatelessWidget {
         if (state is CartRemoved) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text("تمت الاضافة الى السلة"),
+              content: Text("تمت الازالة من السلة"),
               duration: const Duration(seconds: 2),
             ),
           );
