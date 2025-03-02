@@ -6,6 +6,8 @@ import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
 import 'package:commerce_hub/feature/home/view/cart_view.dart';
 import 'package:commerce_hub/feature/home/view/home_view.dart';
 import 'package:commerce_hub/feature/home/view/product_view.dart';
+import 'package:commerce_hub/feature/home/view/widgets/main_view_bloc_consumer.dart'
+    show MainViewBlocConsumer;
 import 'package:commerce_hub/feature/testview3.dart';
 import 'package:cuberto_bottom_bar/internal/cuberto_bottom_bar.dart';
 import 'package:cuberto_bottom_bar/internal/tab_data.dart';
@@ -44,10 +46,8 @@ class _CustomNavigationState extends State<CustomNavigation> {
     return Scaffold(
       body: BlocProvider(
         create: (context) => CartCubit(),
-        child: IndexedStack(
-          index: currentIndex,
-          children: screens,
-        ),
+        child:
+            MainViewBlocConsumer(currentIndex: currentIndex, screens: screens),
       ),
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
