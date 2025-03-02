@@ -1,6 +1,8 @@
 import 'package:commerce_hub/core/entity/product_input_entity.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
+import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -69,7 +71,11 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
                 borderRadius: BorderRadius.circular(60),
               ),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  context
+                      .read<CartCubit>()
+                      .addProduct(widget.productInputEntity);
+                },
                 icon: Icon(
                   FontAwesomeIcons.plus,
                   color: Colors.white,

@@ -1,11 +1,13 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
+import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
 import 'package:commerce_hub/feature/home/view/widgets/cart_header.dart';
 import 'package:commerce_hub/feature/home/view/widgets/cart_view_list.dart';
 import 'package:commerce_hub/feature/home/view/widgets/custom_appbar.dart'
     show CustomAppbar;
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartView extends StatelessWidget {
   const CartView({super.key});
@@ -36,19 +38,25 @@ class CartView extends StatelessWidget {
                     ),
                   ),
                   SliverToBoxAdapter(
-                    child: Divider(
-                      color: Colors.grey.shade200,
-                      thickness: 1,
-                    ),
+                    child:
+                        context.read<CartCubit>().cartEntity.cartItems.isEmpty
+                            ? SizedBox()
+                            : Divider(
+                                color: Colors.grey.shade200,
+                                thickness: 1,
+                              ),
                   ),
                   CartViewList(
                     cartItemEntities: [],
                   ),
                   SliverToBoxAdapter(
-                    child: Divider(
-                      color: Colors.grey.shade200,
-                      thickness: 1,
-                    ),
+                    child:
+                        context.read<CartCubit>().cartEntity.cartItems.isEmpty
+                            ? SizedBox()
+                            : Divider(
+                                color: Colors.grey.shade200,
+                                thickness: 1,
+                              ),
                   ),
                 ],
               ),

@@ -2,6 +2,7 @@ import 'package:commerce_hub/core/cubits/products_cubit/products_cubit.dart';
 import 'package:commerce_hub/core/repos/product_repo.dart';
 import 'package:commerce_hub/core/service/get_it_service.dart';
 import 'package:commerce_hub/core/theming/gradient_color.dart';
+import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
 import 'package:commerce_hub/feature/home/view/cart_view.dart';
 import 'package:commerce_hub/feature/home/view/home_view.dart';
 import 'package:commerce_hub/feature/home/view/product_view.dart';
@@ -41,9 +42,12 @@ class _CustomNavigationState extends State<CustomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: currentIndex,
-        children: screens,
+      body: BlocProvider(
+        create: (context) => CartCubit(),
+        child: IndexedStack(
+          index: currentIndex,
+          children: screens,
+        ),
       ),
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(

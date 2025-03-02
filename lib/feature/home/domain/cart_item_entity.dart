@@ -5,7 +5,7 @@ class CartItemEntity {
 
   int count;
 
-  CartItemEntity({required this.productInputEntity, this.count = 0});
+  CartItemEntity({required this.productInputEntity, this.count = 1});
 
   num calculateTotalPrice() {
     return productInputEntity.price * count;
@@ -13,5 +13,13 @@ class CartItemEntity {
 
   num calculateTotalWeight() {
     return productInputEntity.unitAmount * count;
+  }
+
+  increaseCount() {
+    count++;
+  }
+
+  deccreaseCount() {
+    count--;
   }
 }
