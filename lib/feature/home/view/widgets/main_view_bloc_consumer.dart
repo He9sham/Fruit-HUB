@@ -24,6 +24,14 @@ class MainViewBlocConsumer extends StatelessWidget {
             ),
           );
         }
+        if (state is CartRemoved) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("تمت الاضافة الى السلة"),
+              duration: const Duration(seconds: 2),
+            ),
+          );
+        }
       },
       builder: (context, state) {
         return IndexedStack(

@@ -9,12 +9,17 @@ class CartEntity {
   addCartItem(CartItemEntity cartItemEntity) {
     cartItems.add(cartItemEntity);
   }
+
   calculateTotalPrice() {
     num totalPrice = 0;
     for (var cartItem in cartItems) {
       totalPrice += cartItem.calculateTotalPrice();
     }
     return totalPrice;
+  }
+
+  void removeCartItem(CartItemEntity cartItemEntity) {
+    cartItems.remove(cartItemEntity);
   }
 
   bool isExist(ProductInputEntity productInputEntity) {

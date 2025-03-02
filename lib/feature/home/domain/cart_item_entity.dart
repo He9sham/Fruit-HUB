@@ -1,6 +1,7 @@
 import 'package:commerce_hub/core/entity/product_input_entity.dart';
+import 'package:equatable/equatable.dart';
 
-class CartItemEntity {
+class CartItemEntity extends Equatable {
   final ProductInputEntity productInputEntity;
 
   int count;
@@ -22,4 +23,8 @@ class CartItemEntity {
   deccreaseCount() {
     count--;
   }
+  
+  @override
+  
+  List<Object?> get props => [productInputEntity];
 }

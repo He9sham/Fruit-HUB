@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:commerce_hub/core/entity/product_input_entity.dart';
 import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
+import 'package:commerce_hub/feature/home/domain/cart_item_entity.dart';
 import 'package:meta/meta.dart';
 
 part 'cart_state.dart';
@@ -22,5 +23,10 @@ class CartCubit extends Cubit<CartState> {
     }
 
     emit(CartAdded());
+  }
+
+  void removeProduct(CartItemEntity cartitem) {
+    cartEntity.removeCartItem(cartitem);
+    emit(CartRemoved());
   }
 }
