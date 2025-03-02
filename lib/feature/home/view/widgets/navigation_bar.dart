@@ -8,7 +8,7 @@ import 'package:commerce_hub/feature/home/view/home_view.dart';
 import 'package:commerce_hub/feature/home/view/product_view.dart';
 import 'package:commerce_hub/feature/home/view/widgets/main_view_bloc_consumer.dart'
     show MainViewBlocConsumer;
-import 'package:commerce_hub/feature/testview3.dart';
+import 'package:commerce_hub/feature/profile/view/profile_view.dart';
 import 'package:cuberto_bottom_bar/internal/cuberto_bottom_bar.dart';
 import 'package:cuberto_bottom_bar/internal/tab_data.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
       ),
       child: ProductView(),
     ),
-    Testview3(),
+    ProfileView(),
   ];
 
   @override
