@@ -60,4 +60,8 @@ class SignupCubit extends Cubit<SignupCubitState> {
   Future<void> deleteUser() async {
     await FirebaseAuth.instance.currentUser!.delete();
   }
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
 }
