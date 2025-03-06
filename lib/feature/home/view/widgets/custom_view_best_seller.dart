@@ -73,7 +73,7 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
               child: IconButton(
                 onPressed: () {
                   context
-                      .read<CartCubit>()
+                      .read<CartProductCubit>()
                       .addProduct(widget.productInputEntity);
                 },
                 icon: Icon(

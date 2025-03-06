@@ -11,12 +11,19 @@ class BlocBuilderCartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CartitemCubit, CartitemState>(
+      buildWhen: (previous, current) {
+        return current is CartitemUpdate;
+      },
       builder: (context, state) {
         return AppTextButton(
           buttonText:
-              ' الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه',
+              ' الدفع ${context.watch<CartProductCubit>().cartEntity.calculateTotalPrice()} جنيه',
           onPressed: () {
-            if (context.read<CartCubit>().cartEntity.cartItems.isNotEmpty) {
+            if (context
+                .read<CartProductCubit>()
+                .cartEntity
+                .cartItems
+                .isNotEmpty) {
               // push to payment screen
             } else {
               ScaffoldMessenger.of(context).showSnackBar(

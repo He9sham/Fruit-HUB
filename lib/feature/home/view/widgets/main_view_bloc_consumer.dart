@@ -12,10 +12,9 @@ class MainViewBlocConsumer extends StatelessWidget {
   final int currentIndex;
   final List<StatelessWidget> screens;
 
-
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CartCubit, CartState>(
+    return BlocConsumer<CartProductCubit, CartState>(
       listener: (context, state) {
         if (state is CartAdded) {
           ScaffoldMessenger.of(context).showSnackBar(

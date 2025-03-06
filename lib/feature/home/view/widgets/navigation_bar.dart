@@ -3,6 +3,7 @@ import 'package:commerce_hub/core/repos/product_repo.dart';
 import 'package:commerce_hub/core/service/get_it_service.dart';
 import 'package:commerce_hub/core/theming/gradient_color.dart';
 import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
+import 'package:commerce_hub/feature/home/logic/cart_item_cubit/cartitem_cubit.dart';
 import 'package:commerce_hub/feature/home/view/cart_view.dart';
 import 'package:commerce_hub/feature/home/view/home_view.dart';
 import 'package:commerce_hub/feature/home/view/product_view.dart';
@@ -24,14 +25,17 @@ class CustomNavigation extends StatefulWidget {
 
 class _CustomNavigationState extends State<CustomNavigation> {
   int currentIndex = 0;
-  final screens =  [
+  final screens = [
     BlocProvider(
       create: (context) => ProductsCubit(
         getIt.get<ProductRepo>(),
       ),
       child: HomeView(),
     ),
-    CartView(),
+    BlocProvider(
+      create: (context) => CartitemCubit(),
+      child: CartView(),
+    ),
     BlocProvider(
       create: (context) => ProductsCubit(
         getIt.get<ProductRepo>(),
@@ -45,7 +49,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => CartCubit(),
+        create: (context) => CartProductCubit(),
         child:
             MainViewBlocConsumer(currentIndex: currentIndex, screens: screens),
       ),
