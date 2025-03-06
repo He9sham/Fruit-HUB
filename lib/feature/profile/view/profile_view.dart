@@ -1,5 +1,5 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
-import 'package:commerce_hub/feature/home/view/widgets/custom_appbar.dart';
+import 'package:commerce_hub/core/widgets/custom_appbar.dart';
 import 'package:commerce_hub/feature/profile/view/widgets/title_user_header.dart';
 import 'package:flutter/material.dart';
 

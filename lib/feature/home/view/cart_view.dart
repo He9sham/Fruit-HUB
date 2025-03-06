@@ -3,7 +3,7 @@ import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
 import 'package:commerce_hub/feature/home/view/widgets/bloc_builder_cart_button.dart';
 import 'package:commerce_hub/feature/home/view/widgets/cart_header.dart';
 import 'package:commerce_hub/feature/home/view/widgets/cart_view_list.dart';
-import 'package:commerce_hub/feature/home/view/widgets/custom_appbar.dart'
+import 'package:commerce_hub/core/widgets/custom_appbar.dart'
     show CustomAppbar;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
