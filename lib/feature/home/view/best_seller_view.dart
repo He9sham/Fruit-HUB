@@ -1,7 +1,7 @@
 import 'package:commerce_hub/core/cubits/products_cubit/products_cubit.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
-import 'package:commerce_hub/feature/home/view/widgets/custom_appbar.dart';
+import 'package:commerce_hub/core/widgets/custom_appbar.dart';
 import 'package:commerce_hub/feature/home/view/widgets/gridview_for_home_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

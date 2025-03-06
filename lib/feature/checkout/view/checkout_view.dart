@@ -1,10 +1,10 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/widgets/custom_appbar.dart';
-import 'package:commerce_hub/feature/profile/view/widgets/title_user_header.dart';
+import 'package:commerce_hub/feature/checkout/view/widgets/active_step_item.dart';
 import 'package:flutter/material.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+class CheckoutView extends StatelessWidget {
+  const CheckoutView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,15 +13,15 @@ class ProfileView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              verticalSpace(25),
-              const CustomAppbar(
-                isshowback: false,
-                text: 'حسابي',
-                spacepadding: 130,
+              verticalSpace(16),
+              CustomAppbar(
+                isshowback: true,
                 isshowIcon: false,
+                spacepadding: 120,
+                text: 'الشحن',
               ),
               verticalSpace(16),
-              TitleUserHeader(),
+              ActiveStepItem()
             ],
           ),
         ),
