@@ -1,10 +1,7 @@
 part of 'cartitem_cubit.dart';
 
-sealed class CartitemState extends Equatable {
+sealed class CartitemState {
   const CartitemState();
-
-  @override
-  List<Object> get props => [];
 }
 
 final class CartitemInitial extends CartitemState {}

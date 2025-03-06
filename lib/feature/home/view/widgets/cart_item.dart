@@ -14,108 +14,122 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Column(
+    return BlocBuilder<CartitemCubit, CartitemState>(
+      buildWhen: (previous, current) {
+        if (current is CartitemUpdate) {
+          if (current.cartItemEntity == cartItemEntity) {
+            return true;
+          }
+        }
+        return false;
+      },
+      builder: (context, state) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            IconButton(
-              onPressed: () {
-                context.read<CartProductCubit>().removeProduct(cartItemEntity);
-              },
-              icon: Icon(FontAwesomeIcons.trash),
-            ),
-            verticalSpace(16),
-            Text(
-              textDirection: TextDirection.rtl,
-              '${cartItemEntity.calculateTotalPrice()} جنيه',
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w700,
-                color: Colors.orange,
-              ),
-            ),
-          ],
-        ),
-        Spacer(),
-        Column(
-          children: [
-            Text(
-              cartItemEntity.productInputEntity.name,
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w700,
-                color: Color(0xff000000),
-              ),
-            ),
-            verticalSpace(8),
-            Text(
-              textDirection: TextDirection.rtl,
-              '${cartItemEntity.calculateTotalWeight()} كم',
-              style: TextStyle(
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w400,
-                color: Colors.orange,
-              ),
-            ),
-            verticalSpace(6),
-            Row(
+            Column(
               children: [
-                BottomAction(
-                  icondata: FontAwesomeIcons.minus,
-                  onTap: () {
-                    if (cartItemEntity.count > 1) {
-                      cartItemEntity.deccreaseCount();
-                    } else {
-                      context
-                          .read<CartProductCubit>()
-                          .removeProduct(cartItemEntity);
-                    }
+                IconButton(
+                  onPressed: () {
                     context
-                        .read<CartitemCubit>()
-                        .updateCartItem(cartItemEntity);
+                        .read<CartProductCubit>()
+                        .removeProduct(cartItemEntity);
                   },
-                  color: Color(0xffFFA451),
+                  icon: Icon(FontAwesomeIcons.trash),
                 ),
-                horizontalSpace(10),
+                verticalSpace(16),
                 Text(
-                  cartItemEntity.count.toString(),
+                  textDirection: TextDirection.rtl,
+                  '${cartItemEntity.calculateTotalPrice()} جنيه',
                   style: TextStyle(
                     fontSize: 16.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.orange,
+                  ),
+                ),
+              ],
+            ),
+            Spacer(),
+            Column(
+              children: [
+                Text(
+                  cartItemEntity.productInputEntity.name,
+                  style: TextStyle(
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w700,
                     color: Color(0xff000000),
                   ),
                 ),
-                horizontalSpace(10),
-                BottomAction(
-                  icondata: FontAwesomeIcons.plus,
-                  onTap: () {
-                    cartItemEntity.increaseCount();
-                    context
-                        .read<CartitemCubit>()
-                        .updateCartItem(cartItemEntity);
-                  },
-                  color: Color(0xffFFA451),
+                verticalSpace(8),
+                Text(
+                  textDirection: TextDirection.rtl,
+                  '${cartItemEntity.calculateTotalWeight()} كم',
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.orange,
+                  ),
                 ),
+                verticalSpace(6),
+                Row(
+                  children: [
+                    BottomAction(
+                      icondata: FontAwesomeIcons.minus,
+                      onTap: () {
+                        if (cartItemEntity.count > 1) {
+                          cartItemEntity.deccreaseCount();
+                        } else {
+                          context
+                              .read<CartProductCubit>()
+                              .removeProduct(cartItemEntity);
+                        }
+                        context
+                            .read<CartitemCubit>()
+                            .updateCartItem(cartItemEntity);
+                      },
+                      color: Color(0xffFFA451),
+                    ),
+                    horizontalSpace(10),
+                    Text(
+                      cartItemEntity.count.toString(),
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xff000000),
+                      ),
+                    ),
+                    horizontalSpace(10),
+                    BottomAction(
+                      icondata: FontAwesomeIcons.plus,
+                      onTap: () {
+                        cartItemEntity.increaseCount();
+                        context
+                            .read<CartitemCubit>()
+                            .updateCartItem(cartItemEntity);
+                      },
+                      color: Color(0xffFFA451),
+                    ),
+                  ],
+                )
               ],
-            )
-          ],
-        ),
-        horizontalSpace(16),
-        Container(
-          height: 92.h,
-          width: 73.w,
-          decoration: BoxDecoration(
-            color: Color(0xffF3F5F7),
-          ),
-          child: Center(
-            child: Image.network(
-              cartItemEntity.productInputEntity.imageUrl!,
-              height: 45,
             ),
-          ),
-        ),
-      ],
+            horizontalSpace(16),
+            Container(
+              height: 92.h,
+              width: 73.w,
+              decoration: BoxDecoration(
+                color: Color(0xffF3F5F7),
+              ),
+              child: Center(
+                child: Image.network(
+                  cartItemEntity.productInputEntity.imageUrl!,
+                  height: 45,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
