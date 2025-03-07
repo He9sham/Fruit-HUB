@@ -1,6 +1,6 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/widgets/custom_appbar.dart';
-import 'package:commerce_hub/feature/checkout/view/widgets/active_step_item.dart';
+import 'package:commerce_hub/feature/checkout/view/widgets/check_out_steps.dart';
 import 'package:flutter/material.dart';
 
 class CheckoutView extends StatelessWidget {
@@ -21,7 +21,7 @@ class CheckoutView extends StatelessWidget {
                 text: 'الشحن',
               ),
               verticalSpace(16),
-              ActiveStepItem()
+              CheckOutSteps(),
             ],
           ),
         ),

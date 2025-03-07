@@ -2,11 +2,12 @@ import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:flutter/material.dart';
 
 class ActiveStepItem extends StatelessWidget {
-  const ActiveStepItem({super.key});
-
+  const ActiveStepItem({super.key, required this.text});
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       textDirection: TextDirection.rtl,
       children: [
         CircleAvatar(
@@ -20,10 +21,10 @@ class ActiveStepItem extends StatelessWidget {
         ),
         horizontalSpace(4),
         Text(
-          'الشحن',
+          text,
           style: TextStyle(
               color: Color(0xff1B5E37),
-              fontSize: 13,
+              fontSize: 15,
               fontWeight: FontWeight.w700),
         ),
       ],
