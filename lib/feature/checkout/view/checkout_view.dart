@@ -53,9 +53,14 @@ class _CheckoutViewState extends State<CheckoutView> {
               AppTextButton(
                 buttonText: 'التالي',
                 textStyle: Styles.textbuttom16White,
-                onPressed: () {},
+                onPressed: () {
+                  pageController.nextPage(
+                    duration: Duration(milliseconds: 300),
+                    curve: Curves.easeIn,
+                  );
+                },
               ),
-              verticalSpace(80),
+              verticalSpace(50),
             ],
           ),
         ),
