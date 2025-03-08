@@ -23,6 +23,8 @@ class CheckOutSteps extends StatelessWidget {
     );
   }
 
+}
+
   List<String> getSteps() {
     return [
       'الشحن',
@@ -31,4 +33,3 @@ class CheckOutSteps extends StatelessWidget {
       'المراجعه',
     ];
   }
-}
