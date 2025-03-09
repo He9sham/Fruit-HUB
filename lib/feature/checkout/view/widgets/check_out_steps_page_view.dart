@@ -1,6 +1,5 @@
 import 'package:commerce_hub/feature/checkout/view/widgets/address_section.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/payment_section.dart';
-import 'package:commerce_hub/feature/checkout/view/widgets/review_section.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/shipping_section.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +23,6 @@ class CheckOutStepsPageView extends StatelessWidget {
       ShippingSection(),
       AddressSection(),
       PaymentSection(),
-      ReviewSection(),
     ];
   }
 }

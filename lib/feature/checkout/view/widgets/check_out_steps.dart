@@ -9,7 +9,7 @@ class CheckOutSteps extends StatelessWidget {
     return Row(
       textDirection: TextDirection.rtl,
       children: List.generate(
-        4,
+        getSteps().length,
         (index) {
           return Expanded(
             child: StepItem(
@@ -22,14 +22,12 @@ class CheckOutSteps extends StatelessWidget {
       ),
     );
   }
-
 }
 
-  List<String> getSteps() {
-    return [
-      'الشحن',
-      'العنوان',
-      'الدفع',
-      'المراجعه',
-    ];
-  }
+List<String> getSteps() {
+  return [
+    'الشحن',
+    'العنوان',
+    'الدفع',
+  ];
+}
