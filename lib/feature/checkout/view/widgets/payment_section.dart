@@ -31,6 +31,7 @@ class PaymentSection extends StatelessWidget {
           decoration: AppDecorations.greyBoxDecoration,
           child: PaymentItemTitle(),
         ),
+        verticalSpace(16),
       ],
     );
   }

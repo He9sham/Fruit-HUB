@@ -18,6 +18,11 @@ class _CheckoutViewState extends State<CheckoutView> {
   @override
   void initState() {
     pageController = PageController();
+    pageController.addListener(() {
+      setState(() {
+        currentPageStep = pageController.page!.toInt();
+      });
+    });
     super.initState();
   }
 
@@ -27,6 +32,7 @@ class _CheckoutViewState extends State<CheckoutView> {
     super.dispose();
   }
 
+  int currentPageStep = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,10 +46,13 @@ class _CheckoutViewState extends State<CheckoutView> {
                 isshowback: true,
                 isshowIcon: false,
                 spacepadding: 120,
-                text: 'الشحن',
+                text: getNextAppbarText(currentPageStep),
               ),
               verticalSpace(16),
-              CheckOutSteps(),
+              CheckOutSteps(
+                pageController: pageController,
+                currentPageStep: currentPageStep,
+              ),
               verticalSpace(32),
               Expanded(
                 child: CheckOutStepsPageView(
@@ -51,10 +60,11 @@ class _CheckoutViewState extends State<CheckoutView> {
                 ),
               ),
               AppTextButton(
-                buttonText: 'التالي',
+                buttonText: getNextButtonText(currentPageStep),
                 textStyle: Styles.textbuttom16White,
                 onPressed: () {
-                  pageController.nextPage(
+                  pageController.animateToPage(
+                    currentPageStep + 1,
                     duration: Duration(milliseconds: 300),
                     curve: Curves.easeIn,
                   );
@@ -66,5 +76,25 @@ class _CheckoutViewState extends State<CheckoutView> {
         ),
       ),
     );
+  }
+
+  String getNextButtonText(int currentPageStep) {
+    if (currentPageStep == 0) {
+      return 'التالي';
+    } else if (currentPageStep == 1) {
+      return 'التالي';
+    } else {
+      return 'تأكيد الطلب';
+    }
+  }
+
+  String getNextAppbarText(int currentPageStep) {
+    if (currentPageStep == 0) {
+      return 'الشحن';
+    } else if (currentPageStep == 1) {
+      return 'العنوان';
+    } else {
+      return 'الدفع';
+    }
   }
 }
