@@ -10,6 +10,7 @@ class PaymentItemTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        verticalSpace(8),
         Row(
           children: [
             Text(
