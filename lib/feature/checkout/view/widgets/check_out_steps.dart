@@ -2,8 +2,9 @@ import 'package:commerce_hub/feature/checkout/view/widgets/step_item.dart';
 import 'package:flutter/material.dart';
 
 class CheckOutSteps extends StatelessWidget {
-  const CheckOutSteps({super.key});
-
+  const CheckOutSteps({super.key, required this.currentPageStep, required this.pageController});
+  final int currentPageStep;
+  final PageController pageController;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -12,10 +13,17 @@ class CheckOutSteps extends StatelessWidget {
         getSteps().length,
         (index) {
           return Expanded(
-            child: StepItem(
-              isActive: true,
-              index: (index + 1).toString(),
-              text: getSteps()[index],
+            child: GestureDetector(
+              onTap: () {
+              pageController.animateToPage(index,
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeIn);
+              },
+              child: StepItem(
+                isActive: index <= currentPageStep,
+                index: (index + 1).toString(),
+                text: getSteps()[index],
+              ),
             ),
           );
         },

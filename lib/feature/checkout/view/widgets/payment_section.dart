@@ -1,6 +1,7 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/core/widgets/app_box_decoration.dart';
+import 'package:commerce_hub/feature/checkout/view/widgets/payment_address.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/payment_item_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,6 +31,13 @@ class PaymentSection extends StatelessWidget {
           width: 345.w,
           decoration: AppDecorations.greyBoxDecoration,
           child: PaymentItemTitle(),
+        ),
+        verticalSpace(16),
+        Container(
+          height: 70.h,
+          width: 345.w,
+          decoration: AppDecorations.greyBoxDecoration,
+          child: PaymentAddress(),
         ),
       ],
     );
