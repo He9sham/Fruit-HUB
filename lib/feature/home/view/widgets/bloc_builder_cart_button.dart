@@ -1,6 +1,7 @@
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
+import 'package:commerce_hub/core/widgets/snackbar_widget.dart';
 import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
 import 'package:commerce_hub/feature/home/logic/cart_item_cubit/cartitem_cubit.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +29,7 @@ class BlocBuilderCartButton extends StatelessWidget {
               Navigator.pushNamed(context, Routes.checkout);
               // push to payment screen
             } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('السلة فارغة'),
-                ),
-              );
+              ShowSnackBar.showSnackBar(context, 'السلة فارغة');
             }
           },
           textStyle: Styles.textbuttom16White,

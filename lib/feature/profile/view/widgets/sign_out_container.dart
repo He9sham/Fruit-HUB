@@ -1,6 +1,7 @@
 import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/utils/router.dart';
+import 'package:commerce_hub/core/widgets/snackbar_widget.dart';
 import 'package:commerce_hub/feature/Login&resetpassword/logic/cubit/login_cubit/login_cubit.dart';
 import 'package:commerce_hub/feature/Login&resetpassword/view/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -64,11 +65,7 @@ class SignOutContainer extends StatelessWidget {
         ),
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('حدث خطأ ما'),
-        ),
-      );
+      ShowSnackBar.showSnackBar(context, 'حدث خطأ ما');
     }
   }
 }
