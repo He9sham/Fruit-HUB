@@ -55,7 +55,7 @@ class LoginView extends StatelessWidget {
                   buttonText: 'تسجيل الدخول',
                   onPressed: () {
                     validateThenDoSignup(context);
-                    // context.read<LoginCubit>().isloading = false;
+                    
                   },
                   textStyle: Styles.textbuttom16White,
                 ),

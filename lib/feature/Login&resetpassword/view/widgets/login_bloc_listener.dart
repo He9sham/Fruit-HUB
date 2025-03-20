@@ -17,9 +17,11 @@ class LoginBlocListener extends StatelessWidget {
           current is LoginFailer ||
           current is LoginLoading,
       listener: (context, state) {
-        if (state is LoginSuccess) {
-          context.pushNamed(
-            Routes.navigationBar,
+        if (state is LoginLoading) {
+          LoadingAnimationWidget.twistingDots(
+            leftDotColor: const Color(0xFF1A1A3F),
+            rightDotColor: const Color(0xFFEA3799),
+            size: 40,
           );
         } else if (state is LoginFailer) {
           awesomeWidgets(
@@ -28,11 +30,9 @@ class LoginBlocListener extends StatelessWidget {
             'خطأ',
             state.errMessage,
           );
-        } else if (state is LoginLoading) {
-          LoadingAnimationWidget.twistingDots(
-            leftDotColor: const Color(0xFF1A1A3F),
-            rightDotColor: const Color(0xFFEA3799),
-            size: 200,
+        } else {
+          context.pushNamed(
+            Routes.navigationBar,
           );
         }
       },

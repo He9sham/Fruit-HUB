@@ -14,7 +14,6 @@ class _RowTextCheckBoxState extends State<RowTextCheckBox> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text.rich(
           TextSpan(
@@ -31,6 +30,7 @@ class _RowTextCheckBoxState extends State<RowTextCheckBox> {
           ),
         ),
         Checkbox(
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           value: isChecked, // Initialize with a boolean value
           activeColor: Colors.green,
           onChanged: (bool? newValue) {

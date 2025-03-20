@@ -34,7 +34,7 @@ class SignUpBlocListener extends StatelessWidget {
           LoadingAnimationWidget.twistingDots(
             leftDotColor: const Color(0xFF1A1A3F),
             rightDotColor: const Color(0xFFEA3799),
-            size: 200,
+            size: 40,
           );
         }
       },
