@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:395468957968:android:e5d34cef6a188f78aadd95",
         "android_client_info": {
-          "package_name": "com.example.commerce_hub"
+          "package_name": "com.example.commerce_hub.dev"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "395468957968-4f5mih6i8b6dhrsapuc246ga9nfp5oml.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.commerce_hub",
+            "package_name": "com.example.commerce_hub.dev",
             "certificate_hash": "e06841a4e986112ba09b2addaf883ebf3ca2b85b"
           }
         },
