@@ -39,9 +39,9 @@ class _CheckoutViewState extends State<CheckoutView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Provider.value(
-        value: OrderEntity(cartEntity: widget.cartEntity),
-        child: SafeArea(
+      body: SafeArea(
+        child: Provider.value(
+          value: OrderEntity(widget.cartEntity),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(

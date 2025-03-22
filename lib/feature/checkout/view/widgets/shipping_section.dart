@@ -23,6 +23,7 @@ class _ShippingSectionState extends State<ShippingSection> {
           ontap: () {
             setState(() {
               selected = 0;
+              context.read<OrderEntity>().payWithcach = true;
             });
           },
           title: 'الدفع عند الاستلام',
@@ -36,6 +37,7 @@ class _ShippingSectionState extends State<ShippingSection> {
           ontap: () {
             setState(() {
               selected = 1;
+              context.read<OrderEntity>().payWithcach = false;
             });
           },
           title: 'الدفع اونلاين',

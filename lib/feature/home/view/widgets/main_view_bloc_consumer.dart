@@ -18,10 +18,10 @@ class MainViewBlocConsumer extends StatelessWidget {
     return BlocConsumer<CartProductCubit, CartState>(
       listener: (context, state) {
         if (state is CartAdded) {
-          ShowSnackBar.showSnackBar(context, 'تمت الاضافة الى السلة');
+          showSnackBar(context, 'تمت الاضافة الى السلة');
         }
         if (state is CartRemoved) {
-          ShowSnackBar.showSnackBar(context, 'تمت الازالة من السلة');
+          showSnackBar(context, 'تمت الازالة من السلة');
         }
       },
       builder: (context, state) {

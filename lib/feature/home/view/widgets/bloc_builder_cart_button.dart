@@ -29,7 +29,7 @@ class BlocBuilderCartButton extends StatelessWidget {
               Navigator.pushNamed(context, Routes.checkout , arguments: context.read<CartProductCubit>().cartEntity);
               // push to payment screen
             } else {
-              ShowSnackBar.showSnackBar(context, 'السلة فارغة');
+            showSnackBar(context, 'السلة فارغة');
             }
           },
           textStyle: Styles.textbuttom16White,

@@ -65,7 +65,7 @@ class SignOutContainer extends StatelessWidget {
         ),
       );
     } else {
-      ShowSnackBar.showSnackBar(context, 'حدث خطأ ما');
+      showSnackBar(context, 'حدث خطأ ما');
     }
   }
 }

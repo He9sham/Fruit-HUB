@@ -1,8 +1,12 @@
+import 'package:commerce_hub/core/widgets/snackbar_widget.dart';
+import 'package:commerce_hub/feature/checkout/domain/order_entity.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/step_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CheckOutSteps extends StatelessWidget {
-  const CheckOutSteps({super.key, required this.currentPageStep, required this.pageController});
+  const CheckOutSteps(
+      {super.key, required this.currentPageStep, required this.pageController});
   final int currentPageStep;
   final PageController pageController;
   @override
@@ -15,9 +19,13 @@ class CheckOutSteps extends StatelessWidget {
           return Expanded(
             child: GestureDetector(
               onTap: () {
-              pageController.animateToPage(index,
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeIn);
+                if (context.read<OrderEntity>().payWithcach != null) {
+                  pageController.animateToPage(index,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeIn);
+                } else {
+                  showSnackBar(context, 'يرجي اختيار طريقه الدفع');
+                }
               },
               child: StepItem(
                 isActive: index <= currentPageStep,
