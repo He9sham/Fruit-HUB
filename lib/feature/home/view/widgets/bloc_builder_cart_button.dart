@@ -26,7 +26,7 @@ class BlocBuilderCartButton extends StatelessWidget {
                 .cartEntity
                 .cartItems
                 .isNotEmpty) {
-              Navigator.pushNamed(context, Routes.checkout);
+              Navigator.pushNamed(context, Routes.checkout , arguments: context.read<CartProductCubit>().cartEntity);
               // push to payment screen
             } else {
               ShowSnackBar.showSnackBar(context, 'السلة فارغة');

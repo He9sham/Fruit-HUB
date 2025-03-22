@@ -1,6 +1,8 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
+import 'package:commerce_hub/feature/checkout/domain/order_entity.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/shipping_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ShippingSection extends StatefulWidget {
   const ShippingSection({super.key});
@@ -25,7 +27,8 @@ class _ShippingSectionState extends State<ShippingSection> {
           },
           title: 'الدفع عند الاستلام',
           subtitle: 'التسليم من المكان',
-          price: '40 جنيه',
+          price:
+              '${(context.read<OrderEntity>().cartEntity.calculateTotalPrice() + 30).toString()} جنيه',
         ),
         verticalSpace(10),
         ShippingItem(
@@ -35,9 +38,10 @@ class _ShippingSectionState extends State<ShippingSection> {
               selected = 1;
             });
           },
-          title: 'اشتري الان وادفع لاحقا',
+          title: 'الدفع اونلاين',
           subtitle: 'يرجي تحديد طريقه الدفع',
-          price: 'مجاني',
+          price:
+              '${context.read<OrderEntity>().cartEntity.calculateTotalPrice().toString()} جنيه',
         ),
       ],
     );

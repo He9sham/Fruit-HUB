@@ -2,13 +2,16 @@ import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
 import 'package:commerce_hub/core/widgets/custom_appbar.dart';
+import 'package:commerce_hub/feature/checkout/domain/order_entity.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/check_out_steps.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/check_out_steps_page_view.dart';
+import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutView extends StatefulWidget {
-  const CheckoutView({super.key});
-
+  const CheckoutView({super.key, required this.cartEntity});
+  final CartEntity cartEntity;
   @override
   State<CheckoutView> createState() => _CheckoutViewState();
 }
@@ -36,42 +39,45 @@ class _CheckoutViewState extends State<CheckoutView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-              verticalSpace(16),
-              CustomAppbar(
-                isshowback: true,
-                isshowIcon: false,
-                spacepadding: 120,
-                text: getNextAppbarText(currentPageStep),
-              ),
-              verticalSpace(16),
-              CheckOutSteps(
-                pageController: pageController,
-                currentPageStep: currentPageStep,
-              ),
-              verticalSpace(32),
-              Expanded(
-                child: CheckOutStepsPageView(
-                  pageController: pageController,
+      body: Provider.value(
+        value: OrderEntity(cartEntity: widget.cartEntity),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                verticalSpace(16),
+                CustomAppbar(
+                  isshowback: true,
+                  isshowIcon: false,
+                  spacepadding: 120,
+                  text: getNextAppbarText(currentPageStep),
                 ),
-              ),
-              AppTextButton(
-                buttonText: getNextButtonText(currentPageStep),
-                textStyle: Styles.textbuttom16White,
-                onPressed: () {
-                  pageController.animateToPage(
-                    currentPageStep + 1,
-                    duration: Duration(milliseconds: 300),
-                    curve: Curves.easeIn,
-                  );
-                },
-              ),
-              verticalSpace(50),
-            ],
+                verticalSpace(16),
+                CheckOutSteps(
+                  pageController: pageController,
+                  currentPageStep: currentPageStep,
+                ),
+                verticalSpace(32),
+                Expanded(
+                  child: CheckOutStepsPageView(
+                    pageController: pageController,
+                  ),
+                ),
+                AppTextButton(
+                  buttonText: getNextButtonText(currentPageStep),
+                  textStyle: Styles.textbuttom16White,
+                  onPressed: () {
+                    pageController.animateToPage(
+                      currentPageStep + 1,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeIn,
+                    );
+                  },
+                ),
+                verticalSpace(50),
+              ],
+            ),
           ),
         ),
       ),
