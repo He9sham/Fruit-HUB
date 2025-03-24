@@ -3,8 +3,7 @@ import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
 
 class OrderEntity {
   final CartEntity cartEntity;
-   bool? payWithcach;
-  final ShippingAddressEntity? shippingAddress;
-  OrderEntity( this.cartEntity,
-      {  this.shippingAddress, this.payWithcach});
+  bool? payWithcach;
+  ShippingAddressEntity? shippingAddress = ShippingAddressEntity();
+  OrderEntity(this.cartEntity, {this.payWithcach});
 }

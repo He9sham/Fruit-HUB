@@ -32,10 +32,15 @@ class _CheckoutViewState extends State<CheckoutView> {
   @override
   void dispose() {
     pageController.dispose();
+    autoValidateMode.dispose();
     super.dispose();
   }
 
   int currentPageStep = 0;
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  ValueNotifier<AutovalidateMode> autoValidateMode =
+      ValueNotifier<AutovalidateMode>(AutovalidateMode.disabled);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +66,8 @@ class _CheckoutViewState extends State<CheckoutView> {
                 verticalSpace(32),
                 Expanded(
                   child: CheckOutStepsPageView(
+                    valueListenable: autoValidateMode,
+                    formKey: formKey,
                     pageController: pageController,
                   ),
                 ),
@@ -68,11 +75,11 @@ class _CheckoutViewState extends State<CheckoutView> {
                   buttonText: getNextButtonText(currentPageStep),
                   textStyle: Styles.textbuttom16White,
                   onPressed: () {
-                    pageController.animateToPage(
-                      currentPageStep + 1,
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.easeIn,
-                    );
+                    if (currentPageStep == 0) {
+                      _handelShippingSectionValidate();
+                    } else if (currentPageStep == 1) {
+                      _handelAddresSectionValidate();
+                    }
                   },
                 ),
                 verticalSpace(50),
@@ -81,6 +88,14 @@ class _CheckoutViewState extends State<CheckoutView> {
           ),
         ),
       ),
+    );
+  }
+
+  void _handelShippingSectionValidate() {
+    pageController.animateToPage(
+      currentPageStep + 1,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeIn,
     );
   }
 
@@ -101,6 +116,19 @@ class _CheckoutViewState extends State<CheckoutView> {
       return 'العنوان';
     } else {
       return 'الدفع';
+    }
+  }
+
+  void _handelAddresSectionValidate() {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      pageController.animateToPage(
+        currentPageStep + 1,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
+    } else {
+      autoValidateMode.value = AutovalidateMode.always;
     }
   }
 }
