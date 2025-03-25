@@ -1,7 +1,9 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
+import 'package:commerce_hub/feature/checkout/domain/order_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class PaymentItemTitle extends StatelessWidget {
   const PaymentItemTitle({super.key});
@@ -15,7 +17,7 @@ class PaymentItemTitle extends StatelessWidget {
           children: [
             Text(
               textDirection: TextDirection.rtl,
-              '150 جنيه',
+              '${context.read<OrderEntity>().cartEntity.calculateTotalPrice()} جنيه',
               style: Styles.textSize13Black600.copyWith(
                 fontSize: 16.sp,
               ),
@@ -61,7 +63,7 @@ class PaymentItemTitle extends StatelessWidget {
           children: [
             Text(
               textDirection: TextDirection.rtl,
-              '180 جنيه',
+              '${context.read<OrderEntity>().cartEntity.calculateTotalPrice() + 30} جنيه',
               style: Styles.textSize13Black600.copyWith(
                 fontSize: 16.sp,
               ),

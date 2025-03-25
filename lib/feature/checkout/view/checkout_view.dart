@@ -18,9 +18,12 @@ class CheckoutView extends StatefulWidget {
 
 class _CheckoutViewState extends State<CheckoutView> {
   late PageController pageController;
+  late OrderEntity orderEntity;
+
   @override
   void initState() {
     pageController = PageController();
+    orderEntity = OrderEntity(widget.cartEntity);
     pageController.addListener(() {
       setState(() {
         currentPageStep = pageController.page!.toInt();
@@ -46,7 +49,7 @@ class _CheckoutViewState extends State<CheckoutView> {
     return Scaffold(
       body: SafeArea(
         child: Provider.value(
-          value: OrderEntity(widget.cartEntity),
+          value: orderEntity,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(

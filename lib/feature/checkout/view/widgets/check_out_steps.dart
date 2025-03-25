@@ -1,8 +1,6 @@
 import 'package:commerce_hub/core/widgets/snackbar_widget.dart';
-import 'package:commerce_hub/feature/checkout/domain/order_entity.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/step_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CheckOutSteps extends StatelessWidget {
   const CheckOutSteps(
@@ -19,12 +17,16 @@ class CheckOutSteps extends StatelessWidget {
           return Expanded(
             child: GestureDetector(
               onTap: () {
-                if (context.read<OrderEntity>().payWithcach != null) {
+                if (index <= currentPageStep) {
                   pageController.animateToPage(index,
                       duration: Duration(milliseconds: 300),
                       curve: Curves.easeIn);
-                } else {
-                  showSnackBar(context, 'يرجي اختيار طريقه الدفع');
+                } else if (index > currentPageStep) {
+                  if (currentPageStep == 0) {
+                    showSnackBar(context, 'يرجى إكمال قسم الشحن أولاً');
+                  } else if (currentPageStep == 1) {
+                    showSnackBar(context, 'يرجى إكمال قسم العنوان أولاً');
+                  }
                 }
               },
               child: StepItem(

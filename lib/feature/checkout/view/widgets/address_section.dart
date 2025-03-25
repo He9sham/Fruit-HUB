@@ -26,7 +26,8 @@ class AddressSection extends StatelessWidget {
               children: [
                 AppTextFormField(
                   onsaved: (value) {
-                    context.read<OrderEntity>().shippingAddress!.name = value;
+                    context.read<OrderEntity>().shippingAddressEntity!.name =
+                        value;
                   },
                   hintText: 'الاسم كامل',
                   validator: (value) {
@@ -36,8 +37,10 @@ class AddressSection extends StatelessWidget {
                 ),
                 verticalSpace(8),
                 AppTextFormField(
-                  onsaved: (p0) =>
-                      context.read<OrderEntity>().shippingAddress!.email = p0,
+                  onsaved: (p0) => context
+                      .read<OrderEntity>()
+                      .shippingAddressEntity!
+                      .email = p0,
                   hintText: 'البريد الإلكتروني',
                   validator: (data) {
                     data = data!.trim();
@@ -50,7 +53,8 @@ class AddressSection extends StatelessWidget {
                 verticalSpace(8),
                 AppTextFormField(
                   onsaved: (value) {
-                    context.read<OrderEntity>().shippingAddress!.phone = value;
+                    context.read<OrderEntity>().shippingAddressEntity!.phone =
+                        value;
                   },
                   keyboardType: TextInputType.number,
                   hintText: 'رقم الهاتف',
@@ -64,7 +68,7 @@ class AddressSection extends StatelessWidget {
                 verticalSpace(8),
                 AppTextFormField(
                   onsaved: (value) {
-                    context.read<OrderEntity>().shippingAddress!.address =
+                    context.read<OrderEntity>().shippingAddressEntity!.address =
                         value;
                   },
                   hintText: 'العنوان',
@@ -78,7 +82,8 @@ class AddressSection extends StatelessWidget {
                 verticalSpace(8),
                 AppTextFormField(
                   onsaved: (value) {
-                    context.read<OrderEntity>().shippingAddress!.city = value;
+                    context.read<OrderEntity>().shippingAddressEntity!.city =
+                        value;
                   },
                   hintText: 'المدينة',
                   validator: (value) {
@@ -91,10 +96,8 @@ class AddressSection extends StatelessWidget {
                 verticalSpace(8),
                 AppTextFormField(
                   onsaved: (value) {
-                    context
-                        .read<OrderEntity>()
-                        .shippingAddress!
-                        .addressDetails = value;
+                    context.read<OrderEntity>().shippingAddressEntity!.post =
+                        value;
                   },
                   hintText: 'الرمز البريدي',
                   validator: (value) {
@@ -107,7 +110,8 @@ class AddressSection extends StatelessWidget {
                 verticalSpace(8),
                 AppTextFormField(
                   onsaved: (value) {
-                    context.read<OrderEntity>().shippingAddress!.floor = value;
+                    context.read<OrderEntity>().shippingAddressEntity!.floor =
+                        value;
                   },
                   hintText: 'رقم الطابق , رقم الشقه ..',
                   validator: (value) {

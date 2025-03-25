@@ -2,8 +2,8 @@ import 'package:commerce_hub/feature/checkout/domain/shipping_address_entity.dar
 import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
 
 class OrderEntity {
-  final CartEntity cartEntity;
+  CartEntity cartEntity;
   bool? payWithcach;
-  ShippingAddressEntity? shippingAddress = ShippingAddressEntity();
+  ShippingAddressEntity? shippingAddressEntity = ShippingAddressEntity();
   OrderEntity(this.cartEntity, {this.payWithcach});
 }
