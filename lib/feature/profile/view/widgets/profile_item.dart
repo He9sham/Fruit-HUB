@@ -1,5 +1,6 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/feature/profile/view/widgets/profile_item_row.dart';
+import 'package:commerce_hub/feature/profile/view/widgets/switch_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -66,6 +67,7 @@ class ProfileItem extends StatelessWidget {
           isShowSwitch: true,
           icon: FontAwesomeIcons.bell,
           title: 'الاشعارات',
+          switchType: SwitchType.notification,
         ),
         Divider(
           thickness: 1,
@@ -77,6 +79,7 @@ class ProfileItem extends StatelessWidget {
           icon: FontAwesomeIcons.wandMagicSparkles,
           isShowBack: false,
           isShowSwitch: true,
+          switchType: SwitchType.theme,
         ),
         Divider(
           thickness: 1,

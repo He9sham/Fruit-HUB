@@ -4,16 +4,21 @@ import 'package:commerce_hub/feature/profile/view/widgets/switch_icon.dart';
 import 'package:flutter/material.dart';
 
 class ProfileItemRow extends StatelessWidget {
-  const ProfileItemRow(
-      {super.key,
-      required this.title,
-      required this.icon,
-      required this.isShowBack,
-      required this.isShowSwitch});
+  const ProfileItemRow({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.isShowBack,
+    required this.isShowSwitch,
+    this.switchType = SwitchType.other,
+  });
+
   final String title;
   final IconData icon;
   final bool isShowBack;
   final bool isShowSwitch;
+  final SwitchType switchType;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -34,7 +39,7 @@ class ProfileItemRow extends StatelessWidget {
         ),
         Visibility(
           visible: isShowSwitch,
-          child: SwitchWidget(),
+          child: SwitchWidget(switchType: switchType),
         )
       ],
     );
