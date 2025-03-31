@@ -33,14 +33,9 @@ class LoginCubit extends Cubit<LoginState> {
       var userEntity = await getUserData(uid: user.user!.uid);
       firebaseDatabaseService.saveUserData(user: userEntity);
       emit(LoginSuccess());
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        emit(LoginFailer(errMessage: 'البريد الالكتروني غير موجود'));
-      } else if (e.code == 'wrong-password') {
-        emit(
-          LoginFailer(errMessage: 'كلمة المرور غير صحيحة'),
-        );
-      }
+    } on FirebaseAuthException {
+      emit(LoginFailer(
+          errMessage: 'البريد الالكتروني او كلمة المرور غير صحيحة'));
     } catch (e) {
       emit(LoginFailer(
           errMessage:
