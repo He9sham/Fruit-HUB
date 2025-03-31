@@ -1,3 +1,5 @@
+import 'package:commerce_hub/core/repos/order_repo/order_repo.dart';
+import 'package:commerce_hub/core/repos/order_repo/order_repo_impl.dart';
 import 'package:commerce_hub/core/repos/product_repo/product_repo.dart';
 import 'package:commerce_hub/core/repos/product_repo/product_repo_impl.dart';
 import 'package:commerce_hub/core/service/database_service.dart';
@@ -12,6 +14,11 @@ void setupGetit() {
   getIt.registerSingleton<ProductRepo>(
     ProductRepoImpl(
       getIt<DatabaseService>(),
+    ),
+  );
+  getIt.registerSingleton<OrderRepo>(
+    OrderRepoImpl(
+      fireStoreService: getIt<DatabaseService>(),
     ),
   );
 }

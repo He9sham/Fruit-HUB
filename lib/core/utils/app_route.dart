@@ -1,4 +1,5 @@
 import 'package:commerce_hub/core/cubits/products_cubit/products_cubit.dart';
+import 'package:commerce_hub/core/repos/order_repo/order_repo.dart';
 import 'package:commerce_hub/core/repos/product_repo/product_repo.dart';
 import 'package:commerce_hub/core/service/get_it_service.dart';
 import 'package:commerce_hub/core/utils/router.dart';
@@ -9,6 +10,7 @@ import 'package:commerce_hub/feature/Login&resetpassword/view/login_view.dart';
 import 'package:commerce_hub/feature/Login&resetpassword/view/resetpassword_view.dart';
 import 'package:commerce_hub/feature/Onboarding&Splash/view/onboarding_view.dart';
 import 'package:commerce_hub/feature/Onboarding&Splash/view/splash_view.dart';
+import 'package:commerce_hub/feature/checkout/logic/add_order_cubit/add_order_cubit.dart';
 import 'package:commerce_hub/feature/checkout/view/checkout_view.dart';
 import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
 import 'package:commerce_hub/feature/home/view/best_seller_view.dart';
@@ -73,8 +75,13 @@ class AppRouter {
         );
       case Routes.checkout:
         return MaterialPageRoute(
-          builder: (_) => CheckoutView(
-            cartEntity: settings.arguments as CartEntity,
+          builder: (_) => BlocProvider(
+            create: (context) => AddOrderCubit(
+              getIt.get<OrderRepo>(),
+            ),
+            child: CheckoutView(
+              cartEntity: settings.arguments as CartEntity,
+            ),
           ),
         );
       default:

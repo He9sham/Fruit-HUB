@@ -4,6 +4,8 @@ import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
 import 'package:commerce_hub/core/widgets/custom_appbar.dart';
 import 'package:commerce_hub/feature/checkout/domain/order_entity.dart';
+import 'package:commerce_hub/feature/checkout/logic/add_order_cubit/add_order_cubit.dart';
+import 'package:commerce_hub/feature/checkout/view/widgets/add_order_cubit_bloc_builder.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/check_out_steps.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/check_out_steps_page_view.dart';
 import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
@@ -47,47 +49,54 @@ class _CheckoutViewState extends State<CheckoutView> {
       ValueNotifier<AutovalidateMode>(AutovalidateMode.disabled);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Provider.value(
-          value: orderEntity,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              children: [
-                verticalSpace(16),
-                CustomAppbar(
-                  isshowback: true,
-                  isshowIcon: false,
-                  spacepadding: 120,
-                  text: getNextAppbarText(currentPageStep),
-                ),
-                verticalSpace(16),
-                CheckOutSteps(
-                  pageController: pageController,
-                  currentPageStep: currentPageStep,
-                ),
-                verticalSpace(32),
-                Expanded(
-                  child: CheckOutStepsPageView(
-                    valueListenable: autoValidateMode,
-                    formKey: formKey,
-                    pageController: pageController,
+    return AddOrderCubitBlocBuilder(
+      child: Scaffold(
+        body: SafeArea(
+          child: Provider.value(
+            value: orderEntity,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  verticalSpace(16),
+                  CustomAppbar(
+                    isshowback: true,
+                    isshowIcon: false,
+                    spacepadding: 120,
+                    text: getNextAppbarText(currentPageStep),
                   ),
-                ),
-                AppTextButton(
-                  buttonText: getNextButtonText(currentPageStep),
-                  textStyle: Styles.textbuttom16White,
-                  onPressed: () {
-                    if (currentPageStep == 0) {
-                      _handelShippingSectionValidate();
-                    } else if (currentPageStep == 1) {
-                      _handelAddresSectionValidate();
-                    }
-                  },
-                ),
-                verticalSpace(50),
-              ],
+                  verticalSpace(16),
+                  CheckOutSteps(
+                    pageController: pageController,
+                    currentPageStep: currentPageStep,
+                  ),
+                  verticalSpace(32),
+                  Expanded(
+                    child: CheckOutStepsPageView(
+                      valueListenable: autoValidateMode,
+                      formKey: formKey,
+                      pageController: pageController,
+                    ),
+                  ),
+                  AppTextButton(
+                    buttonText: getNextButtonText(currentPageStep),
+                    textStyle: Styles.textbuttom16White,
+                    onPressed: () {
+                      if (currentPageStep == 0) {
+                        _handelShippingSectionValidate();
+                      } else if (currentPageStep == 1) {
+                        _handelAddresSectionValidate();
+                      } else {
+                        var orderEntity = context.read<OrderEntity>();
+                        context
+                            .read<AddOrderCubit>()
+                            .addOrder(order: orderEntity);
+                      }
+                    },
+                  ),
+                  verticalSpace(50),
+                ],
+              ),
             ),
           ),
         ),
