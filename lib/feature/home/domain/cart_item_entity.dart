@@ -4,27 +4,26 @@ import 'package:equatable/equatable.dart';
 class CartItemEntity extends Equatable {
   final ProductInputEntity productInputEntity;
 
-  int count;
+  int quantity;
 
-  CartItemEntity({required this.productInputEntity, this.count = 1});
+  CartItemEntity({required this.productInputEntity, this.quantity = 1});
 
   num calculateTotalPrice() {
-    return productInputEntity.price * count;
+    return productInputEntity.price * quantity;
   }
 
   num calculateTotalWeight() {
-    return productInputEntity.unitAmount * count;
+    return productInputEntity.unitAmount * quantity;
   }
 
   increaseCount() {
-    count++;
+    quantity++;
   }
 
   deccreaseCount() {
-    count--;
+    quantity--;
   }
-  
+
   @override
-  
   List<Object?> get props => [productInputEntity];
 }

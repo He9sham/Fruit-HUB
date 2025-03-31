@@ -1,5 +1,5 @@
 import 'package:commerce_hub/core/cubits/products_cubit/products_cubit.dart';
-import 'package:commerce_hub/core/repos/product_repo.dart';
+import 'package:commerce_hub/core/repos/product_repo/product_repo.dart';
 import 'package:commerce_hub/core/service/get_it_service.dart';
 import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/core/widgets/navigation_bar.dart';

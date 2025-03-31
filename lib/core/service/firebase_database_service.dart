@@ -7,7 +7,7 @@ import 'package:commerce_hub/core/service/shared_preferences_singleton.dart';
 import 'package:commerce_hub/core/service/user_entity.dart';
 import 'package:commerce_hub/core/service/user_models.dart';
 
-class FirebaseDatabaseService implements DatabaseService {
+class FireStoreService implements DatabaseService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Future<void> addData(

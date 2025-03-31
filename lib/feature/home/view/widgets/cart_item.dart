@@ -76,7 +76,7 @@ class CartItem extends StatelessWidget {
                     BottomAction(
                       icondata: FontAwesomeIcons.minus,
                       onTap: () {
-                        if (cartItemEntity.count > 1) {
+                        if (cartItemEntity.quantity > 1) {
                           cartItemEntity.deccreaseCount();
                         } else {
                           context
@@ -91,7 +91,7 @@ class CartItem extends StatelessWidget {
                     ),
                     horizontalSpace(10),
                     Text(
-                      cartItemEntity.count.toString(),
+                      cartItemEntity.quantity.toString(),
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w700,

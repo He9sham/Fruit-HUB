@@ -14,7 +14,7 @@ class SignupCubit extends Cubit<SignupCubitState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  FirebaseDatabaseService firebaseDatabaseService = FirebaseDatabaseService();
+  FireStoreService firebaseDatabaseService = FireStoreService();
   final formkey = GlobalKey<FormState>();
   Future<void> signupMethod() async {
     UserCredential? user;

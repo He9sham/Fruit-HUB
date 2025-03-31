@@ -4,6 +4,7 @@ import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
 class OrderEntity {
   CartEntity cartEntity;
   bool? payWithcach;
+  final String uId;
   ShippingAddressEntity? shippingAddressEntity = ShippingAddressEntity();
-  OrderEntity(this.cartEntity, {this.payWithcach});
+  OrderEntity(this.cartEntity, {this.payWithcach , required this.uId});
 }

@@ -19,13 +19,13 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  FirebaseDatabaseService firebaseDatabaseService = FirebaseDatabaseService();
+  FireStoreService firebaseDatabaseService = FireStoreService();
   bool isloading = false;
   final formkey = GlobalKey<FormState>();
 
   Future<void> loginMethod() async {
     UserCredential user;
-    FirebaseDatabaseService firebaseDatabaseService = FirebaseDatabaseService();
+    FireStoreService firebaseDatabaseService = FireStoreService();
     emit(LoginLoading());
     try {
       user = await FirebaseAuth.instance.signInWithEmailAndPassword(

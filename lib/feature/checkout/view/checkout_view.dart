@@ -1,4 +1,5 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
+import 'package:commerce_hub/core/service/get_user.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
 import 'package:commerce_hub/core/widgets/custom_appbar.dart';
@@ -23,7 +24,7 @@ class _CheckoutViewState extends State<CheckoutView> {
   @override
   void initState() {
     pageController = PageController();
-    orderEntity = OrderEntity(widget.cartEntity);
+    orderEntity = OrderEntity(widget.cartEntity, uId: getuser().uid);
     pageController.addListener(() {
       setState(() {
         currentPageStep = pageController.page!.toInt();
