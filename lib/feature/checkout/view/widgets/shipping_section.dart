@@ -1,5 +1,5 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
-import 'package:commerce_hub/feature/checkout/domain/order_entity.dart';
+import 'package:commerce_hub/feature/checkout/domain/entity/order_entity.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/shipping_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

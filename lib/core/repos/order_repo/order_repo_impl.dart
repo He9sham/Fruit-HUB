@@ -3,7 +3,7 @@ import 'package:commerce_hub/core/networking/backend_endpoints.dart';
 import 'package:commerce_hub/core/repos/order_repo/order_repo.dart';
 import 'package:commerce_hub/core/service/database_service.dart';
 import 'package:commerce_hub/feature/checkout/data/models/order_models.dart';
-import 'package:commerce_hub/feature/checkout/domain/order_entity.dart';
+import 'package:commerce_hub/feature/checkout/domain/entity/order_entity.dart';
 import 'package:dartz/dartz.dart';
 
 class OrderRepoImpl implements OrderRepo {

@@ -1,6 +1,6 @@
 import 'package:commerce_hub/feature/checkout/data/models/order_product_model_.dart';
 import 'package:commerce_hub/feature/checkout/data/models/shipping_model.dart';
-import 'package:commerce_hub/feature/checkout/domain/order_entity.dart';
+import 'package:commerce_hub/feature/checkout/domain/entity/order_entity.dart';
 
 class OrderModels {
   final double totalPrice;

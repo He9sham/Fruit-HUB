@@ -3,13 +3,14 @@ import 'package:commerce_hub/core/service/get_user.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
 import 'package:commerce_hub/core/widgets/custom_appbar.dart';
-import 'package:commerce_hub/feature/checkout/domain/order_entity.dart';
+import 'package:commerce_hub/feature/checkout/domain/entity/order_entity.dart';
 import 'package:commerce_hub/feature/checkout/logic/add_order_cubit/add_order_cubit.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/add_order_cubit_bloc_builder.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/check_out_steps.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/check_out_steps_page_view.dart';
 import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutView extends StatefulWidget {
@@ -88,6 +89,8 @@ class _CheckoutViewState extends State<CheckoutView> {
                         } else if (currentPageStep == 1) {
                           _handelAddresSectionValidate();
                         } else {
+                          // paymentMethodHandler(context);
+
                           var orderEntity = context.read<OrderEntity>();
                           context
                               .read<AddOrderCubit>()
@@ -145,5 +148,56 @@ class _CheckoutViewState extends State<CheckoutView> {
     } else {
       autoValidateMode.value = AutovalidateMode.always;
     }
+  }
+
+  void paymentMethodHandler(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) => PaypalCheckoutView(
+        sandboxMode: true,
+        clientId: "",
+        secretKey: "",
+        transactions: const [
+          {
+            "amount": {
+              "total": '70',
+              "currency": "USD",
+              "details": {
+                "subtotal": '70',
+                "shipping": '0',
+                "shipping_discount": 0
+              }
+            },
+            "description": "The payment transaction description.",
+            "item_list": {
+              "items": [
+                {
+                  "name": "Apple",
+                  "quantity": 4,
+                  "price": '5',
+                  "currency": "USD"
+                },
+                {
+                  "name": "Pineapple",
+                  "quantity": 5,
+                  "price": '10',
+                  "currency": "USD"
+                }
+              ],
+            }
+          }
+        ],
+        note: "Contact us for any questions on your order.",
+        onSuccess: (Map params) async {
+          print("onSuccess: $params");
+        },
+        onError: (error) {
+          print("onError: $error");
+          Navigator.pop(context);
+        },
+        onCancel: () {
+          print('cancelled:');
+        },
+      ),
+    ));
   }
 }

@@ -1,6 +1,6 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
-import 'package:commerce_hub/feature/checkout/domain/order_entity.dart';
+import 'package:commerce_hub/feature/checkout/domain/entity/order_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
