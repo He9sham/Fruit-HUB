@@ -1,10 +1,9 @@
 import 'package:commerce_hub/feature/checkout/domain/entity/order_entity.dart';
 
-
 class DetailsEntity {
   String? subtotal;
   String? shipping;
-  double? shippingDiscount;
+  dynamic shippingDiscount;
 
   DetailsEntity({this.subtotal, this.shipping, this.shippingDiscount});
 

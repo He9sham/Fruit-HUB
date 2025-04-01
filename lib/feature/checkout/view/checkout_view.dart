@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/service/get_user.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/core/utils/app_keys.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
 import 'package:commerce_hub/core/widgets/custom_appbar.dart';
+import 'package:commerce_hub/core/widgets/snackbar_widget.dart';
 import 'package:commerce_hub/feature/checkout/domain/entity/order_entity.dart';
 import 'package:commerce_hub/feature/checkout/domain/entity/paypal_payment_entity/paypal_payment_entity.dart';
 import 'package:commerce_hub/feature/checkout/logic/add_order_cubit/add_order_cubit.dart';
@@ -166,15 +169,16 @@ class _CheckoutViewState extends State<CheckoutView> {
         ],
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
-          print("onSuccess: $params");
+          log("onSuccess: $params");
+          Navigator.pop(context);
+          showSnackBar(context, 'تم الدفع بنجاح');
         },
         onError: (error) {
-          print("onError: $error");
+          log("onError: $error");
           Navigator.pop(context);
+          showSnackBar(context, 'حدث خطأ ما');
         },
-        onCancel: () {
-          print('cancelled:');
-        },
+        onCancel: () {},
       ),
     ));
   }
