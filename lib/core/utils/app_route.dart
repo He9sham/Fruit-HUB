@@ -13,6 +13,7 @@ import 'package:commerce_hub/feature/Onboarding&Splash/view/splash_view.dart';
 import 'package:commerce_hub/feature/checkout/logic/add_order_cubit/add_order_cubit.dart';
 import 'package:commerce_hub/feature/checkout/view/checkout_view.dart';
 import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
+import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
 import 'package:commerce_hub/feature/home/view/best_seller_view.dart';
 import 'package:commerce_hub/feature/home/view/home_view.dart';
 import 'package:commerce_hub/feature/sign_up/logic/signup_cubit_cubit.dart';
@@ -66,12 +67,16 @@ class AppRouter {
         );
       case Routes.bestsellerview:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => ProductsCubit(
-              getIt.get<ProductRepo>(),
+          builder: (_) => MultiBlocProvider(providers: [
+            BlocProvider(
+              create: (context) => ProductsCubit(
+                getIt.get<ProductRepo>(),
+              ),
             ),
-            child: BestSellerView(),
-          ),
+            BlocProvider(
+              create: (context) => CartProductCubit(),
+            ),
+          ], child: BestSellerView()),
         );
       case Routes.checkout:
         return MaterialPageRoute(

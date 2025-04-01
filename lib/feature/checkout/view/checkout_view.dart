@@ -78,21 +78,23 @@ class _CheckoutViewState extends State<CheckoutView> {
                       pageController: pageController,
                     ),
                   ),
-                  AppTextButton(
-                    buttonText: getNextButtonText(currentPageStep),
-                    textStyle: Styles.textbuttom16White,
-                    onPressed: () {
-                      if (currentPageStep == 0) {
-                        _handelShippingSectionValidate();
-                      } else if (currentPageStep == 1) {
-                        _handelAddresSectionValidate();
-                      } else {
-                        var orderEntity = context.read<OrderEntity>();
-                        context
-                            .read<AddOrderCubit>()
-                            .addOrder(order: orderEntity);
-                      }
-                    },
+                  Builder(
+                    builder: (context) => AppTextButton(
+                      buttonText: getNextButtonText(currentPageStep),
+                      textStyle: Styles.textbuttom16White,
+                      onPressed: () {
+                        if (currentPageStep == 0) {
+                          _handelShippingSectionValidate();
+                        } else if (currentPageStep == 1) {
+                          _handelAddresSectionValidate();
+                        } else {
+                          var orderEntity = context.read<OrderEntity>();
+                          context
+                              .read<AddOrderCubit>()
+                              .addOrder(order: orderEntity);
+                        }
+                      },
+                    ),
                   ),
                   verticalSpace(50),
                 ],
