@@ -1,9 +1,11 @@
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/service/get_user.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
+import 'package:commerce_hub/core/utils/app_keys.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
 import 'package:commerce_hub/core/widgets/custom_appbar.dart';
 import 'package:commerce_hub/feature/checkout/domain/entity/order_entity.dart';
+import 'package:commerce_hub/feature/checkout/domain/entity/paypal_payment_entity/paypal_payment_entity.dart';
 import 'package:commerce_hub/feature/checkout/logic/add_order_cubit/add_order_cubit.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/add_order_cubit_bloc_builder.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/check_out_steps.dart';
@@ -89,8 +91,7 @@ class _CheckoutViewState extends State<CheckoutView> {
                         } else if (currentPageStep == 1) {
                           _handelAddresSectionValidate();
                         } else {
-                          // paymentMethodHandler(context);
-
+                          paymentMethodHandler(context);
                           var orderEntity = context.read<OrderEntity>();
                           context
                               .read<AddOrderCubit>()
@@ -151,40 +152,17 @@ class _CheckoutViewState extends State<CheckoutView> {
   }
 
   void paymentMethodHandler(BuildContext context) {
+    var ordeEntitys = context.read<OrderEntity>();
+    PaypalPaymentEntity paymentEntity =
+        PaypalPaymentEntity.fromEntity(ordeEntitys);
+
     Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) => PaypalCheckoutView(
         sandboxMode: true,
-        clientId: "",
-        secretKey: "",
-        transactions: const [
-          {
-            "amount": {
-              "total": '70',
-              "currency": "USD",
-              "details": {
-                "subtotal": '70',
-                "shipping": '0',
-                "shipping_discount": 0
-              }
-            },
-            "description": "The payment transaction description.",
-            "item_list": {
-              "items": [
-                {
-                  "name": "Apple",
-                  "quantity": 4,
-                  "price": '5',
-                  "currency": "USD"
-                },
-                {
-                  "name": "Pineapple",
-                  "quantity": 5,
-                  "price": '10',
-                  "currency": "USD"
-                }
-              ],
-            }
-          }
+        clientId: clientId,
+        secretKey: secret,
+        transactions: [
+          paymentEntity.toJson(),
         ],
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
