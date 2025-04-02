@@ -156,6 +156,7 @@ class _CheckoutViewState extends State<CheckoutView> {
 
   void paymentMethodHandler(BuildContext context) {
     var ordeEntitys = context.read<OrderEntity>();
+    var addOrderCubit = context.read<AddOrderCubit>();
     PaypalPaymentEntity paymentEntity =
         PaypalPaymentEntity.fromEntity(ordeEntitys);
 
@@ -171,6 +172,7 @@ class _CheckoutViewState extends State<CheckoutView> {
         onSuccess: (Map params) async {
           log("onSuccess: $params");
           Navigator.pop(context);
+          addOrderCubit.addOrder(order: ordeEntitys);
           showSnackBar(context, 'تم الدفع بنجاح');
         },
         onError: (error) {
