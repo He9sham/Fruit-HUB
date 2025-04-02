@@ -9,7 +9,7 @@
         "args": ["--flavor", "Production", "--target", "lib/main_Production.dart" ]
       },
       {
-        "name": "Fruit HUB",
+        "name": "Fruit HUB Development",
         "request": "launch",
         "type": "dart",
         "program": "lib/main_development.dart",
