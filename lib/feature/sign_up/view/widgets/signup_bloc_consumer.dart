@@ -3,7 +3,7 @@ import 'package:commerce_hub/core/helper/awesome_widgets.dart';
 import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/core/widgets/custom_progress_hud.dart';
-import 'package:commerce_hub/feature/sign_up/logic/signup_cubit_cubit.dart';
+import 'package:commerce_hub/feature/sign_up/logic/signup_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

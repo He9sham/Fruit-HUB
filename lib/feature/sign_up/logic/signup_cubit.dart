@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:commerce_hub/core/networking/backend_endpoints.dart';
+import 'package:commerce_hub/core/notification_service/local_notification_service.dart';
 import 'package:commerce_hub/core/service/firebase_database_service.dart';
 import 'package:commerce_hub/core/service/user_entity.dart';
 import 'package:commerce_hub/core/service/user_models.dart';
@@ -28,13 +29,17 @@ class SignupCubit extends Cubit<SignupCubitState> {
         uid: user.user!.uid,
       );
       await addUserData(user: userEntity);
+      NotificationService notificationService = NotificationService();
+      await notificationService.showInstantNotification(
+          2, 'مرحبا بك', 'هل انت مستعد ابدا التسوق؟');
+      await notificationService.localNotificationsPlugin.cancel(2);
       emit(SignupCubitSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
-        emit(SignupCubitFailure(errMessage: 'هذا الحساب مسجل بلفعل '));
+        emit(SignupCubitFailure(errMessage: 'هذا الحساب مسجل بالفعل '));
       } else if (e.code == 'weak-password') {
         emit(SignupCubitFailure(
-            errMessage: 'يجب أن تكون كلمة المرور مكونة من 6 أحرف على الأقل'));
+            errMessage: 'يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل'));
       } else if (e.code == 'network-request-failed') {
         emit(SignupCubitFailure(errMessage: 'تاكد من اتصالك بالانترنت'));
       }
@@ -45,7 +50,7 @@ class SignupCubit extends Cubit<SignupCubitState> {
       if (user != null) {
         await user.user!.delete();
       }
-      emit(SignupCubitFailure(errMessage: 'An error , please try agian later'));
+      emit(SignupCubitFailure(errMessage: 'An error, please try again later'));
     }
   }
 

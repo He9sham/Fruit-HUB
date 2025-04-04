@@ -1,3 +1,4 @@
+import 'package:commerce_hub/core/notification_service/local_notification_service.dart';
 import 'package:commerce_hub/core/service/get_it_service.dart';
 import 'package:commerce_hub/core/service/shared_preferences_singleton.dart';
 import 'package:commerce_hub/core/utils/app_route.dart';
@@ -15,6 +16,8 @@ void main() async {
   );
   await Prefs.init();
   setupGetit();
+  NotificationService services = NotificationService();
+  await services.init();
   runApp(
     CommerceHub(
       appRouter: AppRouter(),

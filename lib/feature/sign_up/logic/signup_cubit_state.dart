@@ -1,4 +1,4 @@
-part of 'signup_cubit_cubit.dart';
+part of 'signup_cubit.dart';
 
 @immutable
 sealed class SignupCubitState {}

@@ -2,7 +2,7 @@ import 'package:commerce_hub/core/helper/app_regex.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
 import 'package:commerce_hub/core/theming/color.dart';
 import 'package:commerce_hub/core/widgets/app_text_form_field.dart';
-import 'package:commerce_hub/feature/sign_up/logic/signup_cubit_cubit.dart';
+import 'package:commerce_hub/feature/sign_up/logic/signup_cubit.dart';
 import 'package:commerce_hub/feature/sign_up/view/widgets/password_validations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
