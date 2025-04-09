@@ -23,13 +23,13 @@ class _ShippingSectionState extends State<ShippingSection> {
           ontap: () {
             setState(() {
               selected = 0;
-              context.read<OrderEntity>().payWithcach = true;
+              context.read<OrderInputEntity>().payWithcach = true;
             });
           },
           title: 'الدفع عند الاستلام',
           subtitle: 'التسليم من المكان',
           price:
-              '${(context.read<OrderEntity>().cartEntity.calculateTotalPrice() + 30).toString()} جنيه',
+              '${(context.read<OrderInputEntity>().cartEntity.calculateTotalPrice() + 30).toString()} جنيه',
         ),
         verticalSpace(10),
         ShippingItem(
@@ -37,13 +37,13 @@ class _ShippingSectionState extends State<ShippingSection> {
           ontap: () {
             setState(() {
               selected = 1;
-              context.read<OrderEntity>().payWithcach = false;
+              context.read<OrderInputEntity>().payWithcach = false;
             });
           },
           title: 'الدفع اونلاين',
           subtitle: 'يرجي تحديد طريقه الدفع',
           price:
-              '${context.read<OrderEntity>().cartEntity.calculateTotalPrice().toString()} جنيه',
+              '${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice().toString()} جنيه',
         ),
       ],
     );

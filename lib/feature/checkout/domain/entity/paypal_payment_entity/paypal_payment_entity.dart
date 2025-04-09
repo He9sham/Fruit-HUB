@@ -1,5 +1,3 @@
-
-
 import 'package:commerce_hub/feature/checkout/domain/entity/order_entity.dart';
 
 import 'amount.dart';
@@ -12,7 +10,7 @@ class PaypalPaymentEntity {
 
   PaypalPaymentEntity({this.amount, this.description, this.itemList});
 
-  factory PaypalPaymentEntity.fromEntity(OrderEntity entity) {
+  factory PaypalPaymentEntity.fromEntity(OrderInputEntity entity) {
     return PaypalPaymentEntity(
       amount: Amount.fromEntity(entity),
       description: 'Payment description',

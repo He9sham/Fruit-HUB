@@ -16,12 +16,12 @@ class PaymentAddress extends StatefulWidget {
 }
 
 class _PaymentAddressState extends State<PaymentAddress> {
-  late OrderEntity orderEntity;
+  late OrderInputEntity orderEntity;
 
   @override
   void initState() {
     super.initState();
-    orderEntity = context.read<OrderEntity>();
+    orderEntity = context.read<OrderInputEntity>();
   }
 
   @override

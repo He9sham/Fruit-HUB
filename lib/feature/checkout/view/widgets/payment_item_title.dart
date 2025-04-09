@@ -17,7 +17,7 @@ class PaymentItemTitle extends StatelessWidget {
           children: [
             Text(
               textDirection: TextDirection.rtl,
-              '${context.read<OrderEntity>().cartEntity.calculateTotalPrice()} جنيه',
+              '${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice()} جنيه',
               style: Styles.textSize13Black600.copyWith(
                 fontSize: 16.sp,
               ),
@@ -63,7 +63,7 @@ class PaymentItemTitle extends StatelessWidget {
           children: [
             Text(
               textDirection: TextDirection.rtl,
-              '${context.read<OrderEntity>().cartEntity.calculateTotalPrice() + 30} جنيه',
+              '${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice() + 30} جنيه',
               style: Styles.textSize13Black600.copyWith(
                 fontSize: 16.sp,
               ),

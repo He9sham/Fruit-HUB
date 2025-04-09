@@ -27,12 +27,12 @@ class CheckoutView extends StatefulWidget {
 
 class _CheckoutViewState extends State<CheckoutView> {
   late PageController pageController;
-  late OrderEntity orderEntity;
+  late OrderInputEntity orderEntity;
 
   @override
   void initState() {
     pageController = PageController();
-    orderEntity = OrderEntity(widget.cartEntity, uId: getuser().uid);
+    orderEntity = OrderInputEntity(widget.cartEntity, uId: getuser().uid);
     pageController.addListener(() {
       setState(() {
         currentPageStep = pageController.page!.toInt();
@@ -95,7 +95,7 @@ class _CheckoutViewState extends State<CheckoutView> {
                           _handelAddresSectionValidate();
                         } else {
                           paymentMethodHandler(context);
-                          var orderEntity = context.read<OrderEntity>();
+                          var orderEntity = context.read<OrderInputEntity>();
                           context
                               .read<AddOrderCubit>()
                               .addOrder(order: orderEntity);
@@ -155,7 +155,7 @@ class _CheckoutViewState extends State<CheckoutView> {
   }
 
   void paymentMethodHandler(BuildContext context) {
-    var ordeEntitys = context.read<OrderEntity>();
+    var ordeEntitys = context.read<OrderInputEntity>();
     var addOrderCubit = context.read<AddOrderCubit>();
     PaypalPaymentEntity paymentEntity =
         PaypalPaymentEntity.fromEntity(ordeEntitys);

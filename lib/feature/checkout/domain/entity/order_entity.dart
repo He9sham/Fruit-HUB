@@ -1,12 +1,12 @@
 import 'package:commerce_hub/feature/checkout/domain/entity/shipping_address_entity.dart';
 import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
 
-class OrderEntity {
+class OrderInputEntity {
   CartEntity cartEntity;
   bool? payWithcach;
   final String uId;
   ShippingAddressEntity? shippingAddressEntity = ShippingAddressEntity();
-  OrderEntity(this.cartEntity, {this.payWithcach, required this.uId});
+  OrderInputEntity(this.cartEntity, {this.payWithcach, required this.uId});
 
   calculateShippingCost() {
     if (payWithcach == true) {
@@ -23,6 +23,7 @@ class OrderEntity {
       return 0;
     }
   }
+
   calculateTotalPriceAfterDiscountAndShipping() {
     return cartEntity.calculateTotalPrice() +
         calculateShippingCost() -

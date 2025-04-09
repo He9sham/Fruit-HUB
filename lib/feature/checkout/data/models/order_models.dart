@@ -16,7 +16,7 @@ class OrderModels {
       required this.shippingAddressModel,
       required this.orderProductModel});
 
-  factory OrderModels.fromEntity(OrderEntity orderEntity) {
+  factory OrderModels.fromEntity(OrderInputEntity orderEntity) {
     return OrderModels(
       paymentMethod: orderEntity.payWithcach == true ? 'Cash' : 'Card',
       totalPrice: orderEntity.cartEntity.calculateTotalPrice() + 30,
