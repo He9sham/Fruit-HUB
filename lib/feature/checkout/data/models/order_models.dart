@@ -11,18 +11,21 @@ class OrderModels {
   final List<OrderProductModel> orderProductModel;
   final String paymentMethod;
   final String orderId;
+  final OrderStatusEnum status;
 
-  OrderModels(
-      {required this.totalPrice,
-      required this.uId,
-      required this.orderId,
-      required this.paymentMethod,
-      required this.shippingAddressModel,
-      required this.orderProductModel});
+  OrderModels({
+    required this.totalPrice,
+    required this.uId,
+    required this.orderId,
+    required this.paymentMethod,
+    required this.shippingAddressModel,
+    required this.orderProductModel,
+    this.status = OrderStatusEnum.pending,
+  });
 
   factory OrderModels.fromEntity(OrderInputEntity orderEntity) {
     return OrderModels(
-      orderId:Uuid().v4(),
+      orderId: const Uuid().v4(),
       paymentMethod: orderEntity.payWithcach == true ? 'Cash' : 'PayPal',
       totalPrice: orderEntity.cartEntity.calculateTotalPrice() + 30,
       uId: orderEntity.uId,
@@ -40,7 +43,7 @@ class OrderModels {
       'paymentMethod': paymentMethod,
       'totalPrice': totalPrice,
       'uId': uId,
-      'status': OrderStatusEnum.values,
+      'status': status.toString().split('.').last,
       'date': DateTime.now().toString(),
       'shippingAddressModel': shippingAddressModel.toJson(),
       'orderProductModel': orderProductModel.map((e) => e.toJson()).toList(),
