@@ -13,10 +13,11 @@ class OrderRepoImpl implements OrderRepo {
   Future<Either<Failure, void>> addOrder(
       {required OrderInputEntity orderEntity}) async {
     try {
+      var orderModels = OrderModels.fromEntity(orderEntity);
       await fireStoreService.addData(
-          docementid: orderEntity.uId,
+          docementid: orderModels.orderId,
           path: BackendEndpoints.addOrder,
-          data: OrderModels.fromEntity(orderEntity).toJson());
+          data: orderModels.toJson());
       return const Right(null);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
