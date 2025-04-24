@@ -1,10 +1,11 @@
 import 'package:commerce_hub/core/entity/product_input_entity.dart';
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class CartItemEntity extends Equatable {
   final ProductInputEntity productInputEntity;
 
-  int quantity;
+   int quantity;
 
   CartItemEntity({required this.productInputEntity, this.quantity = 1});
 

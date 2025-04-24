@@ -88,7 +88,7 @@ class AppRouter {
               getIt.get<OrderRepo>(),
             ),
             child: CheckoutView(
-              cartEntity: settings.arguments as CartEntity,
+              cartEntity: arguments as CartEntity,
             ),
           ),
         );

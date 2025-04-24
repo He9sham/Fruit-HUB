@@ -22,7 +22,7 @@ class _SplashViewState extends State<SplashView> {
         context.pushNamed(Routes.navigationBar);
       } else {
         // ignore: use_build_context_synchronously
-        context.pushNamed(Routes.loginScreen);
+        context.pushNamed(Routes.onBoardingScreen);
       }
     });
     super.initState();

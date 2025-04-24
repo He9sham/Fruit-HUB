@@ -17,17 +17,7 @@ class CheckOutSteps extends StatelessWidget {
           return Expanded(
             child: GestureDetector(
               onTap: () {
-                if (index <= currentPageStep) {
-                  pageController.animateToPage(index,
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.easeIn);
-                } else if (index > currentPageStep) {
-                  if (currentPageStep == 0) {
-                    showSnackBar(context, 'يرجى إكمال قسم الشحن أولاً');
-                  } else if (currentPageStep == 1) {
-                    showSnackBar(context, 'يرجى إكمال قسم العنوان أولاً');
-                  }
-                }
+                validationStep(index, context);
               },
               child: StepItem(
                 isActive: index <= currentPageStep,
@@ -39,6 +29,20 @@ class CheckOutSteps extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void validationStep(int index, BuildContext context) {
+     if (index <= currentPageStep) {
+      pageController.animateToPage(index,
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeIn);
+    } else if (index > currentPageStep) {
+      if (currentPageStep == 0) {
+        showSnackBar(context, 'يرجى إكمال قسم الشحن أولاً');
+      } else if (currentPageStep == 1) {
+        showSnackBar(context, 'يرجى إكمال قسم العنوان أولاً');
+      }
+    }
   }
 }
 
