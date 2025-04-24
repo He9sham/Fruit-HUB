@@ -12,7 +12,7 @@ class CustomAppbarHomeview extends StatelessWidget {
     return Row(
       textDirection: TextDirection.rtl,
       children: [
-        Image.asset('assets/image/Mask group.png'),
+        Image.asset('assets/image/image_png/Mask group.png'),
         horizontalSpace(5),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,

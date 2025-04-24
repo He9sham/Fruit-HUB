@@ -40,11 +40,11 @@ class OnboardingView extends StatelessWidget {
       pageBackgroundColor: Colors.white,
       background: [
         SvgPicture.asset(
-          'assets/image/fruit basket-amico 1.svg',
+          'assets/image/image_svg/fruit basket-amico 1.svg',
           height: sizeOfHeight(0.47, context),
         ),
         SvgPicture.asset(
-          'assets/image/pineapple-cuate 1.svg',
+          'assets/image/image_svg/pineapple-cuate 1.svg',
           height: sizeOfHeight(0.47, context),
         ),
       ],

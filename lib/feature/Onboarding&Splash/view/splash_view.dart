@@ -35,13 +35,13 @@ class _SplashViewState extends State<SplashView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SvgPicture.asset('assets/image/freepik--Plant--inject-63.svg'),
+            SvgPicture.asset('assets/image/image_svg/freepik--Plant--inject-63.svg'),
             verticalSpace(90),
             Center(
-              child: SvgPicture.asset('assets/image/LogoApp.svg'),
+              child: SvgPicture.asset('assets/image/image_svg/LogoApp.svg'),
             ),
             verticalSpace(165),
-            SvgPicture.asset('assets/image/freepik--Circles--inject-5.svg'),
+            SvgPicture.asset('assets/image/image_svg/freepik--Circles--inject-5.svg'),
           ],
         ),
       ),

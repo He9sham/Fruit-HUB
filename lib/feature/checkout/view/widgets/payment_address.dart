@@ -43,7 +43,7 @@ class _PaymentAddressState extends State<PaymentAddress> {
               onTap: () => _showEditAddressBottomSheet(context),
               child: Row(
                 children: [
-                  Image.asset('assets/image/edit.png'),
+                  Image.asset('assets/image/image_png/edit.png'),
                   Text(
                     'تعديل',
                     textDirection: TextDirection.rtl,

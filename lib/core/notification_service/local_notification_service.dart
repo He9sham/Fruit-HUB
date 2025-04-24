@@ -64,11 +64,14 @@ class NotificationService {
     DateTime date = DateTime.now().add(const Duration(days: 1));
     tz.TZDateTime dateTime = tz.TZDateTime.from(date, tz.local);
     await localNotificationsPlugin.zonedSchedule(
-       androidScheduleMode:dateTime.isBefore(DateTime.now())
-            ? AndroidScheduleMode.exact
-            : AndroidScheduleMode.inexact,
-        id, title, body, dateTime, await notificationDetails(),
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime);
+      androidScheduleMode: dateTime.isBefore(DateTime.now())
+          ? AndroidScheduleMode.exact
+          : AndroidScheduleMode.inexact,
+      id,
+      title,
+      body,
+      dateTime,
+      await notificationDetails(),
+    );
   }
 }
