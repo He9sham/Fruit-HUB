@@ -24,7 +24,7 @@ class OutActiveStepItem extends StatelessWidget {
         ),
         horizontalSpace(4),
         Text(
-          'العنوان',
+          text,
           style: TextStyle(
               color: Color(0xffAAAAAA),
               fontSize: 13,

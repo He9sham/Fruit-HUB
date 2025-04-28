@@ -39,7 +39,6 @@ class LoginCubit extends Cubit<LoginState> {
       firebaseDatabaseService.saveUserData(user: userEntity);
       await notificationService.showInstantNotification(
           2, 'مرحبا بك', 'هل انت مستعد ابدا التسوق؟');
-      // await notificationService.localNotificationsPlugin.cancel(2);
       emit(LoginSuccess());
     } on FirebaseAuthException {
       emit(LoginFailer(
