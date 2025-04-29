@@ -1,6 +1,6 @@
-import 'package:commerce_hub/feature/checkout/view/widgets/address_section.dart';
-import 'package:commerce_hub/feature/checkout/view/widgets/payment_section.dart';
-import 'package:commerce_hub/feature/checkout/view/widgets/shipping_section.dart';
+import 'package:commerce_hub/feature/checkout/view/section/address_section.dart';
+import 'package:commerce_hub/feature/checkout/view/section/payment_section.dart';
+import 'package:commerce_hub/feature/checkout/view/section/shipping_section.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

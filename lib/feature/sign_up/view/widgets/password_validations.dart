@@ -35,7 +35,7 @@ class PasswordValidations extends StatelessWidget {
       ],
     );
   }
-
+  
   Widget buildValidationRow(String text, bool hasValidated) {
     return Row(
       children: [
