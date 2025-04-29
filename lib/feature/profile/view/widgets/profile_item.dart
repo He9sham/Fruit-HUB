@@ -1,4 +1,6 @@
+import 'package:commerce_hub/core/helper/extensions.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
+import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/feature/profile/view/widgets/profile_item_row.dart';
 import 'package:commerce_hub/feature/profile/view/widgets/switch_icon.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +53,9 @@ class ProfileItem extends StatelessWidget {
         ),
         verticalSpace(12),
         ProfileItemRow(
+          onTap: () {
+            context.pushNamed(Routes.favorite);
+          },
           isShowBack: true,
           isShowSwitch: false,
           icon: FontAwesomeIcons.heart,

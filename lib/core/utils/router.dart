@@ -8,4 +8,5 @@ class Routes {
   static const String navigationBar = '/navigationBar'; 
   static const String bestsellerview = '/bestsellerview';
   static const String checkout = '/checkout';
+  static const String favorite = '/favorite'; 
 }

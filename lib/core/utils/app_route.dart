@@ -16,6 +16,7 @@ import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
 import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
 import 'package:commerce_hub/feature/home/view/best_seller_view.dart';
 import 'package:commerce_hub/feature/home/view/home_view.dart';
+import 'package:commerce_hub/feature/profile/view/favorite_view.dart';
 import 'package:commerce_hub/feature/sign_up/logic/signup_cubit.dart';
 import 'package:commerce_hub/feature/sign_up/view/sign_up_view.dart';
 import 'package:flutter/material.dart';
@@ -91,6 +92,10 @@ class AppRouter {
               cartEntity: arguments as CartEntity,
             ),
           ),
+        );
+      case Routes.favorite:
+        return MaterialPageRoute(
+          builder: (_) => const FavoriteView(),
         );
       default:
         return null;

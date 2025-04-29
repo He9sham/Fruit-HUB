@@ -11,6 +11,7 @@ class ProfileItemRow extends StatelessWidget {
     required this.isShowBack,
     required this.isShowSwitch,
     this.switchType = SwitchType.other,
+    this.onTap,
   });
 
   final String title;
@@ -18,30 +19,33 @@ class ProfileItemRow extends StatelessWidget {
   final bool isShowBack;
   final bool isShowSwitch;
   final SwitchType switchType;
-
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      textDirection: TextDirection.rtl,
-      children: [
-        Icon(icon),
-        horizontalSpace(8),
-        Text(
-          title,
-          style: Styles.textSize13Black600.copyWith(
-            color: Color(0xff949D9E),
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        textDirection: TextDirection.rtl,
+        children: [
+          Icon(icon),
+          horizontalSpace(8),
+          Text(
+            title,
+            style: Styles.textSize13Black600.copyWith(
+              color: Color(0xff949D9E),
+            ),
           ),
-        ),
-        Spacer(),
-        Visibility(
-          visible: isShowBack,
-          child: Icon(Icons.arrow_back_ios),
-        ),
-        Visibility(
-          visible: isShowSwitch,
-          child: SwitchWidget(switchType: switchType),
-        )
-      ],
+          Spacer(),
+          Visibility(
+            visible: isShowBack,
+            child: Icon(Icons.arrow_back_ios),
+          ),
+          Visibility(
+            visible: isShowSwitch,
+            child: SwitchWidget(switchType: switchType),
+          )
+        ],
+      ),
     );
   }
 }
