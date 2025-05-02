@@ -8,8 +8,13 @@ class CustomGridviewForHomePage extends StatelessWidget {
   final List<ProductInputEntity> products;
   @override
   Widget build(BuildContext context) {
+    // Calculate number of rows needed (ceiling division for products/2 columns)
+    final int rowCount = (products.length / 2).ceil();
+    // Calculate total height based on rows + a small padding buffer
+    final double gridHeight = rowCount * 0.3.sh + 10.h;
+
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 3,
+      height: gridHeight,
       child: GridView.builder(
         itemCount: products.length,
         physics: const NeverScrollableScrollPhysics(),
@@ -20,7 +25,7 @@ class CustomGridviewForHomePage extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-            child:  CustomViewBestSeller(
+            child: CustomViewBestSeller(
               productInputEntity: products[index],
             ),
           );
