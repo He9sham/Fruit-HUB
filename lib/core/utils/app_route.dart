@@ -79,8 +79,8 @@ class AppRouter {
               BlocProvider(
                 create: (context) => CartProductCubit(),
               ),
-              BlocProvider(
-                create: (context) => FavoritesCubit(),
+              BlocProvider.value(
+                value: getIt<FavoritesCubit>(),
               ),
             ],
             child: BestSellerView(),
