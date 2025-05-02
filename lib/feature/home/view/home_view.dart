@@ -1,6 +1,8 @@
 import 'package:commerce_hub/core/cubits/products_cubit/products_cubit.dart';
 import 'package:commerce_hub/core/entity/product_input_entity.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
+import 'package:commerce_hub/core/service/analytics_service.dart';
+import 'package:commerce_hub/core/service/get_it_service.dart';
 import 'package:commerce_hub/feature/home/view/widgets/best_seller_text.dart';
 import 'package:commerce_hub/feature/home/view/widgets/build_products_section.dart';
 import 'package:commerce_hub/feature/home/view/widgets/custom_appbar_home_view.dart';
@@ -17,6 +19,9 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  // Reference to the analytics service
+  final AnalyticsService _analyticsService = getIt<AnalyticsService>();
+  
   String? _searchQuery;
   List<ProductInputEntity> _filteredProducts = [];
 
@@ -36,6 +41,10 @@ class _HomeViewState extends State<HomeView> {
       }
 
       _searchQuery = query;
+
+      // Track search query in analytics
+      _analyticsService.trackSearch(query);
+      
       final state = context.read<ProductsCubit>().state;
       if (state is ProductsSuccess) {
         _filteredProducts = state.products
