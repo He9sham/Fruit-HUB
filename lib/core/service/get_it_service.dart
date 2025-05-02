@@ -4,11 +4,14 @@ import 'package:commerce_hub/core/repos/product_repo/product_repo.dart';
 import 'package:commerce_hub/core/repos/product_repo/product_repo_impl.dart';
 import 'package:commerce_hub/core/service/database_service.dart';
 import 'package:commerce_hub/core/service/firebase_database_service.dart';
+import 'package:commerce_hub/feature/profile/logic/favorites_cubit/favorites_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
 
 void setupGetit() {
+  // Register FavoritesCubit as a singleton to share across the app
+  getIt.registerLazySingleton<FavoritesCubit>(() => FavoritesCubit());
   getIt.registerSingleton<DatabaseService>(FireStoreService());
 
   getIt.registerSingleton<ProductRepo>(

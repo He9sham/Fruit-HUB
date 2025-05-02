@@ -1,6 +1,8 @@
 import 'package:commerce_hub/core/entity/product_input_entity.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
+import 'package:commerce_hub/feature/profile/logic/favorites_cubit/favorites_cubit.dart';
+import 'package:commerce_hub/feature/profile/logic/favorites_cubit/favorites_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,16 +36,27 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
         children: [
           Positioned(
             top: 8.h,
-            child: IconButton(
-              onPressed: () {
-                toggleHeartColor();
+            child: BlocBuilder<FavoritesCubit, FavoritesState>(
+              builder: (context, state) {
+                // Check if product is in favorites
+                final isInFavorites = state is FavoritesLoaded &&
+                    state.favorites.any((product) =>
+                        product.code == widget.productInputEntity.code);
+
+                return IconButton(
+                  onPressed: () {
+                    context
+                        .read<FavoritesCubit>()
+                        .toggleFavorite(widget.productInputEntity);
+                  },
+                  icon: Icon(
+                    isInFavorites
+                        ? FontAwesomeIcons.solidHeart
+                        : FontAwesomeIcons.heart,
+                    color: isInFavorites ? Colors.red : Colors.black,
+                  ),
+                );
               },
-              icon: Icon(
-                _isPressed
-                    ? FontAwesomeIcons.solidHeart
-                    : FontAwesomeIcons.heart,
-                color: _isPressed ? Colors.red : Colors.black,
-              ),
             ),
           ),
           Positioned(
@@ -103,13 +116,5 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
         ],
       ),
     );
-  }
-
-  bool _isPressed = false;
-
-  void toggleHeartColor() {
-    setState(() {
-      _isPressed = !_isPressed;
-    });
   }
 }

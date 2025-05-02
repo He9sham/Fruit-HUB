@@ -79,6 +79,9 @@ class AppRouter {
               BlocProvider(
                 create: (context) => CartProductCubit(),
               ),
+              BlocProvider(
+                create: (context) => FavoritesCubit(),
+              ),
             ],
             child: BestSellerView(),
           ),
@@ -96,8 +99,8 @@ class AppRouter {
         );
       case Routes.favorite:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => FavoritesCubit(),
+          builder: (_) => BlocProvider.value(
+            value: getIt<FavoritesCubit>(),
             child: const FavoriteView(),
           ),
         );

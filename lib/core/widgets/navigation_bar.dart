@@ -9,6 +9,7 @@ import 'package:commerce_hub/feature/home/view/home_view.dart';
 import 'package:commerce_hub/feature/home/view/product_view.dart';
 import 'package:commerce_hub/feature/home/view/widgets/main_view_bloc_consumer.dart'
     show MainViewBlocConsumer;
+import 'package:commerce_hub/feature/profile/logic/favorites_cubit/favorites_cubit.dart';
 import 'package:commerce_hub/feature/profile/view/profile_view.dart';
 import 'package:cuberto_bottom_bar/internal/cuberto_bottom_bar.dart';
 import 'package:cuberto_bottom_bar/internal/tab_data.dart';
@@ -48,8 +49,15 @@ class _CustomNavigationState extends State<CustomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => CartProductCubit(),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => CartProductCubit(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<FavoritesCubit>(),
+          ),
+        ],
         child:
             MainViewBlocConsumer(currentIndex: currentIndex, screens: screens),
       ),
