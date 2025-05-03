@@ -1,5 +1,6 @@
 import 'package:commerce_hub/core/entity/product_input_entity.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
+import 'package:commerce_hub/core/widgets/snackbar_widget.dart';
 import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
 import 'package:commerce_hub/feature/profile/logic/favorites_cubit/favorites_cubit.dart';
 import 'package:commerce_hub/feature/profile/logic/favorites_cubit/favorites_state.dart';
@@ -48,6 +49,12 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
                     context
                         .read<FavoritesCubit>()
                         .toggleFavorite(widget.productInputEntity);
+                    showSnackBar(
+                      context,
+                      isInFavorites
+                          ? 'تمت ازالة من المفضلة'
+                          : 'تمت اضافته الى المفضلة',
+                    );
                   },
                   icon: Icon(
                     isInFavorites

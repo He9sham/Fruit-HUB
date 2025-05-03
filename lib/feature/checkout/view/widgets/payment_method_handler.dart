@@ -26,6 +26,7 @@ void paymentMethodHandler(BuildContext context) {
     trackCheckoutEvent(ordeEntitys);
 
     showSnackBar(context, 'تم تأكيد الطلب بنجاح');
+    Navigator.pop(context);
     return;
   } else if (ordeEntitys.payWithcach == false) {
     // If PayPal is not selected, show a message
