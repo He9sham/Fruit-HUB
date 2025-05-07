@@ -17,9 +17,7 @@ void paymentMethodHandler(BuildContext context) {
   var ordeEntitys = context.read<OrderInputEntity>();
   var addOrderCubit = context.read<AddOrderCubit>();
 
-  // Check if user selected cash payment
   if (ordeEntitys.payWithcach == true) {
-    // Skip PayPal payment and directly add the order
     addOrderCubit.addOrder(order: ordeEntitys);
 
     // Track successful cash checkout
@@ -29,7 +27,6 @@ void paymentMethodHandler(BuildContext context) {
     Navigator.pop(context);
     return;
   } else if (ordeEntitys.payWithcach == false) {
-    // If PayPal is not selected, show a message
     PaypalPaymentEntity paymentEntity =
         PaypalPaymentEntity.fromEntity(ordeEntitys);
 

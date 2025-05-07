@@ -12,7 +12,9 @@ import 'package:commerce_hub/feature/checkout/view/widgets/check_out_steps.dart'
 import 'package:commerce_hub/feature/checkout/view/widgets/check_out_steps_page_view.dart';
 import 'package:commerce_hub/feature/checkout/view/widgets/payment_method_handler.dart';
 import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
+import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutView extends StatefulWidget {
@@ -57,59 +59,62 @@ class _CheckoutViewState extends State<CheckoutView> {
 
   @override
   Widget build(BuildContext context) {
-    return AddOrderCubitBlocBuilder(
-      child: Scaffold(
-        body: SafeArea(
-          child: Provider.value(
-            value: orderEntity,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  verticalSpace(16),
-                  CustomAppbar(
-                    isshowback: true,
-                    isshowIcon: false,
-                    spacepadding: 120,
-                    text: getNextAppbarText(currentPageStep),
-                  ),
-                  verticalSpace(16),
-                  CheckOutSteps(
-                    pageController: pageController,
-                    currentPageStep: currentPageStep,
-                  ),
-                  verticalSpace(32),
-                  Expanded(
-                    child: CheckOutStepsPageView(
-                      valueListenable: autoValidateMode,
-                      formKey: formKey,
+    return BlocProvider(
+      create: (context) => CartProductCubit(),
+      child: AddOrderCubitBlocBuilder(
+        child: Scaffold(
+          body: SafeArea(
+            child: Provider.value(
+              value: orderEntity,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    verticalSpace(16),
+                    CustomAppbar(
+                      isshowback: true,
+                      isshowIcon: false,
+                      spacepadding: 120,
+                      text: getNextAppbarText(currentPageStep),
+                    ),
+                    verticalSpace(16),
+                    CheckOutSteps(
                       pageController: pageController,
+                      currentPageStep: currentPageStep,
                     ),
-                  ),
-                  Builder(
-                    builder: (context) => AppTextButton(
-                      buttonText: getNextButtonText(currentPageStep),
-                      textStyle: Styles.textbuttom16White,
-                      onPressed: () {
-                        if (currentPageStep == 0) {
-                          _handelShippingSectionValidate();
-                        } else if (currentPageStep == 1) {
-                          _handelAddresSectionValidate();
-                        } else {
-                          paymentMethodHandler(context);
-                          var orderEntity = context.read<OrderInputEntity>();
-                          context
-                              .read<AddOrderCubit>()
-                              .addOrder(order: orderEntity);
+                    verticalSpace(32),
+                    Expanded(
+                      child: CheckOutStepsPageView(
+                        valueListenable: autoValidateMode,
+                        formKey: formKey,
+                        pageController: pageController,
+                      ),
+                    ),
+                    Builder(
+                      builder: (context) => AppTextButton(
+                        buttonText: getNextButtonText(currentPageStep),
+                        textStyle: Styles.textbuttom16White,
+                        onPressed: () {
+                          if (currentPageStep == 0) {
+                            _handelShippingSectionValidate();
+                          } else if (currentPageStep == 1) {
+                            _handelAddresSectionValidate();
+                          } else {
+                            paymentMethodHandler(context);
+                            var orderEntity = context.read<OrderInputEntity>();
+                            context
+                                .read<AddOrderCubit>()
+                                .addOrder(order: orderEntity);
 
-                          // Track checkout event
-                          trackCheckoutEvent(orderEntity);
-                        }
-                      },
+                            // Track checkout event
+                            trackCheckoutEvent(orderEntity);
+                          }
+                        },
+                      ),
                     ),
-                  ),
-                  verticalSpace(50),
-                ],
+                    verticalSpace(50),
+                  ],
+                ),
               ),
             ),
           ),
