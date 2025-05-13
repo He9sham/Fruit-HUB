@@ -25,6 +25,7 @@ class _ProductViewState extends State<ProductView> {
     super.initState();
   }
 
+  /// search for product methoud by hesham;
   void _searchProducts(String? query) {
     setState(() {
       // If query is empty, set _searchQuery to null to show all products
