@@ -4,6 +4,7 @@ import 'package:commerce_hub/core/repos/product_repo/product_repo.dart';
 import 'package:commerce_hub/core/service/get_it_service.dart';
 import 'package:commerce_hub/core/utils/router.dart';
 import 'package:commerce_hub/core/widgets/navigation_bar.dart';
+import 'package:commerce_hub/feature/Item_details/view/item_details.dart';
 import 'package:commerce_hub/feature/Login&resetpassword/logic/cubit/login_cubit/login_cubit.dart';
 import 'package:commerce_hub/feature/Login&resetpassword/logic/cubit/reset_password/cubit/resetpassword_cubit.dart';
 import 'package:commerce_hub/feature/Login&resetpassword/view/login_view.dart';
@@ -103,6 +104,10 @@ class AppRouter {
             value: getIt<FavoritesCubit>(),
             child: const FavoriteView(),
           ),
+        );
+      case Routes.itemDetails:
+        return MaterialPageRoute(
+          builder: (_) => const ItemDetailsView(),
         );
       default:
         return null;

@@ -9,4 +9,5 @@ class Routes {
   static const String bestsellerview = '/bestsellerview';
   static const String checkout = '/checkout';
   static const String favorite = '/favorite'; 
+  static const String itemDetails = '/itemDetails';
 }

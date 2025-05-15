@@ -1,17 +1,78 @@
 import 'package:flutter/material.dart';
 
-class ItemDetails extends StatelessWidget {
-  const ItemDetails({super.key});
+class ItemDetailsView extends StatelessWidget {
+  const ItemDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Item Details'),
-      ),
-      body: const Center(
-        child: Text('Item Details'),
+      body: SafeArea(
+        child: Column(
+          children: [
+            ClipPath(
+              clipper: BottomCurveClipper(),
+              child: Container(
+                width: double.infinity,
+                height: MediaQuery.sizeOf(context).height * 0.5,
+                color: Color(0xffF3F5F7),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(
+                      'assets/image/image_png/Watermelon.png',
+                      height: MediaQuery.sizeOf(context).height * 0.2,
+                      fit: BoxFit.cover,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'بطيخ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textDirection: TextDirection.rtl,
+                      ),
+                      Column(
+                        children: [],
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
+}
+
+class BottomCurveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, size.height - 40);
+    path.quadraticBezierTo(
+      size.width / 2,
+      size.height,
+      size.width,
+      size.height - 40,
+    );
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
