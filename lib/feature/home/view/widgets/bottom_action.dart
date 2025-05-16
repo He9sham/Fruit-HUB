@@ -7,15 +7,17 @@ class BottomAction extends StatelessWidget {
       {super.key,
       required this.icondata,
       required this.onTap,
-      required this.color});
+      required this.color, required this.height, required this.width});
   final IconData icondata;
   final void Function() onTap;
   final Color color;
+  final double height;
+  final double width;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 24.h,
-      width: 24.w,
+      height: height.h,
+      width: width.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
         color: color,
