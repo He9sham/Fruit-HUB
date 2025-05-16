@@ -74,6 +74,8 @@ class CartItem extends StatelessWidget {
                 Row(
                   children: [
                     BottomAction(
+                      height: 24,
+                      width: 24,
                       icondata: FontAwesomeIcons.minus,
                       onTap: () {
                         if (cartItemEntity.quantity > 1) {
@@ -100,6 +102,8 @@ class CartItem extends StatelessWidget {
                     ),
                     horizontalSpace(10),
                     BottomAction(
+                      height: 24,
+                      width: 24,
                       icondata: FontAwesomeIcons.plus,
                       onTap: () {
                         cartItemEntity.increaseCount();
