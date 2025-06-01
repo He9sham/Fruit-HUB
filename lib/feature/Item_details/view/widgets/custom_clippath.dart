@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomClipPath extends StatelessWidget {
-  const CustomClipPath({super.key});
-
+  const CustomClipPath({super.key, required this.image});
+  final String image;
   @override
   Widget build(BuildContext context) {
     return ClipPath(
@@ -15,8 +15,8 @@ class CustomClipPath extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(
-              'assets/image/image_png/Watermelon.png',
+            Image.network(
+              image,
               height: MediaQuery.sizeOf(context).height * 0.2,
               fit: BoxFit.cover,
             ),
