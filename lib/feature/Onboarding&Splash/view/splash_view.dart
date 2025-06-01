@@ -19,10 +19,10 @@ class _SplashViewState extends State<SplashView> {
       // ignore: use_build_context_synchronously
       if (isloggedIn()) {
         // ignore: use_build_context_synchronously
-        context.pushNamed(Routes.navigationBar);
+        context.pushReplacementNamed(Routes.navigationBar);
       } else {
         // ignore: use_build_context_synchronously
-        context.pushNamed(Routes.onBoardingScreen);
+        context.pushReplacementNamed(Routes.onBoardingScreen);
       }
     });
     super.initState();

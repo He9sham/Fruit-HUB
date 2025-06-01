@@ -50,7 +50,7 @@ class SignUpView extends StatelessWidget {
                     title: 'تسجيل الدخول',
                     subtitle: 'تمتلك حساب بالفعل؟',
                     onPressed: () {
-                      context.pushNamed(Routes.loginScreen);
+                      context.pushReplacementNamed(Routes.loginScreen);
                     },
                   ),
                 ],

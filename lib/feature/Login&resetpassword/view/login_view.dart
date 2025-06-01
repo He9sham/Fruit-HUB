@@ -64,7 +64,7 @@ class LoginView extends StatelessWidget {
                     title: 'قم بانشاء حساب',
                     subtitle: 'لا تمتلك حساب؟',
                     onPressed: () {
-                      context.pushNamed(Routes.signupScreen);
+                      context.pushReplacementNamed(Routes.signupScreen);
                     },
                   ),
                   verticalSpace(37),
