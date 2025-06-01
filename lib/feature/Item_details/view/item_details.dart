@@ -76,7 +76,8 @@ class ItemDetailsView extends StatelessWidget {
                         context
                             .read<CartProductCubit>()
                             .addProduct(productInputEntity);
-                        showSnackBar(context, 'تم اضافة المنتج الى السلة');
+                        showSnackBar(context,
+                            'تم اضافة ${productInputEntity.name} الى السلة');
                       },
                       textStyle: Styles.textbuttom16White,
                     )
