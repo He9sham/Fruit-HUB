@@ -33,7 +33,6 @@ class _HomeViewState extends State<HomeView> {
 
   void _searchProducts(String? query) {
     setState(() {
-      // If query is empty, set _searchQuery to null to show all products
       if (query == null || query.isEmpty) {
         _searchQuery = null;
         _filteredProducts = [];
@@ -41,8 +40,6 @@ class _HomeViewState extends State<HomeView> {
       }
 
       _searchQuery = query;
-
-      // Track search query in analytics
       _analyticsService.trackSearch(query);
       
       final state = context.read<ProductsCubit>().state;
@@ -83,7 +80,6 @@ class _HomeViewState extends State<HomeView> {
                       verticalSpace(8),
                       const BestSellerText(),
                       verticalSpace(8),
-                      // Display products based on search state
                       buildProductsSection(
                         searchQuery: _searchQuery,
                         filteredProducts: _filteredProducts,

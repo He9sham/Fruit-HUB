@@ -9,7 +9,6 @@ import 'package:flutter/foundation.dart';
 part 'cart_state.dart';
 
 class CartProductCubit extends Cubit<CartState> {
-  // Reference to the analytics service
   final AnalyticsService _analyticsService = getIt<AnalyticsService>();
 
   CartProductCubit() : super(CartInitial());
@@ -19,7 +18,6 @@ class CartProductCubit extends Cubit<CartState> {
   );
 
   void addProduct(ProductInputEntity productInputEntity) {
-    // Check if the cubit is closed before proceeding
     if (isClosed) {
       if (kDebugMode) {
         print('Cannot add product to cart: CartProductCubit is closed');
@@ -34,8 +32,6 @@ class CartProductCubit extends Cubit<CartState> {
     } else {
       cartEntity.addCartItem(cartitem);
     }
-
-    // Track add to cart event
     _analyticsService.trackAddToCart(productInputEntity);
 
     if (!isClosed) {
@@ -44,7 +40,6 @@ class CartProductCubit extends Cubit<CartState> {
   }
 
   void removeProduct(CartItemEntity cartitem) {
-    // Check if the cubit is closed before proceeding
     if (isClosed) {
       if (kDebugMode) {
         print('Cannot remove product from cart: CartProductCubit is closed');
@@ -54,7 +49,6 @@ class CartProductCubit extends Cubit<CartState> {
 
     cartEntity.removeCartItem(cartitem);
 
-    // Track remove from cart event
     _analyticsService.trackRemoveFromCart(cartitem.productInputEntity);
 
     if (!isClosed) {

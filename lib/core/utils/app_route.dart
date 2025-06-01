@@ -1,4 +1,5 @@
 import 'package:commerce_hub/core/cubits/products_cubit/products_cubit.dart';
+import 'package:commerce_hub/core/entity/product_input_entity.dart';
 import 'package:commerce_hub/core/repos/order_repo/order_repo.dart';
 import 'package:commerce_hub/core/repos/product_repo/product_repo.dart';
 import 'package:commerce_hub/core/service/get_it_service.dart';
@@ -107,7 +108,16 @@ class AppRouter {
         );
       case Routes.itemDetails:
         return MaterialPageRoute(
-          builder: (_) => const ItemDetailsView(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => CartProductCubit(),
+              ),
+            ],
+            child: ItemDetailsView(
+              productInputEntity: arguments as ProductInputEntity,
+            ),
+          ),
         );
       default:
         return null;

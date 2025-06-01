@@ -10,7 +10,7 @@ class AppTheme {
       scaffoldBackgroundColor: Colors.white,
       cardColor: Colors.white,
       canvasColor: Colors.white,
-      dialogBackgroundColor: Colors.white,
+      dialogTheme: DialogThemeData(backgroundColor: Colors.white),
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -44,10 +44,8 @@ class AppTheme {
         color: Colors.black,
       ),
       colorScheme: ColorScheme.light(
-        background: Colors.white,
         surface: Colors.white,
         onSurface: Colors.black,
-        onBackground: Colors.black,
       ),
     );
   }
@@ -59,7 +57,7 @@ class AppTheme {
       scaffoldBackgroundColor: Color(0xFF121212),
       cardColor: Color(0xFF1E1E1E),
       canvasColor: Color(0xFF1E1E1E),
-      dialogBackgroundColor: Color(0xFF1E1E1E),
+      dialogTheme: DialogThemeData(backgroundColor: Color(0xFF1E1E1E)),
       appBarTheme: AppBarTheme(
         backgroundColor: Color(0xFF121212),
         elevation: 0,
@@ -93,10 +91,8 @@ class AppTheme {
         color: Colors.white,
       ),
       colorScheme: ColorScheme.dark(
-        background: Color(0xFF121212),
         surface: Color(0xFF1E1E1E),
         onSurface: Colors.white,
-        onBackground: Colors.white,
       ),
     );
   }
