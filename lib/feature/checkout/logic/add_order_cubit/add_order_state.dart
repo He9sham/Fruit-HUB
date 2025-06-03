@@ -8,8 +8,18 @@ sealed class AddOrderState extends Equatable {
 }
 
 final class AddOrderInitial extends AddOrderState {}
+
 final class AddOrderLoading extends AddOrderState {}
-final class AddOrderSuccess extends AddOrderState {}
+
+final class AddOrderSuccess extends AddOrderState {
+  final NotificationService notificationService = NotificationService();
+
+  AddOrderSuccess() {
+    notificationService.showInstantNotification(
+        2, 'تم الاضافه', 'لقد تم اضافة طلبك بنجاح وسيتم التواصل معاك');
+  }
+}
+
 final class AddOrderFailure extends AddOrderState {
   final String errorMessage;
   const AddOrderFailure(this.errorMessage);

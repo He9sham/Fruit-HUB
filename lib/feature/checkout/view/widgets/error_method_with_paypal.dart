@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 /// Handles the error response from PayPal payment
   /// and displays an appropriate message to the user.
-  void errorMethodWithPaypal(error, BuildContext context) {
+  void errorMethodWithPaypal( error, BuildContext context) {
  
     Navigator.pop(context);
 

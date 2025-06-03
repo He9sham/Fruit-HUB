@@ -8,7 +8,7 @@ class NotificationService {
 
   Future<void> init() async {
     const AndroidInitializationSettings androidInitializationSettings =
-        AndroidInitializationSettings('@drawable/launch_background');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
 
     const DarwinInitializationSettings darwinInitializationSettings =
         DarwinInitializationSettings(
@@ -42,6 +42,8 @@ class NotificationService {
       importance: Importance.max,
       priority: Priority.max,
       playSound: true,
+      icon: '@mipmap/ic_launcher',
+      largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
     );
     const DarwinNotificationDetails darwinNotificationDetails =
         DarwinNotificationDetails();
