@@ -13,7 +13,7 @@ import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 
 /// Handles the payment method selection and processing.
 /// If cash payment is selected, it directly adds the order.
-void paymentMethodHandler(BuildContext context) {
+void paymentMethodHandler(BuildContext context) async {
   var ordeEntitys = context.read<OrderInputEntity>();
   var addOrderCubit = context.read<AddOrderCubit>();
 
@@ -24,6 +24,7 @@ void paymentMethodHandler(BuildContext context) {
     trackCheckoutEvent(ordeEntitys);
 
     showSnackBar(context, 'تم تأكيد الطلب بنجاح');
+
     Navigator.pop(context);
     return;
   } else if (ordeEntitys.payWithcach == false) {

@@ -7,20 +7,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AddOrderCubitBlocBuilder extends StatelessWidget {
   const AddOrderCubitBlocBuilder({super.key, required this.child});
   final Widget child;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AddOrderCubit, AddOrderState>(
       listener: (context, state) {
         if (state is AddOrderFailure) {
-         showSnackBar(context, state.errorMessage);
+          showSnackBar(context, state.errorMessage);
         } else if (state is AddOrderSuccess) {
           showSnackBar(context, 'تمت إضافة الطلب بنجاح');
         }
       },
       builder: (context, state) {
         return CustomProgressHud(
-          isLoading: state is AddOrderLoading,
-          child: child);
+            isLoading: state is AddOrderLoading, child: child);
       },
     );
   }

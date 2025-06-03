@@ -80,7 +80,8 @@ class ItemDetailsView extends StatelessWidget {
                             'تم اضافة ${productInputEntity.name} الى السلة');
                       },
                       textStyle: Styles.textbuttom16White,
-                    )
+                    ),
+                    verticalSpace(8),
                   ],
                 ),
               ),

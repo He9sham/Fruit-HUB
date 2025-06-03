@@ -14,7 +14,7 @@ class AboutItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 163.w,
+      width: 160.w,
       height: 80.h,
       decoration: BoxDecoration(
         color: Colors.transparent,
