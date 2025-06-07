@@ -103,6 +103,7 @@ class AddressSection extends StatelessWidget {
                 ),
                 verticalSpace(8),
                 AppTextFormField(
+                  keyboardType: TextInputType.number,
                   onsaved: (value) {
                     context
                         .read<OrderInputEntity>()
@@ -119,6 +120,7 @@ class AddressSection extends StatelessWidget {
                 ),
                 verticalSpace(8),
                 AppTextFormField(
+                  keyboardType: TextInputType.number,
                   onsaved: (value) {
                     context
                         .read<OrderInputEntity>()
