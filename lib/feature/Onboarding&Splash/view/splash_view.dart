@@ -38,7 +38,6 @@ class _SplashViewState extends State<SplashView> {
           child: CircularProgressIndicator(),
         ),
         semanticsLabel: 'SVG Image',
-        cacheColorFilter: true,
         colorFilter:
             const ColorFilter.mode(Colors.transparent, BlendMode.srcIn),
       ),
