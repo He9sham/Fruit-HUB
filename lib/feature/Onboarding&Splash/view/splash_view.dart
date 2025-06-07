@@ -28,6 +28,23 @@ class _SplashViewState extends State<SplashView> {
     super.initState();
   }
 
+  Widget _buildSvgAsset(String assetPath, {double? height}) {
+    return SizedBox(
+      height: height ?? 200,
+      child: SvgPicture.asset(
+        assetPath,
+        fit: BoxFit.contain,
+        placeholderBuilder: (context) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        semanticsLabel: 'SVG Image',
+        cacheColorFilter: true,
+        colorFilter:
+            const ColorFilter.mode(Colors.transparent, BlendMode.srcIn),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +52,22 @@ class _SplashViewState extends State<SplashView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SvgPicture.asset('assets/image/image_svg/freepik--Plant--inject-63.svg'),
+            _buildSvgAsset(
+              'assets/image/image_svg/freepik--Plant--inject-63.svg',
+              height: 200,
+            ),
             verticalSpace(90),
             Center(
-              child: SvgPicture.asset('assets/image/image_svg/LogoApp.svg'),
+              child: _buildSvgAsset(
+                'assets/image/image_svg/LogoApp.svg',
+                height: 100,
+              ),
             ),
             verticalSpace(165),
-            SvgPicture.asset('assets/image/image_svg/freepik--Circles--inject-5.svg'),
+            _buildSvgAsset(
+              'assets/image/image_svg/freepik--Circles--inject-5.svg',
+              height: 100,
+            ),
           ],
         ),
       ),
