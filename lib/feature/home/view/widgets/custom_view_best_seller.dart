@@ -95,9 +95,12 @@ class _CustomViewBestSellerState extends State<CustomViewBestSeller> {
               top: 195.h,
               right: 19.w,
               child: Text(
-                widget.productInputEntity.price.toString(),
+                textDirection: TextDirection.rtl,
+                '${widget.productInputEntity.price.toString()} جنيه للكيلو',
                 style: Styles.textSize13Black600.copyWith(
-                    color: Colors.yellow.shade800, fontWeight: FontWeight.bold),
+                  color: Colors.yellow.shade800,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],

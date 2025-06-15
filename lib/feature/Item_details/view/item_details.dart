@@ -12,9 +12,23 @@ import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ItemDetailsView extends StatelessWidget {
+class ItemDetailsView extends StatefulWidget {
   const ItemDetailsView({super.key, required this.productInputEntity});
   final ProductInputEntity productInputEntity;
+
+  @override
+  State<ItemDetailsView> createState() => _ItemDetailsViewState();
+}
+
+class _ItemDetailsViewState extends State<ItemDetailsView> {
+  int quantity = 1;
+
+  void _handleQuantityChanged(int newQuantity) {
+    setState(() {
+      quantity = newQuantity;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +37,16 @@ class ItemDetailsView extends StatelessWidget {
           child: Column(
             children: [
               CustomClipPath(
-                image: productInputEntity.imageUrl!,
+                image: widget.productInputEntity.imageUrl!,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   children: [
                     HeaderForItemDetails(
-                        productInputEntity: productInputEntity),
+                      productInputEntity: widget.productInputEntity,
+                      onQuantityChanged: _handleQuantityChanged,
+                    ),
                     verticalSpace(8),
                     HeaderReview(),
                     verticalSpace(10),
@@ -40,15 +56,18 @@ class ItemDetailsView extends StatelessWidget {
                       children: [
                         AboutItem(
                           image: 'assets/image/image_svg/lotus.svg',
-                          title: productInputEntity.isOrganic ? '100%' : '0%',
-                          subTitle: productInputEntity.isOrganic
+                          title: widget.productInputEntity.isOrganic
+                              ? '100%'
+                              : '0%',
+                          subTitle: widget.productInputEntity.isOrganic
                               ? 'اورجانيك'
                               : 'غير اورجانيك',
                         ),
                         horizontalSpace(16),
                         AboutItem(
                           image: 'assets/image/image_svg/Group 36850.svg',
-                          title: '${productInputEntity.expirationsMonths} عام',
+                          title:
+                              '${widget.productInputEntity.expirationsMonths} عام',
                           subTitle: 'الصلاحيه',
                         ),
                       ],
@@ -64,7 +83,8 @@ class ItemDetailsView extends StatelessWidget {
                         horizontalSpace(16),
                         AboutItem(
                           image: 'assets/image/image_svg/Group.svg',
-                          title: productInputEntity.numberOfCalories.toString(),
+                          title: widget.productInputEntity.numberOfCalories
+                              .toString(),
                           subTitle: 'كالوري',
                         ),
                       ],
@@ -73,11 +93,14 @@ class ItemDetailsView extends StatelessWidget {
                     AppTextButton(
                       buttonText: 'اضف الى السلة',
                       onPressed: () {
-                        context
-                            .read<CartProductCubit>()
-                            .addProduct(productInputEntity);
+                        // Add the product to cart with the selected quantity
+                        for (int i = 0; i < quantity; i++) {
+                          context
+                              .read<CartProductCubit>()
+                              .addProduct(widget.productInputEntity);
+                        }
                         showSnackBar(context,
-                            'تم اضافة ${productInputEntity.name} الى السلة');
+                            'تم اضافة ${widget.productInputEntity.name} الى السلة');
                       },
                       textStyle: Styles.textbuttom16White,
                     ),
