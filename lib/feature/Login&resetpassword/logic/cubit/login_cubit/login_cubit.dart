@@ -27,7 +27,8 @@ class LoginCubit extends Cubit<LoginState> {
   NotificationService notificationService = NotificationService();
   bool isloading = false;
   final formkey = GlobalKey<FormState>();
- /// This method is used to validate the email and password fields in the login form.
+
+  /// This method is used to validate the email and password fields in the login form.
   Future<void> loginMethod() async {
     UserCredential user;
     FireStoreService firebaseDatabaseService = FireStoreService();
@@ -49,7 +50,8 @@ class LoginCubit extends Cubit<LoginState> {
               'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى في وقت لاحق.'));
     }
   }
-   /// This method uses the GoogleSignIn package to log in the user with their Google account.
+
+  /// This method uses the GoogleSignIn package to log in the user with their Google account.
   Future signInWithGoogle(BuildContext context) async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -70,7 +72,7 @@ class LoginCubit extends Cubit<LoginState> {
       await FirebaseAuth.instance.signInWithCredential(credential);
       // ignore: use_build_context_synchronously
       context.pushNamed(Routes.homeScreen);
-    } on Exception {
+    } on Exception catch (e) {
       awesomeWidgets(
         // ignore: use_build_context_synchronously
         context,
@@ -78,31 +80,29 @@ class LoginCubit extends Cubit<LoginState> {
         'خطأ',
         'حدث خطأ غير متوقع. يرجى المحاولة مرة اخرى في وقت لاحق',
       );
+      log("$e");
     }
   }
 
   /// This method uses the FacebookAuth package to log in the user with their Facebook account.
-    Future<void> loginWithFacebook() async {
-  try {
-    final LoginResult result = await FacebookAuth.instance.login();
-    if (result.status == LoginStatus.success) {
+  Future<void> loginWithFacebook() async {
+    try {
+      final LoginResult result = await FacebookAuth.instance.login();
+      if (result.status == LoginStatus.success) {
+        // Firebase authentication Proof
+        final AccessToken accessToken = result.accessToken!;
+        log('Access token: ${accessToken.tokenString}');
 
-      // Firebase authentication Proof
-      final AccessToken accessToken = result.accessToken!;
-      log('Access token: ${accessToken.tokenString}');
-
-      // Get user's data using the access token
-      final profile = await FacebookAuth.i.getUserData();
-      log('Hello, ${profile['name']}! You have successfully logged in with Facebook.');
-    } else {
-      log('Login failed.');
+        // Get user's data using the access token
+        final profile = await FacebookAuth.i.getUserData();
+        log('Hello, ${profile['name']}! You have successfully logged in with Facebook.');
+      } else {
+        log('Login failed.');
+      }
+    } catch (e) {
+      log(e.toString());
     }
-  } catch (e) {
-    log(e.toString());
   }
-}
-
-
 
   Future<UserEntity> getUserData({required String uid}) async {
     var data = await firebaseDatabaseService.getData(

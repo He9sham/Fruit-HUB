@@ -18,6 +18,7 @@ void paymentMethodHandler(BuildContext context) async {
   var addOrderCubit = context.read<AddOrderCubit>();
 
   if (ordeEntitys.payWithcach == true) {
+    // Add order first
     addOrderCubit.addOrder(order: ordeEntitys);
 
     // Track successful cash checkout
@@ -25,40 +26,50 @@ void paymentMethodHandler(BuildContext context) async {
 
     showSnackBar(context, 'تم تأكيد الطلب بنجاح');
 
-    Navigator.pop(context);
+    // Navigate after order is added
+    if (context.mounted) {
+      Navigator.pop(context);
+    }
     return;
   } else if (ordeEntitys.payWithcach == false) {
     PaypalPaymentEntity paymentEntity =
         PaypalPaymentEntity.fromEntity(ordeEntitys);
 
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (BuildContext context) => PaypalCheckoutView(
-        sandboxMode: true,
-        clientId: clientId,
-        secretKey: secret,
-        transactions: [
-          paymentEntity.toJson(),
-        ],
-        note: "Contact us for any questions on your order.",
-        onSuccess: (Map params) async {
-          log("onSuccess: $params");
-          Navigator.pop(context);
-          addOrderCubit.addOrder(order: ordeEntitys);
+    if (context.mounted) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (BuildContext context) => PaypalCheckoutView(
+          sandboxMode: true,
+          clientId: clientId,
+          secretKey: secret,
+          transactions: [
+            paymentEntity.toJson(),
+          ],
+          note: "Contact us for any questions on your order.",
+          onSuccess: (Map params) async {
+            log("onSuccess: $params");
+            // Add order first
+            addOrderCubit.addOrder(order: ordeEntitys);
 
-          // Track successful PayPal checkout
-          trackCheckoutEvent(ordeEntitys);
+            // Navigate after order is added
+            if (context.mounted) {
+              Navigator.pop(context);
+            }
 
-          showSnackBar(context, 'تم الدفع بنجاح');
-        },
-        onError: (error) {
-          errorMethodWithPaypal(error, context);
-        },
-        onCancel: () {
-          Navigator.pop(context);
-          showSnackBar(context, 'تم إلغاء الدفع');
-        },
-      ),
-    ));
+            // Track successful PayPal checkout
+            trackCheckoutEvent(ordeEntitys);
+
+            showSnackBar(context, 'تم الدفع بنجاح');
+          },
+          onError: (error) {
+            errorMethodWithPaypal(error, context);
+          },
+          onCancel: () {
+            Navigator.pop(context);
+            showSnackBar(context, 'تم إلغاء الدفع');
+          },
+        ),
+      ));
+    }
     showSnackBar(context, 'يرجى اختيار طريقة الدفع');
     return;
   }
