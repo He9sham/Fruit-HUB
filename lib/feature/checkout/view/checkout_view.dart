@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:commerce_hub/core/helper/spacing.dart';
+import 'package:commerce_hub/core/networking/backend_endpoints.dart';
 import 'package:commerce_hub/core/service/analytics_service.dart';
 import 'package:commerce_hub/core/service/get_it_service.dart';
-import 'package:commerce_hub/core/service/get_user.dart';
 import 'package:commerce_hub/core/theming/styles.dart';
 import 'package:commerce_hub/core/widgets/app_text_buttom.dart';
 import 'package:commerce_hub/core/widgets/custom_appbar.dart';
@@ -13,6 +14,7 @@ import 'package:commerce_hub/feature/checkout/view/widgets/check_out_steps_page_
 import 'package:commerce_hub/feature/checkout/view/widgets/payment_method_handler.dart';
 import 'package:commerce_hub/feature/home/domain/cart_entity.dart';
 import 'package:commerce_hub/feature/home/logic/cart_cubit/cart_cubit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -25,16 +27,16 @@ class CheckoutView extends StatefulWidget {
 }
 
 class _CheckoutViewState extends State<CheckoutView> {
-  // Reference to the analytics service
-
   late PageController pageController;
   late OrderInputEntity orderEntity;
+  String? userId;
 
   @override
   void initState() {
     super.initState();
     pageController = PageController();
-    orderEntity = OrderInputEntity(widget.cartEntity, uId: getuser().uid);
+    userId = FirebaseAuth.instance.currentUser?.uid;
+    orderEntity = OrderInputEntity(widget.cartEntity, uId: userId ?? '');
     pageController.addListener(() {
       setState(() {
         currentPageStep = pageController.page!.toInt();
@@ -49,8 +51,6 @@ class _CheckoutViewState extends State<CheckoutView> {
     super.dispose();
   }
 
-  // Track checkout analytics event
-
   int currentPageStep = 0;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -59,74 +59,95 @@ class _CheckoutViewState extends State<CheckoutView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CartProductCubit(),
-      child: AddOrderCubitBlocBuilder(
-        child: Scaffold(
-          body: SafeArea(
-            child: Provider.value(
-              value: orderEntity,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  children: [
-                    verticalSpace(16),
-                    CustomAppbar(
-                      isshowback: true,
-                      isshowIcon: false,
-                      spacepadding: 120,
-                      text: getNextAppbarText(currentPageStep),
-                    ),
-                    verticalSpace(16),
-                    CheckOutSteps(
-                      pageController: pageController,
-                      currentPageStep: currentPageStep,
-                    ),
-                    verticalSpace(32),
-                    Expanded(
-                      child: CheckOutStepsPageView(
-                        valueListenable: autoValidateMode,
-                        formKey: formKey,
-                        pageController: pageController,
-                      ),
-                    ),
-                    Builder(
-                      builder: (context) => AppTextButton(
-                        buttonText: getNextButtonText(currentPageStep),
-                        textStyle: Styles.textbuttom16White,
-                        onPressed: () {
-                          if (currentPageStep == 0) {
-                            _handelShippingSectionValidate();
-                          } else if (currentPageStep == 1) {
-                            _handelAddresSectionValidate();
-                          } else {
-                            paymentMethodHandler(context);
-                            var orderEntity = context.read<OrderInputEntity>();
-                            context
-                                .read<AddOrderCubit>()
-                                .addOrder(order: orderEntity);
+    return StreamBuilder<DocumentSnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection(BackendEndpoints.getuserdata)
+          .doc(userId)
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const Scaffold(
+            body: Center(child: Text('حدث خطأ ما')),
+          );
+        }
 
-                            // Track checkout event
-                            trackCheckoutEvent(orderEntity);
-                          }
-                        },
-                      ),
+        if (!snapshot.hasData || !snapshot.data!.exists) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        return BlocProvider(
+          create: (context) => CartProductCubit(),
+          child: AddOrderCubitBlocBuilder(
+            child: Scaffold(
+              body: SafeArea(
+                child: Provider.value(
+                  value: orderEntity,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      children: [
+                        verticalSpace(16),
+                        CustomAppbar(
+                          isshowback: true,
+                          isshowIcon: false,
+                          spacepadding: 120,
+                          text: getNextAppbarText(currentPageStep),
+                        ),
+                        verticalSpace(16),
+                        CheckOutSteps(
+                          pageController: pageController,
+                          currentPageStep: currentPageStep,
+                        ),
+                        verticalSpace(32),
+                        Expanded(
+                          child: CheckOutStepsPageView(
+                            valueListenable: autoValidateMode,
+                            formKey: formKey,
+                            pageController: pageController,
+                          ),
+                        ),
+                        Builder(
+                          builder: (context) => AppTextButton(
+                            buttonText: getNextButtonText(currentPageStep),
+                            textStyle: Styles.textbuttom16White,
+                            onPressed: () {
+                              if (currentPageStep == 0) {
+                                _handelShippingSectionValidate();
+                              } else if (currentPageStep == 1) {
+                                _handelAddresSectionValidate();
+                              } else {
+                                paymentMethodHandler(context);
+                                var orderEntity =
+                                    context.read<OrderInputEntity>();
+                                context
+                                    .read<AddOrderCubit>()
+                                    .addOrder(order: orderEntity);
+
+                                // Track checkout event
+                                trackCheckoutEvent(orderEntity);
+                              }
+                            },
+                          ),
+                        ),
+                        verticalSpace(50),
+                      ],
                     ),
-                    verticalSpace(50),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
   void _handelShippingSectionValidate() {
     pageController.animateToPage(
       currentPageStep + 1,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.easeIn,
     );
   }
@@ -156,7 +177,7 @@ class _CheckoutViewState extends State<CheckoutView> {
       formKey.currentState!.save();
       pageController.animateToPage(
         currentPageStep + 1,
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeIn,
       );
     } else {
